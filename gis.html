@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Peta Event | Event Mahasiswa Center</title>
+
+    <!-- Bootstrap lokal -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- Leaflet lokal -->
+    <link rel="stylesheet" href="assets/leaflet/css/leaflet.css">
+
+    <style>
+        body {
+            background-color: #FFF5F6;
+        }
+
+        .navbar-emc {
+            background-color: #2B0B16;
+        }
+
+        .navbar-emc .navbar-brand,
+        .navbar-emc .nav-link {
+            color: white;
+        }
+
+        .navbar-emc .nav-link:hover {
+            color: #F2B8C6;
+        }
+
+        .judul-halaman {
+            color: #800F2F;
+            font-weight: bold;
+        }
+
+        /* Wajib: peta harus memiliki tinggi */
+        #map {
+            height: 450px;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #EAD5DC;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-emc">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="beranda.html">
+                Event Mahasiswa Center
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuNavbar">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuNavbar">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="beranda.html">
+                            Beranda
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="gis.html">
+                            Peta Event
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">
+                            Kontak
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- JUDUL HALAMAN -->
+    <div class="container mt-4">
+
+        <h1 class="judul-halaman">
+            Peta Lokasi Event
+        </h1>
+
+        <p class="text-secondary">
+            Temukan lokasi berbagai acara mahasiswa melalui peta interaktif.
+        </p>
+
+
+        <!-- PETA -->
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body">
+
+                <h5 class="mb-3">Lokasi Seluruh Event</h5>
+
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="assets/leaflet/js/leaflet.js"></script>
+
+
+    <!-- JAVASCRIPT PETA -->
+    <script>
+
+        // 1. Membuat peta dan menentukan titik tengah
+        var map = L.map('map').setView(
+            [-6.9147, 107.6098], 13
+        );
+
+
+        // 2. Menampilkan tampilan peta dari OpenStreetMap
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                attribution: '&copy; OpenStreetMap contributors'
+            }
+        ).addTo(map);
+
+
+        // 3. Menyiapkan data event
+        // Koordinat berikut hanya contoh, bukan lokasi event sebenarnya.
+
+        var events = [
+            {
+                nama: "Seminar Teknologi",
+                tanggal: "15 November 2026",
+                lokasi: "Lokasi Contoh A",
+                latitude: -6.9175,
+                longitude: 107.6191
+            },
+
+            {
+                nama: "Workshop UI/UX",
+                tanggal: "20 November 2026",
+                lokasi: "Lokasi Contoh B",
+                latitude: -6.9025,
+                longitude: 107.6188
+            },
+
+            {
+                nama: "Festival Mahasiswa",
+                tanggal: "25 November 2026",
+                lokasi: "Lokasi Contoh C",
+                latitude: -6.9270,
+                longitude: 107.6030
+            }
+        ];
+
+        // 4. Membuat marker untuk setiap event
+        //icon
+        var defaultIcon = L.icon({
+            iconUrl: 'assets/leaflet/images/marker-icon.png',
+            iconRetinaUrl: 'assets/leaflet/images/marker-icon-2x.png',
+            shadowUrl: 'assets/leaflet/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        events.forEach(function(event) {
+
+            var marker = L.marker(
+                [event.latitude, event.longitude],
+                { icon: defaultIcon }
+            ).addTo(map);
+
+
+            // 5. Menampilkan informasi ketika marker diklik
+            marker.bindPopup(
+                "<b>" + event.nama + "</b><br>" +
+                "Tanggal: " + event.tanggal + "<br>" +
+                "Lokasi: " + event.lokasi
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
