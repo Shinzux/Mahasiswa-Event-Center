@@ -80,6 +80,74 @@
         text-decoration: none;
       }
 
+      .footer-desc {
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 42ch;
+      }
+
+      .footer-title {
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        position: relative;
+      }
+
+      .footer-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 28px;
+        height: 3px;
+        border-radius: 2px;
+        background: #ff6b8b;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.75);
+        transition:
+          color 0.2s,
+          transform 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: #ff6b8b;
+        transform: translateX(4px);
+      }
+
+      .footer-links i {
+        color: #ff6b8b;
+      }
+
+      .footer-line {
+        margin: 28px 0 16px;
+        border-color: rgba(255, 255, 255, 0.2);
+        opacity: 1;
+      }
+
+      .footer-copy {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .footer-links a {
+          transition: none;
+        }
+      }
+
       /* ===== Halaman Kontak ===== */
       .contact-hero-icon {
         font-size: 7rem;
@@ -236,9 +304,6 @@
         <div class="container py-3">
           <div class="row align-items-center g-4">
             <div class="col-lg-8">
-              <span class="badge rounded-pill bg-white text-danger border mb-3"
-                >HUBUNGI KAMI</span
-              >
               <h1 class="fw-bold display-5">
                 Ada Pertanyaan? <span>Kami Siap Membantu.</span>
               </h1>
@@ -271,25 +336,29 @@
                 </div>
                 <div>
                   <strong>Email</strong>
-                  <span>muhamaddani8768@gmail.com</span>
+                  <span>event.kontak@mailnesia.com</span>
                 </div>
               </div>
 
-              <div class="info-item">
+              <a
+                class="info-item"
+                href="https://wa.me/6281321814662"
+                target="_blank"
+                rel="noopener"
+              >
                 <div class="info-icon">
                   <i class="bi bi-whatsapp" aria-hidden="true"></i>
                 </div>
                 <div>
                   <strong>WhatsApp</strong>
-                  <span>0851-6980-5230</span>
+                  <span>0813-2181-4662</span>
                 </div>
-              </div>
-
+              </a>
               <!-- Seluruh kotak bisa diklik ke Google Maps.
                    Ganti href dengan link Google Maps lokasi aslimu. -->
               <a
                 class="info-item"
-                href="https://www.google.com/maps/search/?api=1&query=Jakarta%2C+Indonesia"
+                href="https://maps.app.goo.gl/FkA69Cb7otYd3K51A"
                 target="_blank"
                 rel="noopener"
                 aria-label="Buka lokasi di Google Maps"
@@ -299,22 +368,10 @@
                 </div>
                 <div>
                   <strong>Lokasi</strong>
-                  <span>Jakarta, Indonesia</span>
-                </div>
-              </a>
-
-              <a
-                class="info-item"
-                href="https://github.com/dani-dev22/"
-                target="_blank"
-                rel="noopener"
-              >
-                <div class="info-icon">
-                  <i class="bi bi-github" aria-hidden="true"></i>
-                </div>
-                <div>
-                  <strong>GitHub</strong>
-                  <span>github.com/dani-dev22</span>
+                  <span
+                    >Jl. Pelajar Pejuang 45 No.8, Lkr. Sel., Kec. Lengkong, Kota
+                    Bandung, Jawa Barat 40263, Indonesia</span
+                  >
                 </div>
               </a>
             </div>
@@ -331,7 +388,7 @@
                     type="text"
                     class="form-control"
                     id="inputNama"
-                    placeholder="Nama kamu"
+                    placeholder="Budi Susanto"
                     autocomplete="name"
                   />
                   <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
@@ -396,11 +453,11 @@
       </section>
     </main>
 
-    <footer class="py-4">
+    <footer class="py-5">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
               <span
                 class="brand-icon"
                 style="
@@ -452,23 +509,53 @@
                 >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
               >
             </h5>
-            <p class="small">
+            <p class="footer-desc">
               Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
             </p>
           </div>
-          <div class="col-md-3">
-            <h6 class="fw-bold">Navigasi</h6>
-            <a href="beranda.html">Beranda</a><br />
-            <a href="profil.html">Profil</a><br />
-            <a href="event-1.html">Event</a>
+
+          <div class="col-6 col-lg-3">
+            <h6 class="footer-title">Navigasi</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="beranda.html"
+                  ><i class="bi bi-house" aria-hidden="true"></i>Beranda</a
+                >
+              </li>
+              <li>
+                <a href="profil.html"
+                  ><i class="bi bi-person" aria-hidden="true"></i>Profil</a
+                >
+              </li>
+              <li>
+                <a href="event-1.html"
+                  ><i class="bi bi-calendar-event" aria-hidden="true"></i
+                  >Event</a
+                >
+              </li>
+              <li>
+                <a href="tes.html"
+                  ><i class="bi bi-envelope" aria-hidden="true"></i>Kontak</a
+                >
+              </li>
+            </ul>
           </div>
-          <div class="col-md-3">
-            <h6 class="fw-bold">Jelajahi</h6>
-            <a href="gis.html">Lokasi Event</a><br />
+
+          <div class="col-6 col-lg-3">
+            <h6 class="footer-title">Jelajahi</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="gis.html"
+                  ><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi
+                  Event</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-        <hr />
-        <p class="small text-center mb-0">
+
+        <hr class="footer-line" />
+        <p class="small text-center mb-0 footer-copy">
           &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
         </p>
       </div>
