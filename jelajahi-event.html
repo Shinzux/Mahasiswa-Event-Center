@@ -16,8 +16,7 @@
 
     <style>
       body {
-        color: #27324b;
-        background-color: #fff;
+        color: #333;
       }
       :focus-visible {
         outline: 3px solid #800f2f;
@@ -71,9 +70,72 @@
         background-color: #2b0b16;
         color: white;
       }
+
       footer a {
         color: white;
         text-decoration: none;
+      }
+
+      .footer-desc {
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 42ch;
+      }
+
+      .footer-title {
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        position: relative;
+      }
+
+      .footer-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 28px;
+        height: 3px;
+        border-radius: 2px;
+        background: #ff6b8b;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.75);
+        transition:
+          color 0.2s,
+          transform 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: #ff6b8b;
+        transform: translateX(4px);
+      }
+
+      .footer-links i {
+        color: #ff6b8b;
+      }
+
+      .footer-line {
+        margin: 28px 0 16px;
+        border-color: rgba(255, 255, 255, 0.2);
+        opacity: 1;
+      }
+
+      .footer-copy {
+        color: rgba(255, 255, 255, 0.6);
       }
 
       /* ---------- Khusus halaman Jelajahi Event ---------- */
@@ -255,85 +317,72 @@
     <!-- NAVBAR (sama dengan beranda.html dan profil.html) -->
     <header>
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-      >
-        <div class="container">
-          <a class="navbar-brand" href="beranda.html">
-            <span class="brand-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
-                  fill="white"
-                />
-                <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
-                <rect
-                  x="15"
-                  y="3.5"
-                  width="2"
-                  height="3.5"
-                  rx="1"
-                  fill="white"
-                />
-                <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
-                <rect
-                  x="14"
-                  y="13.5"
-                  width="2.5"
-                  height="2.5"
-                  rx="0.5"
-                  fill="#720927"
-                />
-              </svg>
-            </span>
-            <span>Event<span class="brand-highlight">Mahasiswa</span></span>
-          </a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuNavbar"
-            aria-controls="menuNavbar"
-            aria-expanded="false"
-            aria-label="Buka menu"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="menuNavbar">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="beranda.html">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="profil.html">Profil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="detail-event.html">Event</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gis.html">Lokasi Event</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="kontak.html">Kontak</a>
-              </li>
-            </ul>
-            <a
-              href="jelajahi-event.html"
-              class="btn btn-maroon active rounded-pill ms-lg-3"
-              aria-current="page"
-              >Jelajahi Event</a
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="beranda.html">
+          <span class="brand-icon">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-          </div>
+              <path
+                d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                fill="white"
+              />
+              <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+              <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+              <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
+              <rect
+                x="14"
+                y="13.5"
+                width="2.5"
+                height="2.5"
+                rx="0.5"
+                fill="#720927"
+              />
+            </svg>
+          </span>
+          <span>Kontak<span class="brand-highlight">Mahasiswa</span></span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuNavbar"
+          aria-controls="menuNavbar"
+          aria-expanded="false"
+          aria-label="Buka menu navigasi"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="beranda.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profil.html">Profil</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="event-1.html">Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gis.html">Lokasi Event</a>
+            </li>
+          </ul>
+          <a href="event-1.html" class="btn btn-maroon rounded-pill ms-lg-3"
+            >Jelajahi Event</a
+          >
         </div>
-      </nav>
+      </div>
+    </nav>
     </header>
 
     <main>
@@ -429,12 +478,11 @@
       </section>
     </main>
 
-    <!-- FOOTER (sama dengan beranda.html dan profil.html) -->
     <footer class="py-4">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
               <span
                 class="brand-icon"
                 style="
@@ -450,7 +498,6 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
                 >
                   <path
                     d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
@@ -487,24 +534,48 @@
                 >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
               >
             </h5>
-            <p class="small">
+            <p class="footer-desc">
               Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
             </p>
           </div>
-          <div class="col-md-3">
-            <h6 class="fw-bold">Navigasi</h6>
-            <a href="beranda.html">Beranda</a><br />
-            <a href="profil.html">Profil</a><br />
-            <a href="detail-event.html">Event</a>
+
+          <div class="col-6 col-lg-3">
+            <h6 class="footer-title">Navigasi</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="beranda.html"
+                  ><i class="bi bi-house" aria-hidden="true"></i>Beranda</a
+                >
+              </li>
+              <li>
+                <a href="profil.html"
+                  ><i class="bi bi-person" aria-hidden="true"></i>Profil</a
+                >
+              </li>
+              <li>
+                <a href="event-1.html"
+                  ><i class="bi bi-calendar-event" aria-hidden="true"></i
+                  >Event</a
+                >
+              </li>
+            </ul>
           </div>
-          <div class="col-md-3">
-            <h6 class="fw-bold">Jelajahi</h6>
-            <a href="gis.html">Lokasi Event</a><br />
-            <a href="kontak.html">Kontak</a>
+
+          <div class="col-6 col-lg-3">
+            <h6 class="footer-title">Jelajahi</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="gis.html"
+                  ><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi
+                  Event</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-        <hr />
-        <p class="small text-center mb-0">
+
+        <hr class="footer-line" />
+        <p class="small text-center mb-0 footer-copy">
           &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
         </p>
       </div>
