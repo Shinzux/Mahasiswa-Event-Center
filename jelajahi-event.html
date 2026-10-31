@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jelajahi Event | Event Mahasiswa Center</title>
-    
+
     <!-- Bootstrap (lokal, sama dengan profil.html dan gis.html) -->
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -18,6 +18,7 @@
     <style>
       body {
         color: #27324b;
+        background-color: #fff;
       }
       :focus-visible {
         outline: 3px solid #800f2f;
@@ -67,9 +68,6 @@
         color: white;
         box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.25);
       }
-      .hero {
-        background-color: #fff1f4;
-      }
       footer {
         background-color: #2b0b16;
         color: white;
@@ -79,9 +77,107 @@
         text-decoration: none;
       }
 
-      /* ---------- Khusus halaman Daftar Event ---------- */
+      /* ---------- Khusus halaman Jelajahi Event ---------- */
       .bg-soft {
         background-color: #fff5f6;
+      }
+      .teks-sekunder {
+        color: #687189;
+      }
+
+      /* Banner. Untuk memakai foto, simpan di assets/img/banner-event.jpg.
+         Kalau fotonya belum ada, yang tampil adalah warna maroon. */
+      .banner {
+        height: 300px;
+        background-color: #800f2f;
+        background-image:
+          linear-gradient(rgba(43, 11, 22, 0.45), rgba(128, 15, 47, 0.35)),
+          url("assets/img/banner-event.jpg"),
+          linear-gradient(135deg, #800f2f 0%, #b33a5a 100%);
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Kartu judul yang menimpa banner */
+      .kolom-sempit {
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .kartu-judul {
+        position: relative;
+        margin-top: -190px;
+        background-color: #fff;
+        padding: 3rem 3rem 1.5rem;
+      }
+      .kartu-judul h1 {
+        font-weight: 500;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        color: #1a1a1a;
+      }
+
+      /* Garis pemisah dengan kotak pencarian di tengahnya */
+      .garis-cari {
+        position: relative;
+        height: 0;
+        margin: 1.5rem auto 4.5rem;
+        max-width: 736px;
+        border-top: 1px solid #b9a4ab;
+      }
+      .kotak-cari {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: min(340px, 92%);
+        transform: translate(-50%, -50%);
+      }
+      .kotak-cari svg {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      .kotak-cari input {
+        width: 100%;
+        padding: 0.65rem 1rem 0.65rem 2.8rem;
+        border: 1px solid #800f2f;
+        border-radius: 999px;
+        background-color: #fff;
+        box-shadow: 0 4px 12px rgba(128, 15, 47, 0.12);
+      }
+
+      /* Kartu kategori */
+      .kartu-kategori {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+        padding: 0.9rem 1rem;
+        text-align: left;
+        color: inherit;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 12px;
+      }
+      .kartu-kategori:hover {
+        background-color: #fff5f6;
+      }
+      .kartu-kategori.aktif {
+        background-color: #fff1f4;
+        border-color: #800f2f;
+      }
+      .ikon-kategori {
+        flex: 0 0 2.75rem;
+        height: 2.75rem;
+        display: grid;
+        place-items: center;
+        font-size: 1.4rem;
+        background-color: #f9e4ea;
+        border-radius: 50%;
       }
 
       /* Badge kategori dan status */
@@ -110,15 +206,15 @@
       #tabelEvent td {
         vertical-align: middle;
       }
-      .teks-sekunder {
-        color: #687189;
-      }
 
-      /* Simple-DataTables menyesuaikan tema maroon */
+      /* Simple-DataTables: tema maroon. Kotak cari bawaan disembunyikan
+         karena pencarian memakai kotak di garis pemisah. */
       .datatable-wrapper {
         overflow-x: auto;
       }
-      .datatable-input:focus,
+      .datatable-search {
+        display: none;
+      }
       .datatable-selector:focus {
         border-color: #800f2f;
         outline: none;
@@ -139,6 +235,19 @@
       .datatable-top,
       .datatable-bottom {
         padding: 0.75rem 0;
+      }
+
+      @media (max-width: 575.98px) {
+        .banner {
+          height: 220px;
+        }
+        .kartu-judul {
+          margin-top: -130px;
+          padding: 1.5rem 1.25rem 1rem;
+        }
+        .kartu-judul h1 {
+          font-size: 1.7rem;
+        }
       }
     </style>
   </head>
@@ -208,7 +317,7 @@
                 <a class="nav-link" href="profil.html">Profil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="event-2.html">Event</a>
+                <a class="nav-link" href="detail-event.html">Event</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="gis.html">Lokasi Event</a>
@@ -229,17 +338,51 @@
     </header>
 
     <main>
-      <!-- HEADER HALAMAN -->
-      <section class="hero py-5">
-        <div class="container">
-          <p class="text-danger fw-bold mb-2">DAFTAR KEGIATAN</p>
-          <h1 class="fw-bold">Daftar Event</h1>
-          <p class="teks-sekunder mb-0">
+      <!-- BANNER -->
+      <div class="banner" role="img" aria-label="Banner Jelajahi Event"></div>
+
+      <!-- KARTU JUDUL (menimpa banner) -->
+      <section class="kolom-sempit" aria-labelledby="judulHalaman">
+        <div class="kartu-judul">
+          <h1 id="judulHalaman">Jelajahi Event Mahasiswa</h1>
+          <p class="mt-4 mb-0 small">
             Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
-            mahasiswa. Cari berdasarkan nama atau kategori, atau urutkan sesuai
-            kebutuhanmu.
+            mahasiswa dalam satu tempat. Ketik nama atau kategori di kotak
+            pencarian, atau pilih salah satu kategori di bawah.
           </p>
         </div>
+
+        <!-- GARIS PEMISAH + KOTAK PENCARIAN -->
+        <div class="garis-cari">
+          <div class="kotak-cari">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#800f2f"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input
+              type="search"
+              id="inputCari"
+              placeholder="Cari nama atau kategori event..."
+              aria-label="Cari event"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- KARTU KATEGORI -->
+        <h2 class="h6 fw-bold text-uppercase teks-sekunder mb-3">
+          Pilih Kategori
+        </h2>
+        <div class="row g-3 mb-5" id="gridKategori"></div>
       </section>
 
       <!-- TABEL EVENT -->
@@ -248,9 +391,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
               <div class="mb-3">
-                <h2 class="fw-bold h4 mb-1" id="judulTabel">
-                  Semua Event
-                </h2>
+                <h2 class="fw-bold h4 mb-1" id="judulTabel">Daftar Lengkap Event</h2>
                 <p class="small teks-sekunder mb-0">
                   Klik judul kolom untuk mengurutkan. Data pada halaman ini
                   adalah <strong>data contoh</strong> (simulasi), bukan jadwal
@@ -355,7 +496,7 @@
             <h6 class="fw-bold">Navigasi</h6>
             <a href="beranda.html">Beranda</a><br />
             <a href="profil.html">Profil</a><br />
-            <a href="event-2.html">Event</a>
+            <a href="detail-event.html">Event</a>
           </div>
           <div class="col-md-3">
             <h6 class="fw-bold">Jelajahi</h6>
@@ -376,14 +517,14 @@
     <!-- Simple-DataTables -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9"></script>
 
-    <!-- Data event bersama -->
-    <script src="js/data-event.js"></script>
-
     <script>
       (function () {
-        var events = window.EVENT_DATA || [];
+        var events = [];
         var tbody = document.getElementById("isiTabel");
         var pesanError = document.getElementById("pesanError");
+        var inputCari = document.getElementById("inputCari");
+        var gridKategori = document.getElementById("gridKategori");
+        var dt = null;
 
         // Format tanggal ISO (2026-11-12) menjadi "12 November 2026"
         var bulan = [
@@ -394,6 +535,41 @@
           var p = iso.split("-");
           return parseInt(p[2], 10) + " " + bulan[parseInt(p[1], 10) - 1] + " " + p[0];
         }
+
+        // ===== DATA EVENT (data contoh, sama dengan detail-event.html) =====
+        // Jika mengubah nama, kategori, tanggal, atau lokasi, ubah juga
+        // di detail-event.html supaya datanya tetap sama.
+        var dataEvent = [
+          { id: "EVT-01", nama: "SIFEST", kategori: "Workshop", tanggal: "12 November 2026", lokasi: "Belum diumumkan" },
+          { id: "EVT-02", nama: "Membangun Karier Digital", kategori: "Seminar", tanggal: "18 November 2026", lokasi: "Belum diumumkan" },
+          { id: "EVT-03", nama: "Student Community Meetup", kategori: "Komunitas", tanggal: "21 November 2026", lokasi: "Belum diumumkan" }
+        ];
+
+        function dua(angka) {
+          return (angka < 10 ? "0" : "") + angka;
+        }
+
+        // "12 November 2026" -> "2026-11-12" (dipakai untuk pengurutan tanggal)
+        function keIso(teks) {
+          var p = teks.split(" ");
+          return p[2] + "-" + dua(bulan.indexOf(p[1]) + 1) + "-" + dua(parseInt(p[0], 10));
+        }
+
+        // Status dihitung dari tanggal: sebelum hari ini = Selesai
+        var hariIni = new Date();
+        hariIni.setHours(0, 0, 0, 0);
+
+        events = dataEvent.map(function (d) {
+          var iso = keIso(d.tanggal);
+          return {
+            id: d.id,
+            title: d.nama,
+            category: d.kategori,
+            date: iso,
+            location: d.lokasi,
+            status: new Date(iso + "T00:00:00") < hariIni ? "Selesai" : "Akan Datang"
+          };
+        });
 
         // Cegah karakter HTML dari data merusak tampilan
         function aman(teks) {
@@ -406,7 +582,7 @@
         if (events.length === 0) {
           document.getElementById("tabelEvent").classList.add("d-none");
           pesanError.textContent =
-            "Data event belum tersedia. Pastikan file js/data-event.js ada dan dimuat dengan benar.";
+            "Data event belum tersedia.";
           pesanError.classList.remove("d-none");
           return;
         }
@@ -424,38 +600,121 @@
               '<td data-content="' + e.date + '">' + formatTanggal(e.date) + "</td>" +
               "<td>" + aman(e.location) + "</td>" +
               '<td><span class="badge ' + kelasStatus + '">' + aman(e.status) + "</span></td>" +
-              '<td><a class="btn btn-sm btn-maroon rounded-pill px-3" href="event-2.html?event=' +
+              '<td><a class="btn btn-sm btn-maroon rounded-pill px-3" href="detail-event.html?event=' +
                 encodeURIComponent(e.id) + '" aria-label="Lihat detail ' + aman(e.title) + '">Detail</a></td>' +
               "</tr>"
             );
           })
           .join("");
 
-        // 3. Aktifkan Simple-DataTables (cari, urut, pagination)
+        // 3. Aktifkan Simple-DataTables (urut dan pagination).
+        //    Pencariannya dikendalikan oleh kotak cari di garis pemisah.
         if (typeof simpleDatatables === "undefined") {
           pesanError.textContent =
-            "Fitur pencarian dan pengurutan belum bisa dimuat (periksa koneksi internet). Daftar event tetap ditampilkan.";
+            "Fitur pengurutan dan pagination belum bisa dimuat (periksa koneksi internet). Daftar event dan pencarian tetap berfungsi.";
           pesanError.classList.remove("d-none");
-          return;
+        } else {
+          dt = new simpleDatatables.DataTable("#tabelEvent", {
+            searchable: true,
+            sortable: true,
+            paging: true,
+            perPage: 5,
+            perPageSelect: [5, 10, 25],
+            columns: [
+              { select: 2, sort: "asc" },                       // urut awal: tanggal terdekat
+              { select: 5, sortable: false, searchable: false } // kolom Aksi
+            ],
+            labels: {
+              perPage: "{select} event per halaman",
+              noRows: "Belum ada event.",
+              noResults: "Tidak ada event yang cocok dengan pencarian kamu.",
+              info: "Menampilkan {start} sampai {end} dari {rows} event"
+            }
+          });
         }
 
-        new simpleDatatables.DataTable("#tabelEvent", {
-          searchable: true,
-          sortable: true,
-          paging: true,
-          perPage: 5,
-          perPageSelect: [5, 10, 25],
-          columns: [
-            { select: 2, sort: "asc" },                       // urut awal: tanggal terdekat
-            { select: 5, sortable: false, searchable: false } // kolom Aksi
-          ],
-          labels: {
-            placeholder: "Cari nama atau kategori event...",
-            perPage: "{select} event per halaman",
-            noRows: "Belum ada event.",
-            noResults: "Tidak ada event yang cocok dengan pencarian kamu.",
-            info: "Menampilkan {start} sampai {end} dari {rows} event"
+        // 4. Pencarian
+        function cari(kata) {
+          kata = kata.trim();
+          if (dt) {
+            dt.search(kata);
+            return;
           }
+          // Cadangan jika library tidak termuat: saring baris secara manual
+          var kecil = kata.toLowerCase();
+          tbody.querySelectorAll("tr").forEach(function (tr) {
+            tr.hidden = kecil !== "" && tr.textContent.toLowerCase().indexOf(kecil) === -1;
+          });
+        }
+
+        // 5. Kartu kategori (dibuat dari data, jumlahnya dihitung otomatis)
+        var infoKategori = {
+          "Seminar": { ikon: "🎤", teks: "Pembahasan topik tertentu bersama pembicara, dari isu akademik sampai karier." },
+          "Workshop": { ikon: "🛠️", teks: "Pelatihan praktik untuk mengasah keterampilan, seperti desain atau pemrograman." },
+          "Kompetisi": { ikon: "🏆", teks: "Lomba untuk menguji kemampuan dan menambah pengalaman." },
+          "Komunitas": { ikon: "🤝", teks: "Pertemuan komunitas untuk saling mengenal dan berbagi ide." },
+          "Organisasi": { ikon: "👥", teks: "Agenda UKM, himpunan, dan komunitas mahasiswa yang terbuka untuk diikuti." }
+        };
+
+        var jumlah = {};
+        var urutan = [];
+        events.forEach(function (e) {
+          if (!(e.category in jumlah)) {
+            jumlah[e.category] = 0;
+            urutan.push(e.category);
+          }
+          jumlah[e.category] += 1;
+        });
+
+        var daftarKartu = [];
+
+        function buatKartu(nama, ikon, jumlahEvent, teks, nilai) {
+          var kolom = document.createElement("div");
+          kolom.className = "col-sm-6";
+
+          var tombol = document.createElement("button");
+          tombol.type = "button";
+          tombol.className = "kartu-kategori";
+          tombol.setAttribute("data-kategori", nilai);
+          tombol.setAttribute("aria-pressed", "false");
+          tombol.innerHTML =
+            '<span class="ikon-kategori" aria-hidden="true">' + ikon + "</span>" +
+            "<span>" +
+              '<strong class="d-block">' + aman(nama) + "</strong>" +
+              '<span class="small teks-sekunder d-block">' + jumlahEvent + " event</span>" +
+              '<span class="small d-block mt-1">' + aman(teks) + "</span>" +
+            "</span>";
+
+          tombol.addEventListener("click", function () {
+            inputCari.value = nilai;
+            cari(nilai);
+            tandaiAktif(nilai);
+          });
+
+          kolom.appendChild(tombol);
+          gridKategori.appendChild(kolom);
+          daftarKartu.push(tombol);
+        }
+
+        function tandaiAktif(kata) {
+          var kecil = kata.trim().toLowerCase();
+          daftarKartu.forEach(function (tombol) {
+            var aktif = tombol.getAttribute("data-kategori").toLowerCase() === kecil;
+            tombol.classList.toggle("aktif", aktif);
+            tombol.setAttribute("aria-pressed", aktif ? "true" : "false");
+          });
+        }
+
+        buatKartu("Semua Event", "📅", events.length, "Tampilkan seluruh kegiatan yang tersedia.", "");
+        urutan.forEach(function (nama) {
+          var info = infoKategori[nama] || { ikon: "📌", teks: "Kegiatan kategori " + nama + "." };
+          buatKartu(nama, info.ikon, jumlah[nama], info.teks, nama);
+        });
+        tandaiAktif("");
+
+        inputCari.addEventListener("input", function () {
+          cari(inputCari.value);
+          tandaiAktif(inputCari.value);
         });
       })();
     </script>
