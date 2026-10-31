@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Format Navbar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #1a1a1a;
+      }
+      .navbar-brand:hover {
+        color: #1a1a1a;
+      }
+      .navbar-brand .brand-highlight {
+        color: #720927;
+      }
+      .brand-icon {
+        width: 42px;
+        height: 42px;
+        background-color: #720927;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
+      }
+      .btn-maroon {
+        background-color: #800f2f;
+        color: white;
+      }
+      .btn-maroon:hover {
+        background-color: #650b25;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="beranda.html">
+          <span class="brand-icon">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                fill="white"
+              />
+              <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+              <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+              <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
+              <rect
+                x="14"
+                y="13.5"
+                width="2.5"
+                height="2.5"
+                rx="0.5"
+                fill="#720927"
+              />
+            </svg>
+          </span>
+          <span>#<span class="brand-highlight">Mahasiswa</span></span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuNavbar"
+          aria-controls="menuNavbar"
+          aria-expanded="false"
+          aria-label="Buka menu navigasi"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="beranda.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profil.html">Profil</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="detail-event.html">Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gis.html">Lokasi Event</a>
+            </li>
+          </ul>
+          <a
+            href="jelajahi-event.html"
+            class="btn btn-maroon rounded-pill ms-lg-3"
+            >Jelajahi Event</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
