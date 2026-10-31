@@ -209,6 +209,16 @@
         border-radius: 20px;
         padding: 32px;
         box-shadow: 0 8px 24px rgba(128, 15, 47, 0.08);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+
+      .form-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(128, 15, 47, 0.12);
+        border-color: #800f2f;
       }
 
       .form-control:focus {
@@ -223,7 +233,8 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .info-item {
+        .info-item,
+        .form-box {
           transition: none;
         }
       }
