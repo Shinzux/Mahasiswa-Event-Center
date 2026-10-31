@@ -1,603 +1,467 @@
 <!doctype html>
+<!-- Halaman Daftar Event (Event 1) | PIC: Bintang P. S. -->
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Daftar event mahasiswa di Event Mahasiswa Center.">
-  <title>Daftar Event | Event Mahasiswa Center</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Event | Event Mahasiswa Center</title>
+    <meta
+      name="description"
+      content="Daftar event mahasiswa dalam tabel interaktif yang bisa dicari dan diurutkan."
+    />
 
-  <!-- Bootstrap 5.3.8 lokal, mengikuti halaman Profil dan GIS -->
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons digunakan juga oleh halaman Detail Event -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Bootstrap (lokal, sama dengan profil.html dan gis.html) -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <style>
-    :root {
-      --emc-maroon: #800f2f;
-      --emc-dark: #2b0b16;
-      --emc-rose: #b33a5a;
-      --emc-soft: #fff5f6;
-      --emc-pink: #f9e4ea;
-      --emc-text: #27324b;
-      --emc-muted: #687189;
-    }
+    <!-- Simple-DataTables -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@9/dist/style.css"
+      rel="stylesheet"
+    />
 
-    body {
-      color: var(--emc-text);
-      background: #fff;
-    }
+    <style>
+      body {
+        color: #27324b;
+      }
+      :focus-visible {
+        outline: 3px solid #800f2f;
+        outline-offset: 2px;
+      }
+      footer :focus-visible {
+        outline-color: #fff;
+      }
 
-    .navbar-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.4px;
-      color: #1a1a1a;
-    }
+      /* ---------- Komponen bersama (sama dengan profil.html) ---------- */
+      .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #1a1a1a;
+      }
+      .navbar-brand:hover {
+        color: #1a1a1a;
+      }
+      .navbar-brand .brand-highlight {
+        color: #720927;
+      }
+      .brand-icon {
+        width: 42px;
+        height: 42px;
+        background-color: #720927;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
+      }
+      .btn-maroon {
+        background-color: #800f2f;
+        color: white;
+      }
+      .btn-maroon:hover {
+        background-color: #650b25;
+        color: white;
+      }
+      .btn-maroon.active {
+        background-color: #650b25;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.25);
+      }
+      .hero {
+        background-color: #fff1f4;
+      }
+      footer {
+        background-color: #2b0b16;
+        color: white;
+      }
+      footer a {
+        color: white;
+        text-decoration: none;
+      }
 
-    .navbar-brand:hover { color: #1a1a1a; }
+      /* ---------- Khusus halaman Daftar Event ---------- */
+      .bg-soft {
+        background-color: #fff5f6;
+      }
 
-    .brand-highlight { color: #720927; }
+      /* Badge kategori dan status */
+      .badge-kategori {
+        background-color: #f9e4ea;
+        color: #800f2f;
+        font-weight: 600;
+      }
+      .badge-akan-datang {
+        background-color: #800f2f;
+        color: white;
+        font-weight: 600;
+      }
+      .badge-selesai {
+        background-color: #e9ecef;
+        color: #687189;
+        font-weight: 600;
+      }
 
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 12px;
-      background: #720927;
-      box-shadow: 0 4px 10px rgba(114, 9, 39, .2);
-    }
+      /* Tabel */
+      #tabelEvent thead th {
+        background-color: #f9e4ea;
+        color: #2b0b16;
+        white-space: nowrap;
+      }
+      #tabelEvent td {
+        vertical-align: middle;
+      }
+      .teks-sekunder {
+        color: #687189;
+      }
 
-    .btn-maroon {
-      color: #fff;
-      background: var(--emc-maroon);
-      border-color: var(--emc-maroon);
-    }
+      /* Simple-DataTables menyesuaikan tema maroon */
+      .datatable-wrapper {
+        overflow-x: auto;
+      }
+      .datatable-input:focus,
+      .datatable-selector:focus {
+        border-color: #800f2f;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
+      }
+      .datatable-pagination .datatable-active a,
+      .datatable-pagination .datatable-active a:hover {
+        background-color: #800f2f;
+        color: white;
+      }
+      .datatable-sorter:hover,
+      .datatable-sorter::before,
+      .datatable-sorter::after {
+        color: #800f2f;
+        border-bottom-color: #800f2f;
+        border-top-color: #800f2f;
+      }
+      .datatable-top,
+      .datatable-bottom {
+        padding: 0.75rem 0;
+      }
+    </style>
+  </head>
 
-    .btn-maroon:hover,
-    .btn-maroon:focus {
-      color: #fff;
-      background: #650b25;
-      border-color: #650b25;
-    }
-
-    .hero-event {
-      background: linear-gradient(120deg, var(--emc-soft), #fff);
-      border-bottom: 1px solid var(--emc-pink);
-    }
-
-    .eyebrow {
-      color: var(--emc-maroon);
-      font-size: .8rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .page-title { color: var(--emc-dark); }
-
-    .table-card {
-      overflow: hidden;
-      border: 1px solid #f0dce2;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(43, 11, 22, .06);
-    }
-
-    .table thead th {
-      padding: 1rem .9rem;
-      color: #fff;
-      background: var(--emc-dark);
-      border-bottom: 0;
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    .table tbody td {
-      padding: .95rem .9rem;
-      vertical-align: middle;
-    }
-
-    .table tbody tr:hover { background: #fff8fa; }
-
-    .sort-button {
-      padding: 0;
-      color: inherit;
-      font: inherit;
-      font-weight: 700;
-      text-align: left;
-      background: transparent;
-      border: 0;
-    }
-
-    .sort-button:hover { color: #ffdce5; }
-
-    .event-name {
-      color: var(--emc-dark);
-      font-weight: 700;
-    }
-
-    .category-badge {
-      color: var(--emc-maroon);
-      background: var(--emc-pink);
-      font-weight: 600;
-    }
-
-    .status-badge {
-      color: #146c43;
-      background: #d1e7dd;
-      font-weight: 600;
-    }
-
-    .search-control:focus,
-    .form-select:focus {
-      border-color: #c56b85;
-      box-shadow: 0 0 0 .2rem rgba(128, 15, 47, .12);
-    }
-
-    .pagination .page-link {
-      color: var(--emc-maroon);
-    }
-
-    .pagination .page-item.active .page-link {
-      color: #fff;
-      background: var(--emc-maroon);
-      border-color: var(--emc-maroon);
-    }
-
-    .pagination .page-item.disabled .page-link {
-      color: #9aa0aa;
-    }
-
-    .empty-state {
-      padding: 2.5rem 1rem;
-      color: var(--emc-muted);
-      text-align: center;
-    }
-
-    footer {
-      color: #fff;
-      background: var(--emc-dark);
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #ffb8ca;
-      text-decoration: underline;
-    }
-
-    :focus-visible {
-      outline: 3px solid var(--emc-rose);
-      outline-offset: 3px;
-    }
-
-    footer :focus-visible { outline-color: #fff; }
-
-    @media (max-width: 575.98px) {
-      .hero-event { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
-      .table-toolbar { align-items: stretch !important; }
-      .table-toolbar .search-wrap { width: 100%; }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- NAVBAR: struktur mengikuti halaman Profil/Beranda -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="beranda.html" aria-label="Event Mahasiswa Center, Beranda">
-        <span class="brand-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z" fill="white"/>
-            <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white"/>
-            <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white"/>
-            <path d="M4 10H20" stroke="#720927" stroke-width="1.8"/>
-            <rect x="14" y="13.5" width="2.5" height="2.5" rx=".5" fill="#720927"/>
-          </svg>
-        </span>
-        <span>Event<span class="brand-highlight">Mahasiswa</span></span>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-expanded="false"
-        aria-label="Buka menu navigasi">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="menuNavbar">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="beranda.html">Beranda</a></li>
-          <li class="nav-item"><a class="nav-link" href="profil.html">Profil</a></li>
-          <li class="nav-item"><a class="nav-link active fw-bold" href="event-1.html" aria-current="page">Jelajahi Event</a></li>
-          <li class="nav-item"><a class="nav-link" href="gis.html">Lokasi Event</a></li>
-          <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <main>
-    <!-- HEADER HALAMAN -->
-    <section class="hero-event py-5">
-      <div class="container">
-        <p class="eyebrow mb-2">Informasi Kegiatan Mahasiswa</p>
-        <h1 class="page-title fw-bold display-6 mb-2">Daftar Event</h1>
-        <p class="text-secondary mb-0">
-          Temukan seminar, workshop, dan kegiatan mahasiswa yang bisa kamu ikuti.
-        </p>
-      </div>
-    </section>
-
-    <!-- DAFTAR EVENT -->
-    <section class="container py-5" id="daftar-event">
-      <div class="row align-items-end g-3 mb-4">
-        <div class="col-lg-6">
-          <p class="eyebrow mb-1">Jelajahi kegiatan</p>
-          <h2 class="h3 fw-bold mb-1">Semua Event</h2>
-          <p class="text-secondary mb-0">Cari event berdasarkan nama, kategori, lokasi, atau status.</p>
-        </div>
-        <div class="col-lg-6">
-          <div class="row g-2 table-toolbar align-items-center justify-content-lg-end">
-            <div class="col-sm-4 col-lg-auto">
-              <label for="jumlahBaris" class="form-label small mb-1">Tampilkan</label>
-              <select id="jumlahBaris" class="form-select">
-                <option value="5" selected>5 baris</option>
-                <option value="10">10 baris</option>
-                <option value="20">20 baris</option>
-              </select>
-            </div>
-            <div class="col-sm-8 col-lg-7 search-wrap">
-              <label for="inputPencarian" class="form-label small mb-1">Pencarian</label>
-              <div class="input-group">
-                <span class="input-group-text bg-white"><i class="bi bi-search" aria-hidden="true"></i></span>
-                <input type="search" id="inputPencarian" class="form-control search-control"
-                  placeholder="Cari event..." autocomplete="off">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-responsive">
-          <table class="table table-hover mb-0" id="tabelEvent">
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col" aria-sort="ascending">
-                  <button class="sort-button" type="button" data-sort="title">Nama Event <i class="bi bi-arrow-down-up ms-1" aria-hidden="true"></i></button>
-                </th>
-                <th scope="col">
-                  <button class="sort-button" type="button" data-sort="category">Kategori <i class="bi bi-arrow-down-up ms-1" aria-hidden="true"></i></button>
-                </th>
-                <th scope="col">
-                  <button class="sort-button" type="button" data-sort="date">Tanggal <i class="bi bi-arrow-down-up ms-1" aria-hidden="true"></i></button>
-                </th>
-                <th scope="col">Lokasi</th>
-                <th scope="col">
-                  <button class="sort-button" type="button" data-sort="status">Status <i class="bi bi-arrow-down-up ms-1" aria-hidden="true"></i></button>
-                </th>
-                <th scope="col">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="isiTabelEvent"></tbody>
-          </table>
-        </div>
-
-        <div id="pesanKosong" class="empty-state d-none">
-          <i class="bi bi-calendar-x display-5 d-block mb-2" aria-hidden="true"></i>
-          <h3 class="h5 fw-bold">Event tidak ditemukan</h3>
-          <p class="mb-0">Coba gunakan kata kunci pencarian yang berbeda.</p>
-        </div>
-
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 p-3 border-top">
-          <small class="text-secondary" id="infoTabel" aria-live="polite">Memuat data event...</small>
-          <nav aria-label="Navigasi halaman tabel">
-            <ul class="pagination pagination-sm mb-0" id="paginationEvent"></ul>
-          </nav>
-        </div>
-      </div>
-
-      <p class="small text-secondary mt-3 mb-0">
-        <i class="bi bi-info-circle me-1" aria-hidden="true"></i>
-        Data pada halaman ini merupakan data contoh sementara. Detail waktu, lokasi, dan penyelenggara mengikuti pengumuman resmi.
-      </p>
-    </section>
-  </main>
-
-  <!-- FOOTER: struktur mengikuti footer Beranda -->
-  <footer class="py-4">
-    <div class="container">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
-            <span class="brand-icon" style="width:36px;height:36px;background-color:#800f2f;border-radius:10px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z" fill="white"/>
-                <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white"/>
-                <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white"/>
-                <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8"/>
-                <rect x="14" y="13.5" width="2.5" height="2.5" rx=".5" fill="#800f2f"/>
+  <body>
+    <!-- NAVBAR (sama dengan beranda.html dan profil.html) -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="beranda.html">
+            <span class="brand-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                  fill="white"
+                />
+                <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+                <rect
+                  x="15"
+                  y="3.5"
+                  width="2"
+                  height="3.5"
+                  rx="1"
+                  fill="white"
+                />
+                <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
+                <rect
+                  x="14"
+                  y="13.5"
+                  width="2.5"
+                  height="2.5"
+                  rx="0.5"
+                  fill="#720927"
+                />
               </svg>
             </span>
-            <span>Event<span style="color:#ff6b8b;">Mahasiswa</span> Center</span>
-          </h5>
-          <p class="small">Pusat informasi seminar, workshop, dan kegiatan mahasiswa.</p>
+            <span>Event<span class="brand-highlight">Mahasiswa</span></span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuNavbar"
+            aria-controls="menuNavbar"
+            aria-expanded="false"
+            aria-label="Buka menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="menuNavbar">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="beranda.html">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profil.html">Profil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="event-2.html">Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gis.html">Lokasi Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kontak.html">Kontak</a>
+              </li>
+            </ul>
+            <a
+              href="event-1.html"
+              class="btn btn-maroon active rounded-pill ms-lg-3"
+              aria-current="page"
+              >Jelajahi Event</a
+            >
+          </div>
         </div>
-        <div class="col-md-3">
-          <h6 class="fw-bold">Navigasi</h6>
-          <a href="beranda.html">Beranda</a><br>
-          <a href="profil.html">Profil</a><br>
-          <a href="event-1.html" aria-current="page">Jelajahi Event</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HEADER HALAMAN -->
+      <section class="hero py-5">
+        <div class="container">
+          <p class="text-danger fw-bold mb-2">DAFTAR KEGIATAN</p>
+          <h1 class="fw-bold">Daftar Event</h1>
+          <p class="teks-sekunder mb-0">
+            Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
+            mahasiswa. Cari berdasarkan nama atau kategori, atau urutkan sesuai
+            kebutuhanmu.
+          </p>
         </div>
-        <div class="col-md-3">
-          <h6 class="fw-bold">Jelajahi</h6>
-          <a href="gis.html">Lokasi Event</a><br>
-          <a href="kontak.html">Kontak</a>
+      </section>
+
+      <!-- TABEL EVENT -->
+      <section class="py-5 bg-soft" aria-labelledby="judulTabel">
+        <div class="container">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <h2 class="fw-bold h4 mb-1" id="judulTabel">
+                  Semua Event
+                </h2>
+                <p class="small teks-sekunder mb-0">
+                  Klik judul kolom untuk mengurutkan. Data pada halaman ini
+                  adalah <strong>data contoh</strong> (simulasi), bukan jadwal
+                  acara sebenarnya.
+                </p>
+              </div>
+
+              <!-- Pesan jika tabel gagal dimuat -->
+              <div
+                id="pesanError"
+                class="alert alert-warning d-none"
+                role="alert"
+              ></div>
+
+              <table class="table table-hover align-middle mb-0" id="tabelEvent">
+                <thead>
+                  <tr>
+                    <th scope="col">Nama Event</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Lokasi</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="isiTabel"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="small teks-sekunder mt-3 mb-0">
+            Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
+            ditujukan ke penyelenggara masing-masing event.
+          </p>
         </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (sama dengan beranda.html dan profil.html) -->
+    <footer class="py-4">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
+              <span
+                class="brand-icon"
+                style="
+                  width: 36px;
+                  height: 36px;
+                  background-color: #800f2f;
+                  border-radius: 10px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                    fill="white"
+                  />
+                  <rect
+                    x="7"
+                    y="3.5"
+                    width="2"
+                    height="3.5"
+                    rx="1"
+                    fill="white"
+                  />
+                  <rect
+                    x="15"
+                    y="3.5"
+                    width="2"
+                    height="3.5"
+                    rx="1"
+                    fill="white"
+                  />
+                  <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8" />
+                  <rect
+                    x="14"
+                    y="13.5"
+                    width="2.5"
+                    height="2.5"
+                    rx="0.5"
+                    fill="#800f2f"
+                  />
+                </svg>
+              </span>
+              <span
+                >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
+              >
+            </h5>
+            <p class="small">
+              Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h6 class="fw-bold">Navigasi</h6>
+            <a href="beranda.html">Beranda</a><br />
+            <a href="profil.html">Profil</a><br />
+            <a href="event-2.html">Event</a>
+          </div>
+          <div class="col-md-3">
+            <h6 class="fw-bold">Jelajahi</h6>
+            <a href="gis.html">Lokasi Event</a><br />
+            <a href="kontak.html">Kontak</a>
+          </div>
+        </div>
+        <hr />
+        <p class="small text-center mb-0">
+          &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
+        </p>
       </div>
-      <hr>
-      <p class="small text-center mb-0">&copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web</p>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Bootstrap JavaScript 5.3.8 lokal -->
-  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    /*
-      Data contoh diselaraskan dengan ID dan nama event pada event-2.html.
-      Konfirmasi data final (terutama lokasi, waktu, penyelenggara, dan status)
-      dengan tim sebelum website dipublikasikan.
-    */
-    const events = [
-      {
-        id: "EVT-01",
-        title: "SIFEST",
-        category: "Workshop",
-        date: "2026-11-12",
-        time: "Belum diumumkan",
-        location: "Belum diumumkan",
-        coordinates: null,
-        organizer: "Belum diumumkan",
-        status: "Akan Datang",
-        description: "Kegiatan workshop dasar pembuatan website menggunakan HTML dan CSS."
-      },
-      {
-        id: "EVT-02",
-        title: "Membangun Karier Digital",
-        category: "Seminar",
-        date: "2026-11-18",
-        time: "Belum diumumkan",
-        location: "Belum diumumkan",
-        coordinates: null,
-        organizer: "Belum diumumkan",
-        status: "Akan Datang",
-        description: "Seminar mengenai peluang karier dan keterampilan di era digital."
-      },
-      {
-        id: "EVT-03",
-        title: "Student Community Meetup",
-        category: "Komunitas",
-        date: "2026-11-21",
-        time: "Belum diumumkan",
-        location: "Belum diumumkan",
-        coordinates: null,
-        organizer: "Belum diumumkan",
-        status: "Akan Datang",
-        description: "Pertemuan mahasiswa untuk saling mengenal dan berbagi ide."
-      }
-    ];
+    <!-- Simple-DataTables -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9"></script>
 
-    const state = {
-      keyword: "",
-      sortBy: "date",
-      sortDirection: "asc",
-      currentPage: 1,
-      pageSize: 5
-    };
+    <!-- Data event bersama -->
+    <script src="js/data-event.js"></script>
 
-    const tbody = document.getElementById("isiTabelEvent");
-    const searchInput = document.getElementById("inputPencarian");
-    const pageSizeSelect = document.getElementById("jumlahBaris");
-    const emptyMessage = document.getElementById("pesanKosong");
-    const infoTable = document.getElementById("infoTabel");
-    const pagination = document.getElementById("paginationEvent");
+    <script>
+      (function () {
+        var events = window.EVENT_DATA || [];
+        var tbody = document.getElementById("isiTabel");
+        var pesanError = document.getElementById("pesanError");
 
-    function formatTanggal(dateString) {
-      const date = new Date(dateString + "T00:00:00");
-      return new Intl.DateTimeFormat("id-ID", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(date);
-    }
-
-    function escapeHTML(value) {
-      return String(value).replace(/[&<>"']/g, function (character) {
-        const entities = {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        };
-        return entities[character];
-      });
-    }
-
-    function getFilteredEvents() {
-      const keyword = state.keyword.trim().toLocaleLowerCase("id-ID");
-
-      return events.filter(function (event) {
-        const searchableText = [
-          event.title,
-          event.category,
-          event.location,
-          event.status
-        ].join(" ").toLocaleLowerCase("id-ID");
-
-        return searchableText.includes(keyword);
-      });
-    }
-
-    function getSortedEvents(list) {
-      return [...list].sort(function (a, b) {
-        const valueA = a[state.sortBy];
-        const valueB = b[state.sortBy];
-        const comparison = String(valueA).localeCompare(
-          String(valueB),
-          "id",
-          { numeric: true, sensitivity: "base" }
-        );
-
-        return state.sortDirection === "asc" ? comparison : -comparison;
-      });
-    }
-
-    function buatTombolHalaman(label, page, disabled, active, ariaLabel) {
-      const item = document.createElement("li");
-      item.className = "page-item" +
-        (disabled ? " disabled" : "") +
-        (active ? " active" : "");
-
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "page-link";
-      button.textContent = label;
-      button.disabled = disabled;
-      button.setAttribute("aria-label", ariaLabel || label);
-
-      if (active) button.setAttribute("aria-current", "page");
-
-      button.addEventListener("click", function () {
-        state.currentPage = page;
-        renderTable();
-      });
-
-      item.appendChild(button);
-      return item;
-    }
-
-    function renderPagination(totalPages) {
-      pagination.innerHTML = "";
-
-      pagination.appendChild(
-        buatTombolHalaman("Sebelumnya", state.currentPage - 1,
-          state.currentPage === 1, false, "Halaman sebelumnya")
-      );
-
-      for (let page = 1; page <= totalPages; page++) {
-        pagination.appendChild(
-          buatTombolHalaman(String(page), page, false,
-            page === state.currentPage, "Halaman " + page)
-        );
-      }
-
-      pagination.appendChild(
-        buatTombolHalaman("Berikutnya", state.currentPage + 1,
-          state.currentPage === totalPages, false, "Halaman berikutnya")
-      );
-    }
-
-    function renderTable() {
-      const filteredEvents = getSortedEvents(getFilteredEvents());
-      const totalItems = filteredEvents.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / state.pageSize));
-
-      if (state.currentPage > totalPages) {
-        state.currentPage = totalPages;
-      }
-
-      const startIndex = (state.currentPage - 1) * state.pageSize;
-      const visibleEvents = filteredEvents.slice(
-        startIndex,
-        startIndex + state.pageSize
-      );
-
-      tbody.innerHTML = "";
-
-      visibleEvents.forEach(function (event, index) {
-        const row = document.createElement("tr");
-        const rowNumber = startIndex + index + 1;
-
-        row.innerHTML = `
-          <td>${rowNumber}</td>
-          <td><span class="event-name">${escapeHTML(event.title)}</span></td>
-          <td><span class="badge category-badge">${escapeHTML(event.category)}</span></td>
-          <td>${escapeHTML(formatTanggal(event.date))}</td>
-          <td>${escapeHTML(event.location)}</td>
-          <td><span class="badge status-badge">${escapeHTML(event.status)}</span></td>
-          <td>
-            <a class="btn btn-sm btn-outline-danger"
-              href="event-2.html?event=${encodeURIComponent(event.id)}"
-              aria-label="Lihat detail ${escapeHTML(event.title)}">
-              <i class="bi bi-eye me-1" aria-hidden="true"></i>Detail
-            </a>
-          </td>
-        `;
-
-        tbody.appendChild(row);
-      });
-
-      emptyMessage.classList.toggle("d-none", totalItems !== 0);
-      document.getElementById("tabelEvent").classList.toggle("d-none", totalItems === 0);
-
-      if (totalItems === 0) {
-        infoTable.textContent = "Tidak ada data yang cocok dengan pencarian.";
-      } else {
-        infoTable.textContent =
-          `Menampilkan ${startIndex + 1}–${Math.min(startIndex + state.pageSize, totalItems)} dari ${totalItems} event`;
-      }
-
-      renderPagination(totalPages);
-    }
-
-    searchInput.addEventListener("input", function () {
-      state.keyword = this.value;
-      state.currentPage = 1;
-      renderTable();
-    });
-
-    pageSizeSelect.addEventListener("change", function () {
-      state.pageSize = Number(this.value);
-      state.currentPage = 1;
-      renderTable();
-    });
-
-    document.querySelectorAll("[data-sort]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        const selectedSort = this.dataset.sort;
-
-        if (state.sortBy === selectedSort) {
-          state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
-        } else {
-          state.sortBy = selectedSort;
-          state.sortDirection = "asc";
+        // Format tanggal ISO (2026-11-12) menjadi "12 November 2026"
+        var bulan = [
+          "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+        function formatTanggal(iso) {
+          var p = iso.split("-");
+          return parseInt(p[2], 10) + " " + bulan[parseInt(p[1], 10) - 1] + " " + p[0];
         }
 
-        document.querySelectorAll("#tabelEvent thead th").forEach(function (th) {
-          th.removeAttribute("aria-sort");
+        // Cegah karakter HTML dari data merusak tampilan
+        function aman(teks) {
+          var el = document.createElement("div");
+          el.textContent = teks;
+          return el.innerHTML;
+        }
+
+        // 1. Jika data tidak ada, tampilkan pesan dan berhenti
+        if (events.length === 0) {
+          document.getElementById("tabelEvent").classList.add("d-none");
+          pesanError.textContent =
+            "Data event belum tersedia. Pastikan file js/data-event.js ada dan dimuat dengan benar.";
+          pesanError.classList.remove("d-none");
+          return;
+        }
+
+        // 2. Render baris tabel dari data JavaScript
+        tbody.innerHTML = events
+          .map(function (e) {
+            var kelasStatus =
+              e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
+            return (
+              "<tr>" +
+              '<td class="fw-bold">' + aman(e.title) + "</td>" +
+              '<td><span class="badge badge-kategori">' + aman(e.category) + "</span></td>" +
+              // data-content = ISO agar pengurutan tanggal berurutan sesuai kalender
+              '<td data-content="' + e.date + '">' + formatTanggal(e.date) + "</td>" +
+              "<td>" + aman(e.location) + "</td>" +
+              '<td><span class="badge ' + kelasStatus + '">' + aman(e.status) + "</span></td>" +
+              '<td><a class="btn btn-sm btn-maroon rounded-pill px-3" href="event-2.html?event=' +
+                encodeURIComponent(e.id) + '" aria-label="Lihat detail ' + aman(e.title) + '">Detail</a></td>' +
+              "</tr>"
+            );
+          })
+          .join("");
+
+        // 3. Aktifkan Simple-DataTables (cari, urut, pagination)
+        if (typeof simpleDatatables === "undefined") {
+          pesanError.textContent =
+            "Fitur pencarian dan pengurutan belum bisa dimuat (periksa koneksi internet). Daftar event tetap ditampilkan.";
+          pesanError.classList.remove("d-none");
+          return;
+        }
+
+        new simpleDatatables.DataTable("#tabelEvent", {
+          searchable: true,
+          sortable: true,
+          paging: true,
+          perPage: 5,
+          perPageSelect: [5, 10, 25],
+          columns: [
+            { select: 2, sort: "asc" },                       // urut awal: tanggal terdekat
+            { select: 5, sortable: false, searchable: false } // kolom Aksi
+          ],
+          labels: {
+            placeholder: "Cari nama atau kategori event...",
+            perPage: "{select} event per halaman",
+            noRows: "Belum ada event.",
+            noResults: "Tidak ada event yang cocok dengan pencarian kamu.",
+            info: "Menampilkan {start} sampai {end} dari {rows} event"
+          }
         });
-
-        this.closest("th").setAttribute(
-          "aria-sort",
-          state.sortDirection === "asc" ? "ascending" : "descending"
-        );
-
-        renderTable();
-      });
-    });
-
-    renderTable();
-  </script>
-</body>
+      })();
+    </script>
+  </body>
 </html>
