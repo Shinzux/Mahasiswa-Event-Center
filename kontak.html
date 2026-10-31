@@ -1,8 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hubungi tim Event Mahasiswa Center untuk pertanyaan seputar seminar, workshop, dan kegiatan mahasiswa."
+    />
     <title>Kontak | Event Mahasiswa Center</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -66,31 +70,6 @@
         color: #800f2f;
       }
 
-      .hero-box {
-        background-color: #800f2f;
-        color: white;
-        border-radius: 20px;
-        padding: 40px;
-      }
-
-      .category-box,
-      .event-card {
-        border: 1px solid #eee;
-        border-radius: 15px;
-        height: 100%;
-      }
-
-      .category-icon {
-        font-size: 35px;
-      }
-
-      .event-image {
-        padding: 35px;
-        text-align: center;
-        font-size: 45px;
-        border-radius: 15px 15px 0 0;
-      }
-
       footer {
         background-color: #2b0b16;
         color: white;
@@ -99,6 +78,86 @@
       footer a {
         color: white;
         text-decoration: none;
+      }
+
+      /* ===== Halaman Kontak ===== */
+      .contact-hero-icon {
+        font-size: 7rem;
+        color: #800f2f;
+        opacity: 0.9;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+        background: #fff;
+        border: 1px solid #f0d9df;
+        border-radius: 15px;
+        color: inherit;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+
+      .info-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(128, 15, 47, 0.12);
+        border-color: #800f2f;
+        color: inherit;
+      }
+
+      .info-icon {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #fff1f4;
+        color: #800f2f;
+        font-size: 1.4rem;
+      }
+
+      .info-item strong {
+        display: block;
+        color: #1a1a1a;
+      }
+
+      .info-item span {
+        color: #720927;
+        font-weight: 600;
+        overflow-wrap: anywhere;
+      }
+
+      .form-box {
+        background: #fff;
+        border: 1px solid #f0d9df;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 8px 24px rgba(128, 15, 47, 0.08);
+      }
+
+      .form-control:focus {
+        border-color: #800f2f;
+        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
+      }
+
+      @media (max-width: 575.98px) {
+        .form-box {
+          padding: 22px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .info-item {
+          transition: none;
+        }
       }
     </style>
   </head>
@@ -141,6 +200,9 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#menuNavbar"
+          aria-controls="menuNavbar"
+          aria-expanded="false"
+          aria-label="Buka menu navigasi"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -153,9 +215,7 @@
             <li class="nav-item">
               <a class="nav-link" href="profil.html">Profil</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="tes.html">Tes Halaman Kontak</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="event-1.html">Event</a>
             </li>
@@ -170,104 +230,171 @@
       </div>
     </nav>
 
-    <!-- ═══════════════ HUBUNGI SAYA ═══════════════ -->
-    <section class="contact-section" id="hubungi-saya">
-      <div class="container">
-        <h2>Hubungi Saya</h2>
-        <p class="contact-subtitle">
-          Punya pertanyaan, ide kolaborasi, atau sekadar ingin ngobrol soal home
-          server? Kirim pesan di bawah ini!
-        </p>
-
-        <div class="row g-5">
-          <!-- Info Kontak -->
-          <div class="col-md-5">
-            <div class="contact-info">
-              <div class="contact-info-item" id="infoEmail">
-                <div class="contact-info-icon">&#9993;</div>
-                <div>
-                  <strong>Email</strong>
-                  <p>homeserverhub@contoh.com</p>
-                </div>
-              </div>
-              <div class="contact-info-item" id="infoWa">
-                <div class="contact-info-icon">&#128222;</div>
-                <div>
-                  <strong>WhatsApp</strong>
-                  <p>+62xxxxxxxxxxxx</p>
-                </div>
-              </div>
-              <div class="contact-info-item" id="infoLokasi">
-                <div class="contact-info-icon">&#128205;</div>
-                <div>
-                  <strong>Lokasi</strong>
-                  <p>Jakarta, Indonesia</p>
-                </div>
-              </div>
-              <div class="contact-info-item" id="infoGithub">
-                <div class="contact-info-icon">&#128187;</div>
-                <div>
-                  <strong>GitHub</strong>
-                  <a href="https://github.com/dani-dev22/">Klik Link GitHub.</a>
-                </div>
-              </div>
+    <main>
+      <!-- Hero -->
+      <section class="hero py-5">
+        <div class="container py-3">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+              <span class="badge rounded-pill bg-white text-danger border mb-3"
+                >HUBUNGI KAMI</span
+              >
+              <h1 class="fw-bold display-5">
+                Ada Pertanyaan? <span>Kami Siap Membantu.</span>
+              </h1>
+              <p class="lead text-secondary mb-0">
+                Punya pertanyaan seputar seminar, workshop, atau kegiatan
+                mahasiswa? Kirim pesan lewat formulir di bawah ini.
+              </p>
+            </div>
+            <div class="col-lg-4 text-center d-none d-lg-block">
+              <i
+                class="bi bi-chat-dots-fill contact-hero-icon"
+                aria-hidden="true"
+              ></i>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Form Kontak -->
-          <div class="col-md-7">
-            <form class="contact-form" id="formKontak" action="#" method="post">
-              <div class="mb-3">
-                <label for="inputNama" class="form-label">Nama Lengkap</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputNama"
-                  name="nama"
-                  placeholder="Nama kamu"
-                  required
-                />
+      <!-- Informasi kontak + formulir -->
+      <section class="py-5" id="hubungi-kami">
+        <div class="container">
+          <div class="row g-5">
+            <!-- Info kontak -->
+            <div class="col-lg-5">
+              <h2 class="fw-bold mb-4">Informasi Kontak</h2>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="bi bi-envelope" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <strong>Email</strong>
+                  <span>muhamaddani8768@gmail.com</span>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="inputEmail" class="form-label">Alamat Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="inputEmail"
-                  name="email"
-                  placeholder="email@contoh.com"
-                  required
-                />
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <span>0851-6980-5230</span>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="inputSubjek" class="form-label">Subjek</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputSubjek"
-                  name="subjek"
-                  placeholder="Tentang apa pesan ini?"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="inputPesan" class="form-label">Pesan</label>
-                <textarea
-                  class="form-control"
-                  id="inputPesan"
-                  name="pesan"
-                  rows="5"
-                  placeholder="Tulis pesanmu di sini..."
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" class="btn-kirim" id="btnKirim">
-                Kirim Pesan
-              </button>
-            </form>
+
+              <!-- Seluruh kotak bisa diklik ke Google Maps.
+                   Ganti href dengan link Google Maps lokasi aslimu. -->
+              <a
+                class="info-item"
+                href="https://www.google.com/maps/search/?api=1&query=Jakarta%2C+Indonesia"
+                target="_blank"
+                rel="noopener"
+                aria-label="Buka lokasi di Google Maps"
+              >
+                <div class="info-icon">
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <strong>Lokasi</strong>
+                  <span>Jakarta, Indonesia</span>
+                </div>
+              </a>
+
+              <a
+                class="info-item"
+                href="https://github.com/dani-dev22/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="info-icon">
+                  <i class="bi bi-github" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <strong>GitHub</strong>
+                  <span>github.com/dani-dev22</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Formulir -->
+            <div class="col-lg-7">
+              <h2 class="fw-bold mb-4">Kirim Pesan</h2>
+              <form id="formKontak" class="form-box" novalidate>
+                <div id="notifikasi" class="alert d-none" role="alert"></div>
+
+                <div class="mb-3">
+                  <label for="inputNama" class="form-label">Nama Lengkap</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputNama"
+                    placeholder="Nama kamu"
+                    autocomplete="name"
+                  />
+                  <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="inputEmail" class="form-label"
+                    >Alamat Email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail"
+                    placeholder="email@contoh.com"
+                    autocomplete="email"
+                  />
+                  <div class="invalid-feedback" id="pesanEmail">
+                    Email wajib diisi.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="inputSubjek" class="form-label">Subjek</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputSubjek"
+                    placeholder="Tentang apa pesan ini?"
+                  />
+                  <div class="invalid-feedback">Subjek wajib diisi.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="inputPesan" class="form-label">Pesan</label>
+                  <textarea
+                    class="form-control"
+                    id="inputPesan"
+                    rows="5"
+                    placeholder="Tulis pesanmu di sini..."
+                  ></textarea>
+                  <div class="invalid-feedback">
+                    Pesan wajib diisi (minimal 10 karakter).
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-maroon rounded-pill px-4 w-100"
+                  id="btnKirim"
+                >
+                  <span
+                    id="spinner"
+                    class="spinner-border spinner-border-sm d-none"
+                    aria-hidden="true"
+                  ></span>
+                  <span id="teksKirim">Kirim Pesan</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="py-4">
       <div class="container">
@@ -346,6 +473,83 @@
         </p>
       </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      var form = document.getElementById("formKontak");
+      var notif = document.getElementById("notifikasi");
+      var tombol = document.getElementById("btnKirim");
+      var sedangKirim = false;
+
+      function cek(id, valid) {
+        var el = document.getElementById(id);
+        el.classList.toggle("is-invalid", !valid);
+        el.classList.toggle("is-valid", valid);
+        return valid;
+      }
+
+      function tampilNotif(tipe, teks) {
+        notif.className = "alert alert-" + tipe;
+        notif.textContent = teks;
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (sedangKirim) return;
+
+        var email = document.getElementById("inputEmail").value.trim();
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        document.getElementById("pesanEmail").textContent = email
+          ? "Format email tidak valid, contoh: nama@email.com."
+          : "Email wajib diisi.";
+
+        var hasil = [
+          cek(
+            "inputNama",
+            document.getElementById("inputNama").value.trim() !== "",
+          ),
+          cek("inputEmail", emailOk),
+          cek(
+            "inputSubjek",
+            document.getElementById("inputSubjek").value.trim() !== "",
+          ),
+          cek(
+            "inputPesan",
+            document.getElementById("inputPesan").value.trim().length >= 10,
+          ),
+        ];
+
+        if (hasil.indexOf(false) !== -1) {
+          tampilNotif(
+            "danger",
+            "Formulir belum lengkap. Periksa kolom yang ditandai merah.",
+          );
+          form.querySelector(".is-invalid").focus();
+          return;
+        }
+
+        // Loading + cegah kirim ganda
+        sedangKirim = true;
+        tombol.disabled = true;
+        document.getElementById("spinner").classList.remove("d-none");
+        document.getElementById("teksKirim").textContent = "Memproses...";
+
+        // Belum ada backend: hanya simulasi, pesan TIDAK benar-benar terkirim.
+        setTimeout(function () {
+          form.reset();
+          form.querySelectorAll(".is-valid").forEach(function (el) {
+            el.classList.remove("is-valid");
+          });
+          tampilNotif(
+            "info",
+            "Mode demonstrasi: data sudah valid, tetapi pesan belum dikirim ke server karena backend belum tersedia.",
+          );
+          sedangKirim = false;
+          tombol.disabled = false;
+          document.getElementById("spinner").classList.add("d-none");
+          document.getElementById("teksKirim").textContent = "Kirim Pesan";
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
