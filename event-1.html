@@ -1,0 +1,467 @@
+<!doctype html>
+<!-- Halaman Daftar Event (Event 1) | PIC: Bintang P. S. -->
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Event | Event Mahasiswa Center</title>
+    <meta
+      name="description"
+      content="Daftar event mahasiswa dalam tabel interaktif yang bisa dicari dan diurutkan."
+    />
+
+    <!-- Bootstrap (lokal, sama dengan profil.html dan gis.html) -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Simple-DataTables -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@9/dist/style.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        color: #27324b;
+      }
+      :focus-visible {
+        outline: 3px solid #800f2f;
+        outline-offset: 2px;
+      }
+      footer :focus-visible {
+        outline-color: #fff;
+      }
+
+      /* ---------- Komponen bersama (sama dengan profil.html) ---------- */
+      .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #1a1a1a;
+      }
+      .navbar-brand:hover {
+        color: #1a1a1a;
+      }
+      .navbar-brand .brand-highlight {
+        color: #720927;
+      }
+      .brand-icon {
+        width: 42px;
+        height: 42px;
+        background-color: #720927;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
+      }
+      .btn-maroon {
+        background-color: #800f2f;
+        color: white;
+      }
+      .btn-maroon:hover {
+        background-color: #650b25;
+        color: white;
+      }
+      .btn-maroon.active {
+        background-color: #650b25;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.25);
+      }
+      .hero {
+        background-color: #fff1f4;
+      }
+      footer {
+        background-color: #2b0b16;
+        color: white;
+      }
+      footer a {
+        color: white;
+        text-decoration: none;
+      }
+
+      /* ---------- Khusus halaman Daftar Event ---------- */
+      .bg-soft {
+        background-color: #fff5f6;
+      }
+
+      /* Badge kategori dan status */
+      .badge-kategori {
+        background-color: #f9e4ea;
+        color: #800f2f;
+        font-weight: 600;
+      }
+      .badge-akan-datang {
+        background-color: #800f2f;
+        color: white;
+        font-weight: 600;
+      }
+      .badge-selesai {
+        background-color: #e9ecef;
+        color: #687189;
+        font-weight: 600;
+      }
+
+      /* Tabel */
+      #tabelEvent thead th {
+        background-color: #f9e4ea;
+        color: #2b0b16;
+        white-space: nowrap;
+      }
+      #tabelEvent td {
+        vertical-align: middle;
+      }
+      .teks-sekunder {
+        color: #687189;
+      }
+
+      /* Simple-DataTables menyesuaikan tema maroon */
+      .datatable-wrapper {
+        overflow-x: auto;
+      }
+      .datatable-input:focus,
+      .datatable-selector:focus {
+        border-color: #800f2f;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
+      }
+      .datatable-pagination .datatable-active a,
+      .datatable-pagination .datatable-active a:hover {
+        background-color: #800f2f;
+        color: white;
+      }
+      .datatable-sorter:hover,
+      .datatable-sorter::before,
+      .datatable-sorter::after {
+        color: #800f2f;
+        border-bottom-color: #800f2f;
+        border-top-color: #800f2f;
+      }
+      .datatable-top,
+      .datatable-bottom {
+        padding: 0.75rem 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR (sama dengan beranda.html dan profil.html) -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="beranda.html">
+            <span class="brand-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                  fill="white"
+                />
+                <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+                <rect
+                  x="15"
+                  y="3.5"
+                  width="2"
+                  height="3.5"
+                  rx="1"
+                  fill="white"
+                />
+                <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
+                <rect
+                  x="14"
+                  y="13.5"
+                  width="2.5"
+                  height="2.5"
+                  rx="0.5"
+                  fill="#720927"
+                />
+              </svg>
+            </span>
+            <span>Event<span class="brand-highlight">Mahasiswa</span></span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuNavbar"
+            aria-controls="menuNavbar"
+            aria-expanded="false"
+            aria-label="Buka menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="menuNavbar">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="beranda.html">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profil.html">Profil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="event-2.html">Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gis.html">Lokasi Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kontak.html">Kontak</a>
+              </li>
+            </ul>
+            <a
+              href="event-1.html"
+              class="btn btn-maroon active rounded-pill ms-lg-3"
+              aria-current="page"
+              >Jelajahi Event</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HEADER HALAMAN -->
+      <section class="hero py-5">
+        <div class="container">
+          <p class="text-danger fw-bold mb-2">DAFTAR KEGIATAN</p>
+          <h1 class="fw-bold">Daftar Event</h1>
+          <p class="teks-sekunder mb-0">
+            Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
+            mahasiswa. Cari berdasarkan nama atau kategori, atau urutkan sesuai
+            kebutuhanmu.
+          </p>
+        </div>
+      </section>
+
+      <!-- TABEL EVENT -->
+      <section class="py-5 bg-soft" aria-labelledby="judulTabel">
+        <div class="container">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <h2 class="fw-bold h4 mb-1" id="judulTabel">
+                  Semua Event
+                </h2>
+                <p class="small teks-sekunder mb-0">
+                  Klik judul kolom untuk mengurutkan. Data pada halaman ini
+                  adalah <strong>data contoh</strong> (simulasi), bukan jadwal
+                  acara sebenarnya.
+                </p>
+              </div>
+
+              <!-- Pesan jika tabel gagal dimuat -->
+              <div
+                id="pesanError"
+                class="alert alert-warning d-none"
+                role="alert"
+              ></div>
+
+              <table class="table table-hover align-middle mb-0" id="tabelEvent">
+                <thead>
+                  <tr>
+                    <th scope="col">Nama Event</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Lokasi</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="isiTabel"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="small teks-sekunder mt-3 mb-0">
+            Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
+            ditujukan ke penyelenggara masing-masing event.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (sama dengan beranda.html dan profil.html) -->
+    <footer class="py-4">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
+              <span
+                class="brand-icon"
+                style="
+                  width: 36px;
+                  height: 36px;
+                  background-color: #800f2f;
+                  border-radius: 10px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
+                    fill="white"
+                  />
+                  <rect
+                    x="7"
+                    y="3.5"
+                    width="2"
+                    height="3.5"
+                    rx="1"
+                    fill="white"
+                  />
+                  <rect
+                    x="15"
+                    y="3.5"
+                    width="2"
+                    height="3.5"
+                    rx="1"
+                    fill="white"
+                  />
+                  <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8" />
+                  <rect
+                    x="14"
+                    y="13.5"
+                    width="2.5"
+                    height="2.5"
+                    rx="0.5"
+                    fill="#800f2f"
+                  />
+                </svg>
+              </span>
+              <span
+                >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
+              >
+            </h5>
+            <p class="small">
+              Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h6 class="fw-bold">Navigasi</h6>
+            <a href="beranda.html">Beranda</a><br />
+            <a href="profil.html">Profil</a><br />
+            <a href="event-2.html">Event</a>
+          </div>
+          <div class="col-md-3">
+            <h6 class="fw-bold">Jelajahi</h6>
+            <a href="gis.html">Lokasi Event</a><br />
+            <a href="kontak.html">Kontak</a>
+          </div>
+        </div>
+        <hr />
+        <p class="small text-center mb-0">
+          &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Simple-DataTables -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9"></script>
+
+    <!-- Data event bersama -->
+    <script src="js/data-event.js"></script>
+
+    <script>
+      (function () {
+        var events = window.EVENT_DATA || [];
+        var tbody = document.getElementById("isiTabel");
+        var pesanError = document.getElementById("pesanError");
+
+        // Format tanggal ISO (2026-11-12) menjadi "12 November 2026"
+        var bulan = [
+          "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+        function formatTanggal(iso) {
+          var p = iso.split("-");
+          return parseInt(p[2], 10) + " " + bulan[parseInt(p[1], 10) - 1] + " " + p[0];
+        }
+
+        // Cegah karakter HTML dari data merusak tampilan
+        function aman(teks) {
+          var el = document.createElement("div");
+          el.textContent = teks;
+          return el.innerHTML;
+        }
+
+        // 1. Jika data tidak ada, tampilkan pesan dan berhenti
+        if (events.length === 0) {
+          document.getElementById("tabelEvent").classList.add("d-none");
+          pesanError.textContent =
+            "Data event belum tersedia. Pastikan file js/data-event.js ada dan dimuat dengan benar.";
+          pesanError.classList.remove("d-none");
+          return;
+        }
+
+        // 2. Render baris tabel dari data JavaScript
+        tbody.innerHTML = events
+          .map(function (e) {
+            var kelasStatus =
+              e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
+            return (
+              "<tr>" +
+              '<td class="fw-bold">' + aman(e.title) + "</td>" +
+              '<td><span class="badge badge-kategori">' + aman(e.category) + "</span></td>" +
+              // data-content = ISO agar pengurutan tanggal berurutan sesuai kalender
+              '<td data-content="' + e.date + '">' + formatTanggal(e.date) + "</td>" +
+              "<td>" + aman(e.location) + "</td>" +
+              '<td><span class="badge ' + kelasStatus + '">' + aman(e.status) + "</span></td>" +
+              '<td><a class="btn btn-sm btn-maroon rounded-pill px-3" href="event-2.html?event=' +
+                encodeURIComponent(e.id) + '" aria-label="Lihat detail ' + aman(e.title) + '">Detail</a></td>' +
+              "</tr>"
+            );
+          })
+          .join("");
+
+        // 3. Aktifkan Simple-DataTables (cari, urut, pagination)
+        if (typeof simpleDatatables === "undefined") {
+          pesanError.textContent =
+            "Fitur pencarian dan pengurutan belum bisa dimuat (periksa koneksi internet). Daftar event tetap ditampilkan.";
+          pesanError.classList.remove("d-none");
+          return;
+        }
+
+        new simpleDatatables.DataTable("#tabelEvent", {
+          searchable: true,
+          sortable: true,
+          paging: true,
+          perPage: 5,
+          perPageSelect: [5, 10, 25],
+          columns: [
+            { select: 2, sort: "asc" },                       // urut awal: tanggal terdekat
+            { select: 5, sortable: false, searchable: false } // kolom Aksi
+          ],
+          labels: {
+            placeholder: "Cari nama atau kategori event...",
+            perPage: "{select} event per halaman",
+            noRows: "Belum ada event.",
+            noResults: "Tidak ada event yang cocok dengan pencarian kamu.",
+            info: "Menampilkan {start} sampai {end} dari {rows} event"
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
