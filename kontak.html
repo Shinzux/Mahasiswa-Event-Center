@@ -209,16 +209,6 @@
         border-radius: 20px;
         padding: 32px;
         box-shadow: 0 8px 24px rgba(128, 15, 47, 0.08);
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s,
-          border-color 0.2s;
-      }
-
-      .form-box:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(128, 15, 47, 0.12);
-        border-color: #800f2f;
       }
 
       .form-control:focus {
@@ -233,8 +223,7 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .info-item,
-        .form-box {
+        .info-item {
           transition: none;
         }
       }
@@ -296,15 +285,15 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="detail-event.html">Event</a>
+              <a class="nav-link" href="event-1.html">Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="gis.html">Lokasi Event</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="jelajahi-event.html">Lokasi Event</a>
-            </li>
           </ul>
+          <a href="event-1.html" class="btn btn-maroon rounded-pill ms-lg-3"
+            >Jelajahi Event</a
+          >
         </div>
       </div>
     </nav>
@@ -539,7 +528,7 @@
                 >
               </li>
               <li>
-                <a href="detail-event.html"
+                <a href="event-1.html"
                   ><i class="bi bi-calendar-event" aria-hidden="true"></i
                   >Event</a
                 >
@@ -553,13 +542,6 @@
               <li>
                 <a href="gis.html"
                   ><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi
-                  Event</a
-                >
-              </li>
-
-              <li>
-                <a href="jelajahi-event.html"
-                  ><i class="bi bi-compass" aria-hidden="true"></i>Jelajahi
                   Event</a
                 >
               </li>

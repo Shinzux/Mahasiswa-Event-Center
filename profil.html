@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil | Event Mahasiswa Center</title>
     <meta
       name="description"
-      content="Hubungi tim Event Mahasiswa Center untuk pertanyaan seputar seminar, workshop, dan kegiatan mahasiswa."
+      content="Event Mahasiswa Center adalah pusat informasi seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa."
     />
     <title>Profil | Event Mahasiswa Center</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -14,6 +15,16 @@
     <style>
       body {
         color: #333;
+      }
+      section[id] {
+        scroll-margin-top: 5rem;
+      }
+      :focus-visible {
+        outline: 3px solid #800f2f;
+        outline-offset: 2px;
+      }
+      footer :focus-visible {
+        outline-color: #fff;
       }
 
       .navbar-brand {
@@ -25,11 +36,9 @@
         letter-spacing: -0.5px;
         color: #1a1a1a;
       }
-
       .navbar-brand:hover {
         color: #1a1a1a;
       }
-
       .navbar-brand .brand-highlight {
         color: #720927;
       }
@@ -50,7 +59,6 @@
         background-color: #800f2f;
         color: white;
       }
-
       .btn-maroon:hover {
         background-color: #650b25;
         color: white;
@@ -59,87 +67,39 @@
       .hero {
         background-color: #fff1f4;
       }
-
       .hero h1 span {
         color: #800f2f;
+      }
+      .hero-box {
+        background-color: #800f2f;
+        color: white;
+        border-radius: 20px;
+        padding: 40px;
+      }
+
+      .category-box,
+      .event-card {
+        border: 1px solid #eee;
+        border-radius: 15px;
+        height: 100%;
+      }
+      .category-icon {
+        font-size: 35px;
+      }
+      .event-image {
+        padding: 35px;
+        text-align: center;
+        font-size: 45px;
+        border-radius: 15px 15px 0 0;
       }
 
       footer {
         background-color: #2b0b16;
         color: white;
       }
-
       footer a {
         color: white;
         text-decoration: none;
-      }
-
-      .footer-desc {
-        color: rgba(255, 255, 255, 0.75);
-        max-width: 42ch;
-      }
-
-      .footer-title {
-        font-weight: 700;
-        margin-bottom: 14px;
-        padding-bottom: 8px;
-        position: relative;
-      }
-
-      .footer-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 28px;
-        height: 3px;
-        border-radius: 2px;
-        background: #ff6b8b;
-      }
-
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-links li {
-        margin-bottom: 10px;
-      }
-
-      .footer-links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: rgba(255, 255, 255, 0.75);
-        transition:
-          color 0.2s,
-          transform 0.2s;
-      }
-
-      .footer-links a:hover {
-        color: #ff6b8b;
-        transform: translateX(4px);
-      }
-
-      .footer-links i {
-        color: #ff6b8b;
-      }
-
-      .footer-line {
-        margin: 28px 0 16px;
-        border-color: rgba(255, 255, 255, 0.2);
-        opacity: 1;
-      }
-
-      .footer-copy {
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .footer-links a {
-          transition: none;
-        }
       }
 
       /* ---------- 2. HALAMAN PROFIL ---------- */
@@ -243,15 +203,17 @@
             <li class="nav-item">
               <a class="nav-link" href="beranda.html">Beranda</a>
             </li>
-
             <li class="nav-item">
-              <a class="nav-link" href="detail-event.html">Event</a>
+              <a class="nav-link active" href="profil.html" aria-current="page">Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="event-1.html">Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="gis.html">Lokasi Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="jelajahi-event.html">Jelajahi Event</a>
+              <a class="nav-link" href="kontak.html">Kontak</a>
             </li>
           </ul>
           <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3">Kontak</a>
@@ -524,9 +486,9 @@
     <!-- FOOTER  -->
     <footer class="py-4">
       <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h5 class="fw-bold d-flex align-items-center gap-2 mb-2">
               <span
                 class="brand-icon"
                 style="width: 36px; height: 36px; background-color: #800f2f; border-radius: 10px"
@@ -574,11 +536,8 @@
             </ul>
           </div>
         </div>
-
-        <hr class="footer-line" />
-        <p class="small text-center mb-0 footer-copy">
-          &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
-        </p>
+        <hr />
+        <p class="small text-center mb-0">&copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web</p>
       </div>
     </footer>
 
