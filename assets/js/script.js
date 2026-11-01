@@ -10,7 +10,7 @@
    - location    : lokasi pelaksanaan
    - target      : peserta yang dituju
    - description : deskripsi singkat
-   - logo        : path gambar logo (opsional, jika kosong dipakai emoji)
+   - logo        : path gambar logo
    ========================================================== */
 
 var DATA_EVENT = [
@@ -23,7 +23,7 @@ var DATA_EVENT = [
     location: "Belum diumumkan",
     target: "Umum",
     description: "Program perlombaan pentas seni sebagai wadah menyalurkan minat/bakat sekaligus memperingati Dies Natalis HMSI dengan tujuan mempererat tali silaturahmi.",
-    logo: "assets/img/SIFEST.png"
+    logo: "assets/img/logo-sifest.png"
   },
   {
     id: "EVT-02",
@@ -75,29 +75,13 @@ var DATA_EVENT = [
 
 
 /* ==========================================================
-   IKON KATEGORI
-   Dipakai sebagai pengganti logo jika event tidak punya foto
-   ========================================================== */
-
-var IKON_KATEGORI = {
-  "Perlombaan":        "🏆",
-  "Komunitas":         "🤝",
-  "Pengembangan Diri": "🌱",
-  "Seminar":           "🎤",
-  "Workshop":          "🛠️",
-  "Kompetisi":         "🏆",
-  "Organisasi":        "👥"
-};
-
-
-/* ==========================================================
    FUNGSI LOGO
-   Pakai foto jika ada, kalau tidak pakai emoji kategori
+   Menampilkan foto logo event
    ========================================================== */
 
 function logoEvent(e) {
   if (e.logo) {
     return '<img src="' + e.logo + '" alt="Logo ' + e.title + '" loading="lazy">';
   }
-  return IKON_KATEGORI[e.category] || "📌";
+  return "";
 }

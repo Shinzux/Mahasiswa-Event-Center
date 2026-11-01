@@ -214,15 +214,13 @@
     <!-- Bootstrap JS -->
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Data event (DATA_EVENT dan logoEvent). Harus dimuat SEBELUM script di bawah -->
+    <script src="assets/js/script.js"></script>
+
     <script>
       (function () {
-        // ===== DATA EVENT (data contoh). Jika diubah, ubah juga di detail-event.html =====
-        var events = [
-          { id: "EVT-01", title: "SIFEST", category: "Workshop", date: "2026-11-12", location: "Belum diumumkan" },
-          { id: "EVT-02", title: "Membangun Karier Digital", category: "Seminar", date: "2026-11-18", location: "Belum diumumkan" },
-          { id: "EVT-03", title: "Student Community Meetup", category: "Komunitas", date: "2026-11-21", location: "Belum diumumkan" },
-        ];
-        var ikon = { Seminar: "🎤", Workshop: "🛠️", Kompetisi: "🏆", Komunitas: "🤝", Organisasi: "👥" };
+        // Data diambil dari assets/js/script.js. Ubah data di sana saja.
+        var events = DATA_EVENT;
         var PER_HALAMAN = 5;
         var halaman = 1;
 
@@ -231,8 +229,17 @@
 
         // Status dihitung dari tanggal: sebelum hari ini = Selesai
         var hariIni = new Date().setHours(0, 0, 0, 0);
+        // Tanggal "YYYY-MM" (belum pasti harinya) dianggap berakhir di akhir bulan
+        function tanggalAkhir(e) {
+          var iso = e.dateEnd || e.date;
+          if (iso.length === 7) {
+            var p = iso.split("-");
+            return new Date(+p[0], +p[1], 0);
+          }
+          return new Date(iso + "T00:00:00");
+        }
         events.forEach(function (e) {
-          e.status = new Date(e.date + "T00:00:00") < hariIni ? "Selesai" : "Akan Datang";
+          e.status = tanggalAkhir(e) < hariIni ? "Selesai" : "Akan Datang";
         });
 
         function aman(teks) {
@@ -241,21 +248,28 @@
           return el.innerHTML;
         }
         function tanggal(iso) {
+          if (iso.length === 7) {
+            return new Date(iso + "-01T00:00:00").toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+          }
           return new Date(iso + "T00:00:00").toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+        }
+        // Event beberapa hari tampil sebagai rentang, misalnya "27 November 2026 - 29 November 2026"
+        function teksTanggal(e) {
+          return e.dateEnd ? tanggal(e.date) + " - " + tanggal(e.dateEnd) : tanggal(e.date);
         }
 
         function kartu(e) {
           var badge = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
           return `
             <article class="kartu-event">
-              <div class="thumb-event" aria-hidden="true">${ikon[e.category] || "📌"}</div>
+              <div class="thumb-event">${logoEvent(e)}</div>
               <div class="isi-event">
                 <span class="badge ${badge}">${e.status}</span>
                 <h3 class="judul-event">${aman(e.title)}</h3>
                 <div class="meta-event">
                   <span><i class="bi bi-tag" aria-hidden="true"></i>${aman(e.category)}</span>
                   <span><i class="bi bi-geo-alt" aria-hidden="true"></i>${aman(e.location)}</span>
-                  <span><i class="bi bi-calendar-event" aria-hidden="true"></i><strong>${tanggal(e.date)}</strong></span>
+                  <span><i class="bi bi-calendar-event" aria-hidden="true"></i><strong>${teksTanggal(e)}</strong></span>
                 </div>
               </div>
               <div class="aksi-event">
