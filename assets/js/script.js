@@ -34,7 +34,7 @@ var DATA_EVENT = [
     location: "Jl. Pelajar Pejuang 45 No.8, Lkr. Sel., Kec. Lengkong, Kota Bandung, Jawa Barat",
     target: "Mahasiswa Universitas Kebangsaan Republik Indonesia (UKRI)",
     description: "Ajang perlombaan akademik (Desain Grafis & UI/UX) serta pentas seni untuk mengasah kemampuan dan menyalurkan bakat mahasiswa Teknik Informatika.",
-    logo: "assets/img/logo-informafest.png"
+    logo: "assets/image/INFORMAFEST.jpg"
   },
   {
     id: "EVT-03",
@@ -57,7 +57,7 @@ var DATA_EVENT = [
     location: "Belum diumumkan",
     target: "Mahasiswa Prodi Sistem Informasi",
     description: "Kegiatan penyambutan dan pengenalan kampus (maba) agar mahasiswa baru siap beradaptasi dengan sistem akademik, fasilitas, serta membangun kebersamaan.",
-    logo: "assets/img/logo-inovasi-nex.png"
+    logo: "assets/image/INOVASI.jpg"
   },
   {
     id: "EVT-05",
