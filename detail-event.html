@@ -8,152 +8,13 @@
       content="Hubungi tim Event Mahasiswa Center untuk pertanyaan seputar seminar, workshop, dan kegiatan mahasiswa."
     />
     <title>Detail Event | Event Mahasiswa Center</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
-
-    <style>
-      body {
-        color: #333;
-      }
-
-      .navbar-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 1.45rem;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        color: #1a1a1a;
-      }
-
-      .navbar-brand:hover {
-        color: #1a1a1a;
-      }
-
-      .navbar-brand .brand-highlight {
-        color: #720927;
-      }
-
-      .brand-icon {
-        width: 42px;
-        height: 42px;
-        background-color: #720927;
-        border-radius: 12px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
-      }
-
-      .btn-maroon {
-        background-color: #800f2f;
-        color: white;
-      }
-
-      .btn-maroon:hover {
-        background-color: #650b25;
-        color: white;
-      }
-
-      .hero {
-        background-color: #fff1f4;
-      }
-
-      .hero h1 span {
-        color: #800f2f;
-      }
-
-      footer {
-        background-color: #2b0b16;
-        color: white;
-      }
-
-      footer a {
-        color: white;
-        text-decoration: none;
-      }
-
-      .footer-desc {
-        color: rgba(255, 255, 255, 0.75);
-        max-width: 42ch;
-      }
-
-      .footer-title {
-        font-weight: 700;
-        margin-bottom: 14px;
-        padding-bottom: 8px;
-        position: relative;
-      }
-
-      .footer-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 28px;
-        height: 3px;
-        border-radius: 2px;
-        background: #ff6b8b;
-      }
-
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-links li {
-        margin-bottom: 10px;
-      }
-
-      .footer-links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: rgba(255, 255, 255, 0.75);
-        transition:
-          color 0.2s,
-          transform 0.2s;
-      }
-
-      .footer-links a:hover {
-        color: #ff6b8b;
-        transform: translateX(4px);
-      }
-
-      .footer-links i {
-        color: #ff6b8b;
-      }
-
-      .footer-line {
-        margin: 28px 0 16px;
-        border-color: rgba(255, 255, 255, 0.2);
-        opacity: 1;
-      }
-
-      .footer-copy {
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .footer-links a {
-          transition: none;
-        }
-      }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- NAVBAR -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="beranda.html">
           <span class="brand-icon">
@@ -172,14 +33,7 @@
               <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
               <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
               <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
-              <rect
-                x="14"
-                y="13.5"
-                width="2.5"
-                height="2.5"
-                rx="0.5"
-                fill="#720927"
-              />
+              <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#720927" />
             </svg>
           </span>
           <span>Event<span class="brand-highlight">Mahasiswa</span></span>
@@ -212,21 +66,19 @@
               <a class="nav-link" href="jelajahi-event.html">Jelajahi Event</a>
             </li>
           </ul>
-          <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3"
-            >Kontak</a
-          >
+          <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3">Kontak</a>
         </div>
       </div>
     </nav>
 
     <!-- HEADER -->
     <section class="hero py-5">
-    <div class="container">
-        <p class="fw-bold mb-2" style="color: #800f2f;">INFORMASI KEGIATAN</p>
+      <div class="container">
+        <p class="fw-bold mb-2" style="color: #800f2f">INFORMASI KEGIATAN</p>
         <h1 class="fw-bold">Detail Event</h1>
         <p class="text-secondary mb-0">Kenali lebih lengkap kegiatan yang bisa kamu ikuti.</p>
-    </div>
-</section>
+      </div>
+    </section>
 
     <!-- PILIH EVENT & PENCARIAN DI ATAS SEBELAH KANAN -->
     <section class="container py-5" id="pilihanEvent">
@@ -234,16 +86,11 @@
         <div class="col-lg-6">
           <p class="text-danger fw-bold mb-1">EVENT MAHASISWA</p>
           <h2 class="fw-bold mb-0">Pilih Kegiatan</h2>
-          <p class="text-secondary mb-0">
-            Pilih salah satu kegiatan untuk melihat informasi lengkapnya.
-          </p>
+          <p class="text-secondary mb-0">Pilih salah satu kegiatan untuk melihat informasi lengkapnya.</p>
         </div>
         <div class="col-lg-6">
           <div class="input-group shadow-sm">
-            <span
-              class="input-group-text bg-white border-end-0 text-danger ps-3"
-              ><i class="bi bi-search"></i
-            ></span>
+            <span class="input-group-text bg-white border-end-0 text-danger ps-3"><i class="bi bi-search"></i></span>
             <input
               type="text"
               id="inputPencarian"
@@ -322,18 +169,10 @@
               >
                 <i class="bi bi-check-circle"></i> Daftar Event Sekarang
               </button>
-              <a
-                href="gis.html"
-                id="tombolLokasi"
-                class="btn btn-outline-danger w-100 mb-2"
-              >
+              <a href="gis.html" id="tombolLokasi" class="btn btn-outline-danger w-100 mb-2">
                 <i class="bi bi-geo-alt"></i> Lihat Lokasi Event
               </a>
-              <button
-                type="button"
-                class="btn btn-secondary w-100"
-                onclick="kembaliKeDaftar()"
-              >
+              <button type="button" class="btn btn-secondary w-100" onclick="kembaliKeDaftar()">
                 <i class="bi bi-arrow-left"></i> Kembali ke Daftar Event
               </button>
             </div>
@@ -348,11 +187,7 @@
         <i class="bi bi-calendar-x display-1 text-secondary"></i>
         <h4 class="fw-bold mt-3">Event Tidak Ditemukan</h4>
         <p class="text-secondary">Event yang kamu cari belum tersedia.</p>
-        <button
-          type="button"
-          class="btn btn-danger rounded-pill"
-          onclick="kembaliKeDaftar()"
-        >
+        <button type="button" class="btn btn-danger rounded-pill" onclick="kembaliKeDaftar()">
           Kembali ke Daftar Event
         </button>
       </div>
@@ -363,50 +198,24 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
           <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title fw-bold">
-              <i class="bi bi-pencil-square"></i> Formulir Pendaftaran Event
-            </h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-            ></button>
+            <h5 class="modal-title fw-bold"><i class="bi bi-pencil-square"></i> Formulir Pendaftaran Event</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body p-4">
             <form onsubmit="prosesPendaftaran(event)">
               <div class="mb-3">
                 <label class="form-label fw-bold">Nama Lengkap</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="namaLengkap"
-                  placeholder="Masukkan nama"
-                  required
-                />
+                <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan nama" required />
               </div>
               <div class="mb-3">
                 <label class="form-label fw-bold">NIM</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="nimMahasiswa"
-                  placeholder="Masukkan NIM"
-                  required
-                />
+                <input type="text" class="form-control" id="nimMahasiswa" placeholder="Masukkan NIM" required />
               </div>
               <div class="mb-3">
                 <label class="form-label fw-bold">Email Aktif</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="emailMahasiswa"
-                  placeholder="nama@email.com"
-                  required
-                />
+                <input type="email" class="form-control" id="emailMahasiswa" placeholder="nama@email.com" required />
               </div>
-              <button type="submit" class="btn btn-danger w-100 py-2 fw-bold">
-                Kirim Pendaftaran
-              </button>
+              <button type="submit" class="btn btn-danger w-100 py-2 fw-bold">Kirim Pendaftaran</button>
             </form>
           </div>
         </div>
@@ -421,77 +230,35 @@
             <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
               <span
                 class="brand-icon"
-                style="
-                  width: 36px;
-                  height: 36px;
-                  background-color: #800f2f;
-                  border-radius: 10px;
-                "
+                style="width: 36px; height: 36px; background-color: #800f2f; border-radius: 10px"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
                     fill="white"
                   />
-                  <rect
-                    x="7"
-                    y="3.5"
-                    width="2"
-                    height="3.5"
-                    rx="1"
-                    fill="white"
-                  />
-                  <rect
-                    x="15"
-                    y="3.5"
-                    width="2"
-                    height="3.5"
-                    rx="1"
-                    fill="white"
-                  />
+                  <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+                  <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
                   <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8" />
-                  <rect
-                    x="14"
-                    y="13.5"
-                    width="2.5"
-                    height="2.5"
-                    rx="0.5"
-                    fill="#800f2f"
-                  />
+                  <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#800f2f" />
                 </svg>
               </span>
-              <span
-                >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
-              >
+              <span>Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span>
             </h5>
-            <p class="footer-desc">
-              Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
-            </p>
+            <p class="footer-desc">Pusat informasi seminar, workshop, dan kegiatan mahasiswa.</p>
           </div>
 
           <div class="col-6 col-lg-3">
             <h6 class="footer-title">Navigasi</h6>
             <ul class="footer-links">
               <li>
-                <a href="beranda.html"
-                  ><i class="bi bi-house" aria-hidden="true"></i>Beranda</a
-                >
+                <a href="beranda.html"><i class="bi bi-house" aria-hidden="true"></i>Beranda</a>
               </li>
               <li>
-                <a href="profil.html"
-                  ><i class="bi bi-person" aria-hidden="true"></i>Profil</a
-                >
+                <a href="profil.html"><i class="bi bi-person" aria-hidden="true"></i>Profil</a>
               </li>
               <li>
-                <a href="kontak.html"
-                  ><i class="bi bi-telephone" aria-hidden="true"></i>Kontak</a
-                >
+                <a href="kontak.html"><i class="bi bi-telephone" aria-hidden="true"></i>Kontak</a>
               </li>
             </ul>
           </div>
@@ -500,16 +267,10 @@
             <h6 class="footer-title">Jelajahi</h6>
             <ul class="footer-links">
               <li>
-                <a href="gis.html"
-                  ><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi
-                  Event</a
-                >
+                <a href="gis.html"><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi Event</a>
               </li>
               <li>
-                <a href="jelajahi-event.html"
-                  ><i class="bi bi-compass" aria-hidden="true"></i>Jelajahi
-                  Event</a
-                >
+                <a href="jelajahi-event.html"><i class="bi bi-compass" aria-hidden="true"></i>Jelajahi Event</a>
               </li>
             </ul>
           </div>
@@ -534,8 +295,7 @@
           waktu: "Belum diumumkan",
           lokasi: "Belum diumumkan",
           penyelenggara: "Belum diumumkan",
-          deskripsi:
-            "Kegiatan workshop dasar pembuatan website menggunakan HTML dan CSS.",
+          deskripsi: "Kegiatan workshop dasar pembuatan website menggunakan HTML dan CSS.",
           tujuan: "Menjadi wadah ",
           target: "Mahasiswa UKRI.",
           agenda: ["Informasi susunan acara belum diumumkan."],
@@ -548,8 +308,7 @@
           waktu: "Belum diumumkan",
           lokasi: "Belum diumumkan",
           penyelenggara: "Belum diumumkan",
-          deskripsi:
-            "Seminar mengenai peluang karier dan keterampilan di era digital.",
+          deskripsi: "Seminar mengenai peluang karier dan keterampilan di era digital.",
           tujuan: "Memberikan wawasan peluang karier digital.",
           target: "Mahasiswa yang ingin mengenal karier digital.",
           agenda: ["Informasi susunan acara belum diumumkan."],
@@ -562,8 +321,7 @@
           waktu: "Belum diumumkan",
           lokasi: "Belum diumumkan",
           penyelenggara: "Belum diumumkan",
-          deskripsi:
-            "Pertemuan mahasiswa untuk saling mengenal dan berbagi ide.",
+          deskripsi: "Pertemuan mahasiswa untuk saling mengenal dan berbagi ide.",
           tujuan: "Mendorong interaksi dan pertukaran ide antar mahasiswa.",
           target: "Mahasiswa yang ingin memperluas pertemanan.",
           agenda: ["Informasi susunan acara belum diumumkan."],
@@ -609,15 +367,9 @@
       }
 
       function jalankanPencarian() {
-        const keyword = document
-          .getElementById("inputPencarian")
-          .value.toLowerCase();
+        const keyword = document.getElementById("inputPencarian").value.toLowerCase();
         tampilkanPilihan(
-          events.filter(
-            (e) =>
-              e.nama.toLowerCase().includes(keyword) ||
-              e.kategori.toLowerCase().includes(keyword),
-          ),
+          events.filter((e) => e.nama.toLowerCase().includes(keyword) || e.kategori.toLowerCase().includes(keyword)),
         );
       }
 
@@ -639,8 +391,7 @@
         document.getElementById("tanggalEvent").textContent = e.tanggal;
         document.getElementById("waktuEvent").textContent = e.waktu;
         document.getElementById("lokasiEvent").textContent = e.lokasi;
-        document.getElementById("penyelenggaraEvent").textContent =
-          e.penyelenggara;
+        document.getElementById("penyelenggaraEvent").textContent = e.penyelenggara;
         document.getElementById("deskripsiEvent").textContent = e.deskripsi;
         document.getElementById("tujuanEvent").textContent = e.tujuan;
         document.getElementById("targetEvent").textContent = e.target;
@@ -648,8 +399,7 @@
         document.getElementById("agendaEvent").innerHTML = e.agenda
           .map((item) => `<li class="list-group-item">${item}</li>`)
           .join("");
-        document.getElementById("tombolLokasi").href =
-          "gis.html?event=" + encodeURIComponent(e.id);
+        document.getElementById("tombolLokasi").href = "gis.html?event=" + encodeURIComponent(e.id);
 
         history.replaceState(null, "", "?event=" + encodeURIComponent(e.id));
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -666,12 +416,8 @@
       function prosesPendaftaran(event) {
         event.preventDefault();
         const nama = document.getElementById("namaLengkap").value;
-        bootstrap.Modal.getInstance(
-          document.getElementById("modalPendaftaran"),
-        ).hide();
-        alert(
-          `Pendaftaran Berhasil!\nTerima kasih ${nama}, data kamu telah tercatat.`,
-        );
+        bootstrap.Modal.getInstance(document.getElementById("modalPendaftaran")).hide();
+        alert(`Pendaftaran Berhasil!\nTerima kasih ${nama}, data kamu telah tercatat.`);
         document.querySelector("form").reset();
       }
 

@@ -1,0 +1,474 @@
+/*  */
+
+/* --- Navbar --- */
+body {
+  color: #333;
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+}
+.navbar-brand:hover {
+  color: #1a1a1a;
+}
+.navbar-brand .brand-highlight {
+  color: #720927;
+}
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  background-color: #720927;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
+}
+.btn-maroon {
+  background-color: #800f2f;
+  color: white;
+}
+.btn-maroon:hover {
+  background-color: #650b25;
+  color: white;
+}
+
+.hero {
+  background-color: #fff1f4;
+}
+
+.hero h1 span {
+  color: #800f2f;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: #2b0b16;
+  color: white;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer-desc {
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 42ch;
+}
+.footer-title {
+  font-weight: 700;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  position: relative;
+}
+.footer-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: #ff6b8b;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  transition:
+    color 0.2s,
+    transform 0.2s;
+}
+.footer-links a:hover {
+  color: #ff6b8b;
+  transform: translateX(4px);
+}
+.footer-links i {
+  color: #ff6b8b;
+}
+.footer-line {
+  margin: 28px 0 16px;
+  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+.footer-copy {
+  color: rgba(255, 255, 255, 0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-links a {
+    transition: none;
+  }
+}
+
+/* ---------- HALAMAN BERANDA ---------- */
+.hero-box {
+  background-color: #800f2f;
+  color: white;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.category-box,
+.event-card {
+  border: 1px solid #eee;
+  border-radius: 15px;
+  height: 100%;
+}
+
+.category-icon {
+  font-size: 35px;
+}
+
+.event-image {
+  padding: 35px;
+  text-align: center;
+  font-size: 45px;
+  border-radius: 15px 15px 0 0;
+}
+
+/* ---------- HALAMAN GIS ---------- */
+.judul-halaman {
+  color: #800f2f;
+  font-weight: bold;
+}
+
+/* Wajib: peta harus memiliki tinggi */
+#map {
+  height: 450px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ead5dc;
+}
+
+/* ---------- HALAMAN JELAJAHI EVENT ---------- */
+.bg-soft {
+  background-color: #fff5f6;
+}
+.teks-sekunder {
+  color: #687189;
+}
+
+/* Banner. Untuk memakai foto, simpan di assets/img/banner-event.jpg.
+         Kalau fotonya belum ada, yang tampil adalah warna maroon. */
+.banner {
+  height: 300px;
+  background-color: #800f2f;
+  background-image:
+    linear-gradient(rgba(43, 11, 22, 0.45), rgba(128, 15, 47, 0.35)), url("assets/img/banner-event.jpg"),
+    linear-gradient(135deg, #800f2f 0%, #b33a5a 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Kartu judul yang menimpa banner */
+.kolom-sempit {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.kartu-judul {
+  position: relative;
+  margin-top: -190px;
+  background-color: #fff;
+  padding: 3rem 3rem 1.5rem;
+}
+.kartu-judul h1 {
+  font-weight: 500;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+/* Garis pemisah dengan kotak pencarian di tengahnya */
+.garis-cari {
+  position: relative;
+  height: 0;
+  margin: 1.5rem auto 4.5rem;
+  max-width: 736px;
+  border-top: 1px solid #b9a4ab;
+}
+.kotak-cari {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(340px, 92%);
+  transform: translate(-50%, -50%);
+}
+.kotak-cari svg {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.kotak-cari input {
+  width: 100%;
+  padding: 0.65rem 1rem 0.65rem 2.8rem;
+  border: 1px solid #800f2f;
+  border-radius: 999px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(128, 15, 47, 0.12);
+}
+
+/* Kartu kategori */
+.kartu-kategori {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+.kartu-kategori:hover {
+  background-color: #fff5f6;
+}
+.kartu-kategori.aktif {
+  background-color: #fff1f4;
+  border-color: #800f2f;
+}
+.ikon-kategori {
+  flex: 0 0 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background-color: #f9e4ea;
+  border-radius: 50%;
+}
+
+/* Badge kategori dan status */
+.badge-kategori {
+  background-color: #f9e4ea;
+  color: #800f2f;
+  font-weight: 600;
+}
+.badge-akan-datang {
+  background-color: #800f2f;
+  color: white;
+  font-weight: 600;
+}
+.badge-selesai {
+  background-color: #e9ecef;
+  color: #687189;
+  font-weight: 600;
+}
+
+/* Tabel */
+#tabelEvent thead th {
+  background-color: #f9e4ea;
+  color: #2b0b16;
+  white-space: nowrap;
+}
+#tabelEvent td {
+  vertical-align: middle;
+}
+
+/* Simple-DataTables: tema maroon. Kotak cari bawaan disembunyikan
+         karena pencarian memakai kotak di garis pemisah. */
+.datatable-wrapper {
+  overflow-x: auto;
+}
+.datatable-search {
+  display: none;
+}
+.datatable-selector:focus {
+  border-color: #800f2f;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
+}
+.datatable-pagination .datatable-active a,
+.datatable-pagination .datatable-active a:hover {
+  background-color: #800f2f;
+  color: white;
+}
+.datatable-sorter:hover,
+.datatable-sorter::before,
+.datatable-sorter::after {
+  color: #800f2f;
+  border-bottom-color: #800f2f;
+  border-top-color: #800f2f;
+}
+.datatable-top,
+.datatable-bottom {
+  padding: 0.75rem 0;
+}
+
+@media (max-width: 575.98px) {
+  .banner {
+    height: 220px;
+  }
+  .kartu-judul {
+    margin-top: -130px;
+    padding: 1.5rem 1.25rem 1rem;
+  }
+  .kartu-judul h1 {
+    font-size: 1.7rem;
+  }
+}
+
+/* ---------- HALAMAN KONTAK ---------- */
+.contact-hero-icon {
+  font-size: 7rem;
+  color: #800f2f;
+  opacity: 0.9;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  background: #fff;
+  border: 1px solid #f0d9df;
+  border-radius: 15px;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.info-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(128, 15, 47, 0.12);
+  border-color: #800f2f;
+  color: inherit;
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #fff1f4;
+  color: #800f2f;
+  font-size: 1.4rem;
+}
+
+.info-item strong {
+  display: block;
+  color: #1a1a1a;
+}
+
+.info-item span {
+  color: #720927;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.form-box {
+  background: #fff;
+  border: 1px solid #f0d9df;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(128, 15, 47, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.form-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(128, 15, 47, 0.12);
+  border-color: #800f2f;
+}
+
+.form-control:focus {
+  border-color: #800f2f;
+  box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
+}
+
+@media (max-width: 575.98px) {
+  .form-box {
+    padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-item,
+  .form-box {
+    transition: none;
+  }
+}
+
+/* ---------- HALAMAN PROFIL ---------- */
+.bg-soft {
+  background-color: #fff1f4;
+}
+
+.daftar-centang {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.daftar-centang li {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 1.75rem;
+}
+.daftar-centang li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #800f2f;
+  font-weight: 700;
+}
+
+.langkah {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: langkah;
+}
+.langkah li {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.langkah li::before {
+  counter-increment: langkah;
+  content: counter(langkah);
+  flex: 0 0 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: #800f2f;
+  color: white;
+  font-weight: 700;
+}
+
+.alert-soft {
+  --bs-alert-bg: #fff1f4;
+  --bs-alert-color: #333;
+  --bs-alert-border-color: #fff1f4;
+  border-left: 4px solid #800f2f;
+  border-radius: 0 12px 12px 0;
+}

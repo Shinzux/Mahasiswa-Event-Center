@@ -5,359 +5,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jelajahi Event | Event Mahasiswa Center</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
-
-    <style>
-      body {
-        color: #333;
-      }
-      :focus-visible {
-        outline: 3px solid #800f2f;
-        outline-offset: 2px;
-      }
-      footer :focus-visible {
-        outline-color: #fff;
-      }
-
-      /* ---------- Komponen bersama (sama dengan profil.html) ---------- */
-      .navbar-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 1.45rem;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        color: #1a1a1a;
-      }
-      .navbar-brand:hover {
-        color: #1a1a1a;
-      }
-      .navbar-brand .brand-highlight {
-        color: #720927;
-      }
-      .brand-icon {
-        width: 42px;
-        height: 42px;
-        background-color: #720927;
-        border-radius: 12px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        box-shadow: 0 4px 10px rgba(114, 9, 39, 0.2);
-      }
-      .btn-maroon {
-        background-color: #800f2f;
-        color: white;
-      }
-      .btn-maroon:hover {
-        background-color: #650b25;
-        color: white;
-      }
-      .btn-maroon.active {
-        background-color: #650b25;
-        color: white;
-        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.25);
-      }
-      footer {
-        background-color: #2b0b16;
-        color: white;
-      }
-
-      footer a {
-        color: white;
-        text-decoration: none;
-      }
-
-      .footer-desc {
-        color: rgba(255, 255, 255, 0.75);
-        max-width: 42ch;
-      }
-
-      .footer-title {
-        font-weight: 700;
-        margin-bottom: 14px;
-        padding-bottom: 8px;
-        position: relative;
-      }
-
-      .footer-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 28px;
-        height: 3px;
-        border-radius: 2px;
-        background: #ff6b8b;
-      }
-
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-links li {
-        margin-bottom: 10px;
-      }
-
-      .footer-links a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: rgba(255, 255, 255, 0.75);
-        transition:
-          color 0.2s,
-          transform 0.2s;
-      }
-
-      .footer-links a:hover {
-        color: #ff6b8b;
-        transform: translateX(4px);
-      }
-
-      .footer-links i {
-        color: #ff6b8b;
-      }
-
-      .footer-line {
-        margin: 28px 0 16px;
-        border-color: rgba(255, 255, 255, 0.2);
-        opacity: 1;
-      }
-
-      .footer-copy {
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      /* ---------- Khusus halaman Jelajahi Event ---------- */
-      .bg-soft {
-        background-color: #fff5f6;
-      }
-      .teks-sekunder {
-        color: #687189;
-      }
-
-      /* Banner. Untuk memakai foto, simpan di assets/img/banner-event.jpg.
-         Kalau fotonya belum ada, yang tampil adalah warna maroon. */
-      .banner {
-        height: 300px;
-        background-color: #800f2f;
-        background-image:
-          linear-gradient(rgba(43, 11, 22, 0.45), rgba(128, 15, 47, 0.35)),
-          url("assets/img/banner-event.jpg"),
-          linear-gradient(135deg, #800f2f 0%, #b33a5a 100%);
-        background-size: cover;
-        background-position: center;
-      }
-
-      /* Kartu judul yang menimpa banner */
-      .kolom-sempit {
-        max-width: 760px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-      .kartu-judul {
-        position: relative;
-        margin-top: -190px;
-        background-color: #fff;
-        padding: 3rem 3rem 1.5rem;
-      }
-      .kartu-judul h1 {
-        font-weight: 500;
-        font-size: 2.2rem;
-        line-height: 1.2;
-        color: #1a1a1a;
-      }
-
-      /* Garis pemisah dengan kotak pencarian di tengahnya */
-      .garis-cari {
-        position: relative;
-        height: 0;
-        margin: 1.5rem auto 4.5rem;
-        max-width: 736px;
-        border-top: 1px solid #b9a4ab;
-      }
-      .kotak-cari {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        width: min(340px, 92%);
-        transform: translate(-50%, -50%);
-      }
-      .kotak-cari svg {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-      }
-      .kotak-cari input {
-        width: 100%;
-        padding: 0.65rem 1rem 0.65rem 2.8rem;
-        border: 1px solid #800f2f;
-        border-radius: 999px;
-        background-color: #fff;
-        box-shadow: 0 4px 12px rgba(128, 15, 47, 0.12);
-      }
-
-      /* Kartu kategori */
-      .kartu-kategori {
-        display: flex;
-        gap: 1rem;
-        width: 100%;
-        height: 100%;
-        padding: 0.9rem 1rem;
-        text-align: left;
-        color: inherit;
-        background-color: transparent;
-        border: 1px solid transparent;
-        border-radius: 12px;
-      }
-      .kartu-kategori:hover {
-        background-color: #fff5f6;
-      }
-      .kartu-kategori.aktif {
-        background-color: #fff1f4;
-        border-color: #800f2f;
-      }
-      .ikon-kategori {
-        flex: 0 0 2.75rem;
-        height: 2.75rem;
-        display: grid;
-        place-items: center;
-        font-size: 1.4rem;
-        background-color: #f9e4ea;
-        border-radius: 50%;
-      }
-
-      /* Badge kategori dan status */
-      .badge-kategori {
-        background-color: #f9e4ea;
-        color: #800f2f;
-        font-weight: 600;
-      }
-      .badge-akan-datang {
-        background-color: #800f2f;
-        color: white;
-        font-weight: 600;
-      }
-      .badge-selesai {
-        background-color: #e9ecef;
-        color: #687189;
-        font-weight: 600;
-      }
-
-      /* Tabel */
-      #tabelEvent thead th {
-        background-color: #f9e4ea;
-        color: #2b0b16;
-        white-space: nowrap;
-      }
-      #tabelEvent td {
-        vertical-align: middle;
-      }
-
-      /* Simple-DataTables: tema maroon. Kotak cari bawaan disembunyikan
-         karena pencarian memakai kotak di garis pemisah. */
-      .datatable-wrapper {
-        overflow-x: auto;
-      }
-      .datatable-search {
-        display: none;
-      }
-      .datatable-selector:focus {
-        border-color: #800f2f;
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(128, 15, 47, 0.2);
-      }
-      .datatable-pagination .datatable-active a,
-      .datatable-pagination .datatable-active a:hover {
-        background-color: #800f2f;
-        color: white;
-      }
-      .datatable-sorter:hover,
-      .datatable-sorter::before,
-      .datatable-sorter::after {
-        color: #800f2f;
-        border-bottom-color: #800f2f;
-        border-top-color: #800f2f;
-      }
-      .datatable-top,
-      .datatable-bottom {
-        padding: 0.75rem 0;
-      }
-
-      @media (max-width: 575.98px) {
-        .banner {
-          height: 220px;
-        }
-        .kartu-judul {
-          margin-top: -130px;
-          padding: 1.5rem 1.25rem 1rem;
-        }
-        .kartu-judul h1 {
-          font-size: 1.7rem;
-        }
-      }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <!-- Style CSS-->
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
     <!-- NAVBAR (sama dengan beranda.html dan profil.html) -->
     <header>
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-      >
+      <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
           <a class="navbar-brand" href="beranda.html">
             <span class="brand-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
                   fill="white"
                 />
-                <rect
-                  x="7"
-                  y="3.5"
-                  width="2"
-                  height="3.5"
-                  rx="1"
-                  fill="white"
-                />
-                <rect
-                  x="15"
-                  y="3.5"
-                  width="2"
-                  height="3.5"
-                  rx="1"
-                  fill="white"
-                />
+                <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+                <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
                 <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
-                <rect
-                  x="14"
-                  y="13.5"
-                  width="2.5"
-                  height="2.5"
-                  rx="0.5"
-                  fill="#720927"
-                />
+                <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#720927" />
               </svg>
             </span>
             <span>Event<span class="brand-highlight">Mahasiswa</span></span>
@@ -390,9 +59,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="gis.html">Lokasi Event</a>
               </li>
-              <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3"
-                >Kontak</a
-              >
+              <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3">Kontak</a>
             </ul>
           </div>
         </div>
@@ -408,9 +75,8 @@
         <div class="kartu-judul">
           <h1 id="judulHalaman">Jelajahi Event Mahasiswa</h1>
           <p class="mt-4 mb-0 small">
-            Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
-            mahasiswa dalam satu tempat. Ketik nama atau kategori di kotak
-            pencarian, atau pilih salah satu kategori di bawah.
+            Temukan seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa dalam satu tempat. Ketik nama atau
+            kategori di kotak pencarian, atau pilih salah satu kategori di bawah.
           </p>
         </div>
 
@@ -441,9 +107,7 @@
         </div>
 
         <!-- KARTU KATEGORI -->
-        <h2 class="h6 fw-bold text-uppercase teks-sekunder mb-3">
-          Pilih Kategori
-        </h2>
+        <h2 class="h6 fw-bold text-uppercase teks-sekunder mb-3">Pilih Kategori</h2>
         <div class="row g-3 mb-5" id="gridKategori"></div>
       </section>
 
@@ -453,27 +117,17 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
               <div class="mb-3">
-                <h2 class="fw-bold h4 mb-1" id="judulTabel">
-                  Daftar Lengkap Event
-                </h2>
+                <h2 class="fw-bold h4 mb-1" id="judulTabel">Daftar Lengkap Event</h2>
                 <p class="small teks-sekunder mb-0">
-                  Klik judul kolom untuk mengurutkan. Data pada halaman ini
-                  adalah <strong>data contoh</strong> (simulasi), bukan jadwal
-                  acara sebenarnya.
+                  Klik judul kolom untuk mengurutkan. Data pada halaman ini adalah
+                  <strong>data contoh</strong> (simulasi), bukan jadwal acara sebenarnya.
                 </p>
               </div>
 
               <!-- Pesan jika tabel gagal dimuat -->
-              <div
-                id="pesanError"
-                class="alert alert-warning d-none"
-                role="alert"
-              ></div>
+              <div id="pesanError" class="alert alert-warning d-none" role="alert"></div>
 
-              <table
-                class="table table-hover align-middle mb-0"
-                id="tabelEvent"
-              >
+              <table class="table table-hover align-middle mb-0" id="tabelEvent">
                 <thead>
                   <tr>
                     <th scope="col">Nama Event</th>
@@ -490,8 +144,7 @@
           </div>
 
           <p class="small teks-sekunder mt-3 mb-0">
-            Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
-            ditujukan ke penyelenggara masing-masing event.
+            Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya ditujukan ke penyelenggara masing-masing event.
           </p>
         </div>
       </section>
@@ -504,83 +157,38 @@
             <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
               <span
                 class="brand-icon"
-                style="
-                  width: 36px;
-                  height: 36px;
-                  background-color: #800f2f;
-                  border-radius: 10px;
-                "
+                style="width: 36px; height: 36px; background-color: #800f2f; border-radius: 10px"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
                     fill="white"
                   />
-                  <rect
-                    x="7"
-                    y="3.5"
-                    width="2"
-                    height="3.5"
-                    rx="1"
-                    fill="white"
-                  />
-                  <rect
-                    x="15"
-                    y="3.5"
-                    width="2"
-                    height="3.5"
-                    rx="1"
-                    fill="white"
-                  />
+                  <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
+                  <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
                   <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8" />
-                  <rect
-                    x="14"
-                    y="13.5"
-                    width="2.5"
-                    height="2.5"
-                    rx="0.5"
-                    fill="#800f2f"
-                  />
+                  <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#800f2f" />
                 </svg>
               </span>
-              <span
-                >Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span
-              >
+              <span>Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span>
             </h5>
-            <p class="footer-desc">
-              Pusat informasi seminar, workshop, dan kegiatan mahasiswa.
-            </p>
+            <p class="footer-desc">Pusat informasi seminar, workshop, dan kegiatan mahasiswa.</p>
           </div>
 
           <div class="col-6 col-lg-3">
             <h6 class="footer-title">Navigasi</h6>
             <ul class="footer-links">
               <li>
-                <a href="beranda.html"
-                  ><i class="bi bi-house" aria-hidden="true"></i>Beranda</a
-                >
+                <a href="beranda.html"><i class="bi bi-house" aria-hidden="true"></i>Beranda</a>
               </li>
               <li>
-                <a href="profil.html"
-                  ><i class="bi bi-person" aria-hidden="true"></i>Profil</a
-                >
+                <a href="profil.html"><i class="bi bi-person" aria-hidden="true"></i>Profil</a>
               </li>
               <li>
-                <a href="detail-event.html"
-                  ><i class="bi bi-calendar-event" aria-hidden="true"></i
-                  >Event</a
-                >
+                <a href="detail-event.html"><i class="bi bi-calendar-event" aria-hidden="true"></i>Event</a>
               </li>
               <li>
-                <a href="kontak.html"
-                  ><i class="bi bi-telephone" aria-hidden="true"></i>Kontak</a
-                >
+                <a href="kontak.html"><i class="bi bi-telephone" aria-hidden="true"></i>Kontak</a>
               </li>
             </ul>
           </div>
@@ -589,10 +197,7 @@
             <h6 class="footer-title">Jelajahi</h6>
             <ul class="footer-links">
               <li>
-                <a href="gis.html"
-                  ><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi
-                  Event</a
-                >
+                <a href="gis.html"><i class="bi bi-geo-alt" aria-hidden="true"></i>Lokasi Event</a>
               </li>
             </ul>
           </div>
@@ -637,13 +242,7 @@
         ];
         function formatTanggal(iso) {
           var p = iso.split("-");
-          return (
-            parseInt(p[2], 10) +
-            " " +
-            bulan[parseInt(p[1], 10) - 1] +
-            " " +
-            p[0]
-          );
+          return parseInt(p[2], 10) + " " + bulan[parseInt(p[1], 10) - 1] + " " + p[0];
         }
 
         // ===== DATA EVENT (data contoh, sama dengan detail-event.html) =====
@@ -680,13 +279,7 @@
         // "12 November 2026" -> "2026-11-12" (dipakai untuk pengurutan tanggal)
         function keIso(teks) {
           var p = teks.split(" ");
-          return (
-            p[2] +
-            "-" +
-            dua(bulan.indexOf(p[1]) + 1) +
-            "-" +
-            dua(parseInt(p[0], 10))
-          );
+          return p[2] + "-" + dua(bulan.indexOf(p[1]) + 1) + "-" + dua(parseInt(p[0], 10));
         }
 
         // Status dihitung dari tanggal: sebelum hari ini = Selesai
@@ -701,8 +294,7 @@
             category: d.kategori,
             date: iso,
             location: d.lokasi,
-            status:
-              new Date(iso + "T00:00:00") < hariIni ? "Selesai" : "Akan Datang",
+            status: new Date(iso + "T00:00:00") < hariIni ? "Selesai" : "Akan Datang",
           };
         });
 
@@ -724,8 +316,7 @@
         // 2. Render baris tabel dari data JavaScript
         tbody.innerHTML = events
           .map(function (e) {
-            var kelasStatus =
-              e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
+            var kelasStatus = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
             return (
               "<tr>" +
               '<td class="fw-bold">' +
@@ -794,9 +385,7 @@
           // Cadangan jika library tidak termuat: saring baris secara manual
           var kecil = kata.toLowerCase();
           tbody.querySelectorAll("tr").forEach(function (tr) {
-            tr.hidden =
-              kecil !== "" &&
-              tr.textContent.toLowerCase().indexOf(kecil) === -1;
+            tr.hidden = kecil !== "" && tr.textContent.toLowerCase().indexOf(kecil) === -1;
           });
         }
 
@@ -875,20 +464,13 @@
         function tandaiAktif(kata) {
           var kecil = kata.trim().toLowerCase();
           daftarKartu.forEach(function (tombol) {
-            var aktif =
-              tombol.getAttribute("data-kategori").toLowerCase() === kecil;
+            var aktif = tombol.getAttribute("data-kategori").toLowerCase() === kecil;
             tombol.classList.toggle("aktif", aktif);
             tombol.setAttribute("aria-pressed", aktif ? "true" : "false");
           });
         }
 
-        buatKartu(
-          "Semua Event",
-          "📅",
-          events.length,
-          "Tampilkan seluruh kegiatan yang tersedia.",
-          "",
-        );
+        buatKartu("Semua Event", "📅", events.length, "Tampilkan seluruh kegiatan yang tersedia.", "");
         urutan.forEach(function (nama) {
           var info = infoKategori[nama] || {
             ikon: "📌",
