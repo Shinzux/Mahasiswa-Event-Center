@@ -45,7 +45,7 @@ var DATA_EVENT = [
     location: "Belum diumumkan",
     target: "Mahasiswa Universitas Kebangsaan Republik Indonesia (UKRI)",
     description: "Pertemuan interaktif bagi mahasiswa untuk saling mengenal, berbagi ide, dan mendorong pertukaran gagasan.",
-    logo: "assets/img/logo-seminar-nasional.png"
+    logo: "assets/image/StudentCommunityMeetup.jpg"
   },
   {
     id: "EVT-04",
@@ -69,7 +69,7 @@ var DATA_EVENT = [
     location: "Belum diumumkan",
     target: "Mahasiswa Prodi Teknik Informatika",
     description: "Kegiatan penyambutan dan pengenalan lingkungan kampus khusus mahasiswa baru Teknik Informatika untuk memahami sistem perkuliahan dan budaya akademik.",
-    logo: "assets/img/logo-itlearn.png"
+    logo: "assets/image/MembangunKarrierDigital.jpg"
   }
 ];
 
