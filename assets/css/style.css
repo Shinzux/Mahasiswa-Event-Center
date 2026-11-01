@@ -482,6 +482,34 @@ footer a {
 .bg-soft {
   background-color: #fff1f4;
 }
+.section-lega {
+  padding: 5rem 0;
+}
+@media (max-width: 767.98px) {
+  .section-lega {
+    padding: 3.5rem 0;
+  }
+}
+
+.hero-judul {
+  max-width: 16ch;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.hero-lead {
+  max-width: 56ch;
+}
+.judul-seksi {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+}
+
+.poin {
+  padding-top: 1rem;
+  border-top: 2px solid #800f2f;
+}
 
 .daftar-centang {
   margin: 0;
@@ -490,7 +518,7 @@ footer a {
 }
 .daftar-centang li {
   position: relative;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
   padding-left: 1.75rem;
 }
 .daftar-centang li::before {
@@ -501,8 +529,24 @@ footer a {
   font-weight: 700;
 }
 
+.jenis {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.jenis-ikon {
+  flex: 0 0 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #f3d5dc;
+  font-size: 1.4rem;
+}
+
 .langkah {
-  margin: 0;
+  margin: 0 0 2rem;
   padding: 0;
   list-style: none;
   counter-reset: langkah;
