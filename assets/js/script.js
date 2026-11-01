@@ -23,7 +23,7 @@ var DATA_EVENT = [
     location: "Belum diumumkan",
     target: "Umum",
     description: "Program perlombaan pentas seni sebagai wadah menyalurkan minat/bakat sekaligus memperingati Dies Natalis HMSI dengan tujuan mempererat tali silaturahmi.",
-    logo: "assets/img/logo-sifest.png"
+    logo: "assets/image/SIFEST.jpg"
   },
   {
     id: "EVT-02",

@@ -225,13 +225,20 @@ footer a {
       }
       .kartu-event:hover { border-color: #800f2f; box-shadow: 0 6px 18px rgba(128, 15, 47, 0.1); }
       .thumb-event {
-        flex: 0 0 150px;
-        height: 110px;
-        display: grid;
-        place-items: center;
-        font-size: 2.4rem;
-        background: linear-gradient(135deg, #fbe9ee, #f4cfd9);
-        border-radius: 14px;
+      flex: 0 0 150px;
+      height: 110px;
+      display: grid;
+      place-items: center;
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, #fbe9ee, #f4cfd9);
+      border-radius: 14px;
+      overflow: hidden;             /* baru: memotong gambar yang melebihi kotak */
+      }
+      .thumb-event img {             /* baru: memaksa gambar mengikuti ukuran kotak */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
       }
       .isi-event { flex: 1; min-width: 0; }
       .judul-event { margin: 0.4rem 0 0.55rem; font-size: 1.2rem; font-weight: 700; color: #1a1a1a; }
