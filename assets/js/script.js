@@ -85,3 +85,35 @@ function logoEvent(e) {
   }
   return "";
 }
+
+//Script template navbar footer
+
+// <div id="navbar-placeholder"></div> dan <div id="footer-placeholder"></div>
+
+function loadTemplate(id, file) {
+  fetch(file)
+    .then(function (response) {
+      if (!response.ok) throw new Error("Gagal memuat " + file);
+      return response.text();
+    })
+    .then(function (html) {
+      var container = document.getElementById(id);
+      container.innerHTML = html;
+
+      // Menandai menu aktif di navbar secara otomatis
+      var currentFile = window.location.pathname.split("/").pop() || "index.html";
+      var navLinks = container.querySelectorAll(".nav-link");
+      navLinks.forEach(function (link) {
+        if (link.getAttribute("href") === currentFile) {
+          link.classList.add("active");
+        }
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+
+// Panggil template
+loadTemplate("navbar-placeholder", "template/navbar.html");
+loadTemplate("footer-placeholder", "template/footer.html");

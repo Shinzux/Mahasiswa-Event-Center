@@ -1,223 +1,120 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Peta Event | Event Mahasiswa Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap Online -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-    <!-- Style CSS-->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <!-- Leaflet lokal -->
-    <link rel="stylesheet" href="assets/leaflet/css/leaflet.css" />
+  <title>Peta Event | Event Mahasiswa Center</title>
 
-    <style>
-      body {
-        background-color: #fff5f6;
-      }
-    </style>
-  </head>
+  <!-- Bootstrap Online -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Style CSS-->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Leaflet lokal -->
+  <link rel="stylesheet" href="assets/leaflet/css/leaflet.css" />
 
-  <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-      <div class="container">
-        <a class="navbar-brand" href="beranda.html">
-          <span class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
-                fill="white"
-              />
-              <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
-              <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
-              <path d="M4 10H20" stroke="#720927" stroke-width="1.8" />
-              <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#720927" />
-            </svg>
-          </span>
-          <span>Event<span class="brand-highlight">Mahasiswa</span></span>
-        </a>
+  <style>
+    body {
+      background-color: #fff5f6;
+    }
+  </style>
+</head>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menuNavbar"
-          aria-controls="menuNavbar"
-          aria-expanded="false"
-          aria-label="Buka menu navigasi"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
+  <!-- Wadah Navbar (dimuat dinamis dari template/navbar.html) -->
+  <div id="navbar-placeholder"></div>
 
-        <div class="collapse navbar-collapse" id="menuNavbar">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="beranda.html">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profil.html">Profil</a>
-            </li>
+  <!-- JUDUL HALAMAN -->
+  <div class="container mt-4">
+    <h1 class="judul-halaman">Peta Lokasi Event</h1>
 
-            <li class="nav-item">
-              <a class="nav-link" href="detail-event.html">Event</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="jelajahi-event.html">Jelajahi Event</a>
-            </li>
-          </ul>
-          <a href="kontak.html" class="btn btn-maroon rounded-pill ms-lg-3">Kontak</a>
-        </div>
-      </div>
-    </nav>
+    <p class="text-secondary">Temukan lokasi berbagai acara mahasiswa melalui peta interaktif.</p>
 
-    <!-- JUDUL HALAMAN -->
-    <div class="container mt-4">
-      <h1 class="judul-halaman">Peta Lokasi Event</h1>
+    <!-- PETA -->
+    <div class="card shadow-sm border-0 mt-4">
+      <div class="card-body">
+        <h5 class="mb-3">Lokasi Seluruh Event</h5>
 
-      <p class="text-secondary">Temukan lokasi berbagai acara mahasiswa melalui peta interaktif.</p>
-
-      <!-- PETA -->
-      <div class="card shadow-sm border-0 mt-4">
-        <div class="card-body">
-          <h5 class="mb-3">Lokasi Seluruh Event</h5>
-
-          <div id="map"></div>
-        </div>
+        <div id="map"></div>
       </div>
     </div>
+  </div>
 
-    <footer class="py-4">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
-              <span
-                class="brand-icon"
-                style="width: 36px; height: 36px; background-color: #800f2f; border-radius: 10px"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M4 8.5C4 7.12 5.12 6 6.5 6H17.5C18.88 6 20 7.12 20 8.5V17C20 18.66 18.66 20 17 20H7C5.34 20 4 18.66 4 17V8.5Z"
-                    fill="white"
-                  />
-                  <rect x="7" y="3.5" width="2" height="3.5" rx="1" fill="white" />
-                  <rect x="15" y="3.5" width="2" height="3.5" rx="1" fill="white" />
-                  <path d="M4 10H20" stroke="#800f2f" stroke-width="1.8" />
-                  <rect x="14" y="13.5" width="2.5" height="2.5" rx="0.5" fill="#800f2f" />
-                </svg>
-              </span>
-              <span>Event<span style="color: #ff6b8b">Mahasiswa</span> Center</span>
-            </h5>
-            <p class="footer-desc">Pusat informasi seminar, workshop, dan kegiatan mahasiswa.</p>
-          </div>
+  <!-- Wadah Footer (dimuat dinamis dari template/footer.html) -->
+  <div id="footer-placeholder"></div>
 
-          <div class="col-6 col-lg-3">
-            <h6 class="footer-title">Navigasi</h6>
-            <ul class="footer-links">
-              <li>
-                <a href="beranda.html"><i class="bi bi-house" aria-hidden="true"></i>Beranda</a>
-              </li>
-              <li>
-                <a href="profil.html"><i class="bi bi-person" aria-hidden="true"></i>Profil</a>
-              </li>
-              <li>
-                <a href="detail-event.html"><i class="bi bi-calendar-event" aria-hidden="true"></i>Event</a>
-              </li>
-              <li>
-                <a href="kontak.html"><i class="bi bi-telephone" aria-hidden="true"></i>Kontak</a>
-              </li>
-            </ul>
-          </div>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
 
-          <div class="col-6 col-lg-3">
-            <h6 class="footer-title">Jelajahi</h6>
-            <ul class="footer-links">
-              <li>
-                <a href="jelajahi-event.html"><i class="bi bi-geo-alt" aria-hidden="true"></i>Jelajahi Event</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+  <!-- Leaflet JavaScript -->
+  <script src="assets/leaflet/js/leaflet.js"></script>
 
-        <hr class="footer-line" />
-        <p class="small text-center mb-0 footer-copy">
-          &copy; 2026 Event Mahasiswa Center | Proyek UTS Pemrograman Web
-        </p>
-      </div>
-    </footer>
+  <!-- JAVASCRIPT PETA -->
+  <script>
+    // 1. Membuat peta dan menentukan titik tengah
+    var map = L.map("map").setView([-6.9147, 107.6098], 13);
 
-    <!-- Bootstrap JavaScript -->
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    // 2. Menampilkan tampilan peta dari OpenStreetMap
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
 
-    <!-- Leaflet JavaScript -->
-    <script src="assets/leaflet/js/leaflet.js"></script>
+    // 3. Menyiapkan data event
+    // Koordinat berikut hanya contoh, bukan lokasi event sebenarnya.
 
-    <!-- JAVASCRIPT PETA -->
-    <script>
-      // 1. Membuat peta dan menentukan titik tengah
-      var map = L.map("map").setView([-6.9147, 107.6098], 13);
+    var events = [
+      {
+        nama: "Seminar Teknologi",
+        tanggal: "15 November 2026",
+        lokasi: "Lokasi Contoh A",
+        latitude: -6.9175,
+        longitude: 107.6191,
+      },
 
-      // 2. Menampilkan tampilan peta dari OpenStreetMap
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
+      {
+        nama: "Workshop UI/UX",
+        tanggal: "20 November 2026",
+        lokasi: "Lokasi Contoh B",
+        latitude: -6.9025,
+        longitude: 107.6188,
+      },
+
+      {
+        nama: "Festival Mahasiswa",
+        tanggal: "25 November 2026",
+        lokasi: "Lokasi Contoh C",
+        latitude: -6.927,
+        longitude: 107.603,
+      },
+    ];
+
+    // 4. Membuat marker untuk setiap event
+    //icon
+    var defaultIcon = L.icon({
+      iconUrl: "assets/leaflet/images/marker-icon.png",
+      iconRetinaUrl: "assets/leaflet/images/marker-icon-2x.png",
+      shadowUrl: "assets/leaflet/images/marker-shadow.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
+
+    events.forEach(function (event) {
+      var marker = L.marker([event.latitude, event.longitude], {
+        icon: defaultIcon,
       }).addTo(map);
 
-      // 3. Menyiapkan data event
-      // Koordinat berikut hanya contoh, bukan lokasi event sebenarnya.
+      // 5. Menampilkan informasi ketika marker diklik
+      marker.bindPopup(
+        "<b>" + event.nama + "</b><br>" + "Tanggal: " + event.tanggal + "<br>" + "Lokasi: " + event.lokasi,
+      );
+    });
+  </script>
+</body>
 
-      var events = [
-        {
-          nama: "Seminar Teknologi",
-          tanggal: "15 November 2026",
-          lokasi: "Lokasi Contoh A",
-          latitude: -6.9175,
-          longitude: 107.6191,
-        },
-
-        {
-          nama: "Workshop UI/UX",
-          tanggal: "20 November 2026",
-          lokasi: "Lokasi Contoh B",
-          latitude: -6.9025,
-          longitude: 107.6188,
-        },
-
-        {
-          nama: "Festival Mahasiswa",
-          tanggal: "25 November 2026",
-          lokasi: "Lokasi Contoh C",
-          latitude: -6.927,
-          longitude: 107.603,
-        },
-      ];
-
-      // 4. Membuat marker untuk setiap event
-      //icon
-      var defaultIcon = L.icon({
-        iconUrl: "assets/leaflet/images/marker-icon.png",
-        iconRetinaUrl: "assets/leaflet/images/marker-icon-2x.png",
-        shadowUrl: "assets/leaflet/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      });
-
-      events.forEach(function (event) {
-        var marker = L.marker([event.latitude, event.longitude], {
-          icon: defaultIcon,
-        }).addTo(map);
-
-        // 5. Menampilkan informasi ketika marker diklik
-        marker.bindPopup(
-          "<b>" + event.nama + "</b><br>" + "Tanggal: " + event.tanggal + "<br>" + "Lokasi: " + event.lokasi,
-        );
-      });
-    </script>
-  </body>
 </html>
