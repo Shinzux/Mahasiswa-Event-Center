@@ -1,301 +1,337 @@
 <!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil | Event Mahasiswa Center</title>
+    <meta
+      name="description"
+      content="Event Mahasiswa Center adalah pusat informasi seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa."
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profil | Event Mahasiswa Center</title>
-  <meta name="description"
-    content="Event Mahasiswa Center adalah pusat informasi seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa." />
-
-  <!-- Bootstrap 5.3.8 (lokal) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="assets/css/style.css" rel="stylesheet" />
-</head>
-
-<body>
-  <!-- NAVBAR  -->
-  <div id="navbar-placeholder"></div>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero section-lega">
-      <div class="container">
-        <p class="text-danger fw-bold mb-2">Tentang Kami</p>
-        <h1 class="display-4 fw-bold hero-judul">
-          Satu tempat untuk <span>semua event kampus.</span>
-        </h1>
-        <p class="text-secondary fs-5 hero-lead mt-4">
-          Event Mahasiswa Center adalah pusat informasi yang mengumpulkan
-          seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa,
-          supaya kamu tidak perlu lagi mencarinya satu per satu di poster,
-          grup chat, dan media sosial.
-        </p>
-        <div class="d-flex flex-wrap gap-2 mt-4">
-          <a href="detail-event.html" class="btn btn-maroon rounded-pill px-4">Lihat Semua Event</a>
-          <a href="#cara-menggunakan" class="btn btn-outline-secondary rounded-pill px-4">Cara Menggunakan</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- TENTANG + MASALAH -->
-    <section class="section-lega" id="tentang">
-      <div class="container">
-        <div class="row g-4 g-lg-5">
-          <div class="col-lg-5">
-            <p class="text-danger fw-bold mb-2">Profil Platform</p>
-            <h2 class="judul-seksi">Apa itu Event Mahasiswa Center?</h2>
-          </div>
-          <div class="col-lg-7">
-            <p class="fs-5">
-              Platform informasi untuk mahasiswa. Event kampus yang biasanya
-              tersebar di banyak tempat dikumpulkan dan dirapikan, sehingga
-              mudah dibaca dan dibandingkan.
-            </p>
-            <p class="text-secondary mb-0">
-              Setiap event disajikan dengan informasi dasar seperti nama
-              kegiatan, waktu, tempat, dan penyelenggara, agar kamu bisa
-              menentukan kegiatan mana yang layak diikuti.
-            </p>
-          </div>
-        </div>
-
-        <h3 class="h5 fw-bold mt-5 mb-3">Masalah yang dibantu</h3>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="poin">
-              <h4 class="h6 fw-bold">Informasi tersebar</h4>
-              <p class="text-secondary mb-0">
-                Poster, grup chat, dan media sosial yang berbeda membuat
-                informasi mudah terlewat.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="poin">
-              <h4 class="h6 fw-bold">Sulit memilih</h4>
-              <p class="text-secondary mb-0">
-                Membandingkan jadwal dan jenis kegiatan berarti membuka banyak
-                sumber satu per satu.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="poin">
-              <h4 class="h6 fw-bold">Kesempatan terlewat</h4>
-              <p class="text-secondary mb-0">
-                Event yang bermanfaat sering baru diketahui setelah waktunya
-                lewat.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TUJUAN + MANFAAT -->
-    <section class="section-lega bg-soft" id="tujuan">
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-md-6">
-            <h2 class="judul-seksi mb-4">Tujuan</h2>
-            <ul class="daftar-centang">
-              <li>Mengumpulkan informasi event mahasiswa di satu tempat.</li>
-              <li>
-                Menyajikan informasi dengan bahasa yang jelas dan format yang
-                seragam.
-              </li>
-              <li>
-                Membantu mahasiswa menemukan kegiatan yang sesuai minat dan
-                jadwal.
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <h2 class="judul-seksi mb-4">Manfaat</h2>
-            <ul class="daftar-centang">
-              <li>Menghemat waktu mencari informasi kegiatan.</li>
-              <li>Mengurangi risiko melewatkan event yang kamu minati.</li>
-              <li>Mengenal beragam kegiatan di luar perkuliahan.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TARGET PENGGUNA -->
-    <section class="section-lega" id="pengguna">
-      <div class="container">
-        <p class="text-danger fw-bold mb-2">Target Pengguna</p>
-        <h2 class="judul-seksi mb-4">Dibuat untuk mahasiswa</h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="poin">
-              <h3 class="h6 fw-bold">Mahasiswa baru</h3>
-              <p class="text-secondary mb-0">
-                Ingin mengenal kegiatan kampus dan mulai aktif sejak awal
-                kuliah.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="poin">
-              <h3 class="h6 fw-bold">Mahasiswa aktif</h3>
-              <p class="text-secondary mb-0">
-                Mencari seminar, pelatihan, atau lomba untuk menambah
-                pengalaman.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="poin">
-              <h3 class="h6 fw-bold">Pegiat organisasi</h3>
-              <p class="text-secondary mb-0">
-                Ingin tahu kegiatan organisasi dan komunitas lain di kampus.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- JENIS INFORMASI -->
-    <section class="section-lega bg-soft" id="jenis-informasi">
-      <div class="container">
-        <p class="text-danger fw-bold mb-2">Jenis Informasi</p>
-        <h2 class="judul-seksi mb-4">Apa yang bisa kamu temukan</h2>
-        <div class="row g-4 g-lg-5">
-          <div class="col-md-6">
-            <div class="jenis">
-              <span class="jenis-ikon" aria-hidden="true">🎤</span>
-              <div>
-                <h3 class="h5 fw-bold">Seminar</h3>
-                <p class="text-secondary mb-0">
-                  Pembahasan topik tertentu bersama pembicara, dari isu
-                  akademik sampai karier.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="jenis">
-              <span class="jenis-ikon" aria-hidden="true">🛠️</span>
-              <div>
-                <h3 class="h5 fw-bold">Workshop</h3>
-                <p class="text-secondary mb-0">
-                  Pelatihan praktik untuk mengasah keterampilan, seperti
-                  desain atau pemrograman.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="jenis">
-              <span class="jenis-ikon" aria-hidden="true">🏆</span>
-              <div>
-                <h3 class="h5 fw-bold">Kompetisi</h3>
-                <p class="text-secondary mb-0">
-                  Lomba untuk menguji kemampuan dan menambah pengalaman.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="jenis">
-              <span class="jenis-ikon" aria-hidden="true">👥</span>
-              <div>
-                <h3 class="h5 fw-bold">Organisasi &amp; Komunitas</h3>
-                <p class="text-secondary mb-0">
-                  Agenda UKM, himpunan, dan komunitas mahasiswa yang terbuka
-                  untuk diikuti.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CARA MENGGUNAKAN -->
-    <section class="section-lega" id="cara-menggunakan">
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-lg-5">
-            <p class="text-danger fw-bold mb-2">Panduan Singkat</p>
-            <h2 class="judul-seksi">Cara menggunakan</h2>
-            <p class="text-secondary mt-3">
-              Empat langkah untuk menemukan event yang cocok untukmu.
-            </p>
-          </div>
-          <div class="col-lg-7">
-            <ol class="langkah" role="list">
-              <li>
-                <div>
-                  <strong>Buka halaman
-                    <a href="event-1.html" class="link-danger">Event</a>.</strong>
-                  <p class="text-secondary mb-0">
-                    Lihat daftar kegiatan yang tersedia.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <strong>Pilih event dan klik Lihat Detail.</strong>
-                  <p class="text-secondary mb-0">
-                    Baca informasi lengkap kegiatan yang kamu minati.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <strong>Cek tempat kegiatan di
-                    <a href="gis.html" class="link-danger">Lokasi Event</a>.</strong>
-                  <p class="text-secondary mb-0">
-                    Pastikan lokasinya mudah kamu jangkau.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <strong>Ikuti petunjuk penyelenggara.</strong>
-                  <p class="text-secondary mb-0">
-                    Pendaftaran dan konfirmasi kehadiran mengikuti ketentuan
-                    penyelenggara event.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <div class="alert alert-soft mb-0" role="note">
-              <strong>Perlu diketahui:</strong> Event Mahasiswa Center
-              berfungsi sebagai pusat informasi. Pertanyaan tentang syarat,
-              biaya, atau pendaftaran sebaiknya ditujukan langsung ke
-              penyelenggara masing-masing event.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="pb-5">
-      <div class="container">
-        <div class="hero-box text-center">
-          <h2 class="fw-bold">Sudah Kenal Kami? Saatnya Cari Event!</h2>
-          <p>
-            Jelajahi berbagai event dan temukan kegiatan yang cocok untukmu.
+    <!-- Bootstrap 5.3.8 (lokal) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- NAVBAR  -->
+    <div id="navbar-placeholder"></div>
+    <main>
+      <!-- HERO -->
+      <section class="hero section-lega">
+        <div class="container">
+          <p class="text-danger fw-bold mb-2">Tentang Kami</p>
+          <h1 class="display-4 fw-bold hero-judul">
+            Satu tempat untuk <span>semua event kampus.</span>
+          </h1>
+          <p class="text-secondary fs-5 hero-lead mt-4">
+            Event Mahasiswa Center adalah pusat informasi yang mengumpulkan
+            seminar, workshop, kompetisi, dan kegiatan organisasi mahasiswa,
+            supaya kamu tidak perlu lagi mencarinya satu per satu di poster,
+            grup chat, dan media sosial.
           </p>
-          <a href="jelajahi-event.html" class="btn btn-warning rounded-pill px-4">Cari Event</a>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a href="event.html" class="btn btn-maroon rounded-pill px-4"
+              >Lihat Semua Event</a
+            >
+            <a
+              href="#cara-menggunakan"
+              class="btn btn-outline-secondary rounded-pill px-4"
+              >Cara Menggunakan</a
+            >
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER  -->
-  <div id="footer-placeholder"></div>
-
-  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/script.js"></script>
-</body>
-
+      </section>
+      <!-- TENTANG PLATFORM -->
+      <section class="section-lega" id="tentang">
+        <div class="container">
+          <div class="row g-4 g-lg-5">
+            <div class="col-lg-5">
+              <p class="text-danger fw-bold mb-2">Profil Platform</p>
+              <h2 class="judul-seksi">Apa itu Event Mahasiswa Center?</h2>
+            </div>
+            <div class="col-lg-7">
+              <p class="fs-5">
+                Event Mahasiswa Center adalah platform informasi untuk
+                mahasiswa. Kegiatan kampus yang biasanya tersebar di poster,
+                grup chat, dan media sosial dikumpulkan dan dirapikan di satu
+                tempat, sehingga mudah dibaca dan dibandingkan.
+              </p>
+              <p class="text-secondary mb-0">
+                Kami menyajikan informasi dasar tiap event, seperti nama
+                kegiatan, waktu, tempat, dan penyelenggara, agar kamu bisa
+                menentukan kegiatan mana yang layak diikuti. Dengan begitu,
+                pengalaman di luar kelas menjadi lebih mudah dijangkau oleh
+                semua mahasiswa.
+              </p>
+            </div>
+          </div>
+          <div class="poin mt-5">
+            <h3 class="h5 fw-bold mb-1">EMC Team</h3>
+            <p class="text-secondary mb-4">
+              Orang-orang di balik Event Mahasiswa Center.
+            </p>
+            <ul class="row row-cols-3 row-cols-md-6 g-4 list-unstyled mb-0">
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/img/tim/anggota-1.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">Bintang P Susanto</figcaption>
+                </figure>
+              </li>
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/img/tim/anggota-2.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">M.Al-Faruq</figcaption>
+                </figure>
+              </li>
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/img/tim/anggota-3.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">Vasya Andara</figcaption>
+                </figure>
+              </li>
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/img/tim/anggota-4.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">Siti sela</figcaption>
+                </figure>
+              </li>
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/img/tim/anggota-5.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">Muhammad Dani</figcaption>
+                </figure>
+              </li>
+              <li class="col">
+                <figure class="mb-0 text-center">
+                  <div class="tim-foto-wrap">
+                    <img
+                      class="tim-foto"
+                      src="assets/image/anggota-6.jpg"
+                      alt=""
+                      width="88"
+                      height="88"
+                    />
+                  </div>
+                  <figcaption class="tim-nama">M.Rizky M Hermawan</figcaption>
+                </figure>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- TUJUAN + MANFAAT -->
+      <section class="section-lega bg-soft" id="tujuan">
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-md-6">
+              <h2 class="judul-seksi mb-4">Tujuan</h2>
+              <h5>
+                Mengintegrasikan berbagai informasi kegiatan mahasiswa dalam
+                satu platform dengan penyajian yang jelas, seragam, dan mudah
+                dipahami, sehingga memudahkan mahasiswa dalam menemukan serta
+                memilih kegiatan yang sesuai dengan minat dan jadwal mereka.
+              </h5>
+            </div>
+            <div class="col-md-6">
+              <h2 class="judul-seksi mb-4">Manfaat</h2>
+              <h5>
+                Mempermudah pencarian informasi kegiatan, meminimalkan
+                kemungkinan terlewatnya acara yang diminati, serta memperluas
+                wawasan mahasiswa mengenai berbagai aktivitas di luar kegiatan
+                perkuliahan.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- PREVIEW EVENT -->
+      <section class="section-lega" id="event">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"
+          >
+            <div>
+              <p class="text-danger fw-bold mb-2">Preview</p>
+              <h2 class="judul-seksi mb-0">Event yang akan datang</h2>
+            </div>
+            <a
+              href="event.html"
+              class="btn btn-outline-danger rounded-pill px-4"
+              >Lihat Semua Event &rarr;</a
+            >
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <span class="badge bg-danger">Perlombaan</span>
+                  <h5 class="fw-bold mt-3">SI-FEST</h5>
+                  <p class="text-secondary">
+                    Festival lomba dan DIES-NATALIS Sistem Informasi
+                  </p>
+                  <p class="small text-secondary">12 November 2026</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <span class="badge bg-danger">Seminar</span>
+                  <h5 class="fw-bold mt-3">Seminar Nasional X Workshop</h5>
+                  <p class="text-secondary">
+                    Mengenal peluang karier dan skill di era digital.
+                  </p>
+                  <p class="small text-secondary">Mei 2027</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <span class="badge bg-danger">Komunitas</span>
+                  <h5 class="fw-bold mt-3">ITLEARN</h5>
+                  <p class="text-secondary">
+                    Menghubungkan dunia tanpa batas, mendekatkan manusia melalui
+                    teknologi komunikasi.
+                  </p>
+                  <p class="small text-secondary">27-29 November 2026</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CARA MENGGUNAKAN -->
+      <section class="section-lega bg-soft" id="cara-menggunakan">
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-lg-5">
+              <p class="text-danger fw-bold mb-2">Panduan Singkat</p>
+              <h2 class="judul-seksi">Cara menggunakan</h2>
+              <p class="text-secondary mt-3">
+                Empat langkah untuk menemukan event yang cocok untukmu.
+              </p>
+            </div>
+            <div class="col-lg-7">
+              <ol class="langkah" role="list">
+                <li>
+                  <div>
+                    <strong
+                      >Buka halaman
+                      <a href="event.html" class="link-danger">Event</a
+                      >.</strong
+                    >
+                    <p class="text-secondary mb-0">
+                      Lihat daftar kegiatan yang tersedia.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Pilih event dan klik Lihat Detail.</strong>
+                    <p class="text-secondary mb-0">
+                      Baca informasi lengkap kegiatan yang kamu minati.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong
+                      >Cek tempat kegiatan di
+                      <a href="gis.html" class="link-danger">Lokasi Event</a
+                      >.</strong
+                    >
+                    <p class="text-secondary mb-0">
+                      Pastikan lokasinya mudah kamu jangkau.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Ikuti petunjuk penyelenggara.</strong>
+                    <p class="text-secondary mb-0">
+                      Pendaftaran dan konfirmasi kehadiran mengikuti ketentuan
+                      penyelenggara event.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+              <div class="alert alert-soft mb-0" role="note">
+                <strong>Perlu diketahui:</strong> Event Mahasiswa Center
+                berfungsi sebagai pusat informasi. Pertanyaan tentang syarat,
+                biaya, atau pendaftaran sebaiknya ditujukan langsung ke
+                penyelenggara masing-masing event.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA -->
+      <section class="section-lega">
+        <div class="container">
+          <div class="hero-box text-center">
+            <h2 class="fw-bold">Sudah Kenal Kami? Saatnya Cari Event!</h2>
+            <p>
+              Jelajahi berbagai event dan temukan kegiatan yang cocok untukmu.
+            </p>
+            <a href="event.html" class="btn btn-warning rounded-pill px-4"
+              >Cari Event</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
