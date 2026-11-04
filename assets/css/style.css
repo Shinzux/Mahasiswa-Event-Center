@@ -164,10 +164,7 @@ footer a {
 /* Banner. Foto opsional di assets/img/banner-event.jpg, kalau belum ada tampil maroon. */
 .banner {
   height: 300px;
-  background:
-    linear-gradient(rgba(43, 11, 22, 0.45), rgba(128, 15, 47, 0.35)),
-    url("assets/img/banner-event.jpg") center / cover,
-    linear-gradient(135deg, #800f2f, #b33a5a);
+  background-color: #800f2f;
 }
 
 /* Kartu judul (menimpa banner) */
