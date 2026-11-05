@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Peta Event - SIFEST | Event Mahasiswa Center</title>
+
+  <!-- Bootstrap Online -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Style CSS-->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Leaflet lokal -->
+  <link rel="stylesheet" href="assets/leaflet/css/leaflet.css" />
+
+  <style>
+    body {
+      background-color: #fff5f6;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Wadah Navbar (dimuat dinamis dari template/navbar.html) -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- JUDUL HALAMAN -->
+  <div class="container mt-4">
+    <h1 class="judul-halaman">Peta Lokasi - SIFEST</h1>
+
+
+    <!-- PETA -->
+    <div class="card shadow-sm border-0 mt-4">
+      <div class="card-body">
+        <h5 class="mb-3">Lokasi Kegiatan: SIFEST</h5>
+
+        <!-- Fokus ke koordinat SIFEST (EVT-01) dengan zoom 16 dan otomatis buka popup-nya -->
+        <div id="map" data-lat="-6.9175" data-lng="107.6191" data-zoom="16" data-focus-id="EVT-01"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wadah Footer (dimuat dinamis dari template/footer.html) -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="assets/leaflet/js/leaflet.js"></script>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
+

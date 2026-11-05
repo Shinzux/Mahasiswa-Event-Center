@@ -39,6 +39,8 @@ loadTemplate("footer-placeholder", "template/footer.html");
    - dateEnd     : tanggal selesai (opsional, untuk event beberapa hari)
    - time        : jam pelaksanaan (opsional)
    - location    : lokasi pelaksanaan
+   - latitude    : koordinat lintang peta (opsional)
+   - longitude   : koordinat bujur peta (opsional)
    - target      : peserta yang dituju
    - description : deskripsi singkat
    - purpose     : tujuan kegiatan (opsional)
@@ -54,7 +56,9 @@ var DATA_EVENT = [
     organizer: "HMSI",
     date: "2026-11-12",
     time: "Belum diumumkan",
-    location: "Belum diumumkan",
+    location: "Kampus UKRI, Jl. Halimun No.8, Kota Bandung",
+    latitude: -6.9175,
+    longitude: 107.6191,
     target: "Umum",
     description: "Program perlombaan pentas seni sebagai wadah menyalurkan minat/bakat sekaligus memperingati Dies Natalis HMSI dengan tujuan mempererat tali silaturahmi.",
     purpose: "Menyalurkan minat dan bakat peserta sekaligus mempererat tali silaturahmi dalam rangka Dies Natalis HMSI.",
@@ -69,6 +73,8 @@ var DATA_EVENT = [
     date: "2027-07-22",
     time: "Belum diumumkan",
     location: "Jl. Pelajar Pejuang 45 No.8, Lkr. Sel., Kec. Lengkong, Kota Bandung, Jawa Barat",
+    latitude: -6.9328,
+    longitude: 107.6258,
     target: "Mahasiswa Universitas Kebangsaan Republik Indonesia (UKRI)",
     description: "Ajang perlombaan akademik (Desain Grafis & UI/UX) serta pentas seni untuk mengasah kemampuan dan menyalurkan bakat mahasiswa Teknik Informatika.",
     purpose: "Mengasah kemampuan akademik di bidang desain serta menyalurkan bakat mahasiswa Teknik Informatika.",
@@ -82,7 +88,9 @@ var DATA_EVENT = [
     organizer: "HMIF",
     date: "2027-05",
     time: "Belum diumumkan",
-    location: "Belum diumumkan",
+    location: "Aula Utama Kampus UKRI, Bandung",
+    latitude: -6.9270,
+    longitude: 107.6030,
     target: "Mahasiswa Universitas Kebangsaan Republik Indonesia (UKRI)",
     description: "Pertemuan interaktif bagi mahasiswa untuk saling mengenal, berbagi ide, dan mendorong pertukaran gagasan.",
     purpose: "Mendorong interaksi serta pertukaran gagasan antar mahasiswa.",
@@ -139,46 +147,31 @@ function logoEvent(e) {
    JAVASCRIPT PETA
    Hanya jalan di halaman yang punya elemen #map DAN library
    Leaflet sudah dimuat (gis.html). Halaman lain melewatinya.
-   Catatan: array marker bernama eventPeta, bukan events,
-   supaya tidak bentrok dengan variabel di detail-event.html.
+   Menggunakan data tunggal langsung dari DATA_EVENT.
    ========================================================== */
 
-if (document.getElementById("map") && typeof L !== "undefined") {
-  // 1. Membuat peta dan menentukan titik tengah
-  var map = L.map("map").setView([-6.9147, 107.6098], 13);
+var mapContainer = document.getElementById("map");
+if (mapContainer && typeof L !== "undefined") {
+  // Koordinat & zoom awal (default seluruh kota Bandung)
+  var defaultLat = -6.9147;
+  var defaultLng = 107.6098;
+  var defaultZoom = 13;
+
+  // Baca atribut data-lat, data-lng, data-zoom dari elemen #map jika ada
+  var initialLat = parseFloat(mapContainer.getAttribute("data-lat")) || defaultLat;
+  var initialLng = parseFloat(mapContainer.getAttribute("data-lng")) || defaultLng;
+  var initialZoom = parseInt(mapContainer.getAttribute("data-zoom"), 10) || defaultZoom;
+  var focusId = mapContainer.getAttribute("data-focus-id"); // id event yang ingin langsung dibuka popup-nya
+
+  // 1. Membuat peta dan menentukan titik tengah & zoom
+  var map = L.map("map").setView([initialLat, initialLng], initialZoom);
 
   // 2. Menampilkan tampilan peta dari OpenStreetMap
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
   }).addTo(map);
 
-  // 3. Menyiapkan data event
-  // Koordinat berikut hanya contoh, bukan lokasi event sebenarnya.
-  var eventPeta = [
-    {
-      nama: "Seminar Teknologi",
-      tanggal: "15 November 2026",
-      lokasi: "Lokasi Contoh A",
-      latitude: -6.9175,
-      longitude: 107.6191,
-    },
-    {
-      nama: "Workshop UI/UX",
-      tanggal: "20 November 2026",
-      lokasi: "Lokasi Contoh B",
-      latitude: -6.9025,
-      longitude: 107.6188,
-    },
-    {
-      nama: "Festival Mahasiswa",
-      tanggal: "25 November 2026",
-      lokasi: "Lokasi Contoh C",
-      latitude: -6.927,
-      longitude: 107.603,
-    },
-  ];
-
-  // 4. Icon marker
+  // 3. Icon marker
   var defaultIcon = L.icon({
     iconUrl: "assets/leaflet/images/marker-icon.png",
     iconRetinaUrl: "assets/leaflet/images/marker-icon-2x.png",
@@ -189,14 +182,24 @@ if (document.getElementById("map") && typeof L !== "undefined") {
     shadowSize: [41, 41],
   });
 
-  // 5. Membuat marker untuk setiap event + popup saat diklik
-  eventPeta.forEach(function (ev) {
-    var marker = L.marker([ev.latitude, ev.longitude], {
-      icon: defaultIcon,
-    }).addTo(map);
+  // 4. Membuat marker langsung dari DATA_EVENT yang memiliki koordinat
+  DATA_EVENT.forEach(function (ev) {
+    if (ev.latitude && ev.longitude) {
+      var marker = L.marker([ev.latitude, ev.longitude], {
+        icon: defaultIcon,
+      }).addTo(map);
 
-    marker.bindPopup(
-      "<b>" + ev.nama + "</b><br>" + "Tanggal: " + ev.tanggal + "<br>" + "Lokasi: " + ev.lokasi,
-    );
+      var popup = marker.bindPopup(
+        "<b>" + ev.title + "</b><br>" +
+        "Penyelenggara: " + ev.organizer + "<br>" +
+        "Tanggal: " + (ev.date || "-") + "<br>" +
+        "Lokasi: " + (ev.location || "-")
+      );
+
+      // Jika halaman menentukan event tertentu untuk difokuskan, langsung buka popup-nya
+      if (focusId && ev.id === focusId) {
+        popup.openPopup();
+      }
+    }
   });
 }
