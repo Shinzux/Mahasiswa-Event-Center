@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -277,8 +277,15 @@
         document.getElementById("agendaEvent").innerHTML = e.agenda
           .map((item) => `<li class="list-group-item">${item}</li>`)
           .join("");
-        document.getElementById("tombolLokasi").href = "gis.html?event=" + encodeURIComponent(e.id);
-
+        // Peta lokasi khusus per event (EVT-01 -> gis(1).html, EVT-02 -> gis(2).html, dst.)
+        const petaMapping = {
+          "EVT-01": "gis(1).html",
+          "EVT-02": "gis(2).html",
+          "EVT-03": "gis(3).html",
+          "EVT-04": "gis(4).html",
+          "EVT-05": "gis(5).html",
+        };
+        document.getElementById("tombolLokasi").href = petaMapping[e.id] || "gis.html";
         history.replaceState(null, "", "?event=" + encodeURIComponent(e.id));
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
