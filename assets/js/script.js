@@ -204,8 +204,8 @@ if (mapContainer && typeof L !== "undefined") {
       // Tambah tombol "Lihat Detail" jika halaman mengaktifkan data-show-detail
       if (showDetail) {
         isiPopup += '<br><a href="detail-event.html?event=' + ev.id + '" ' +
-          'class="btn btn-danger btn-sm mt-2" style="text-decoration:none;">' +
-          '<i class="bi bi-info-circle"></i> Lihat Detail Event</a>';
+          'class="btn btn-maroon btn-sm mt-2 rounded-pill px-3 text-white fw-semibold" style="text-decoration:none;">' +
+          '<i class="bi bi-info-circle me-1"></i> Lihat Detail Event</a>';
       }
 
       var popup = marker.bindPopup(isiPopup);
