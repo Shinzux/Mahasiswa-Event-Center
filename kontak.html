@@ -146,14 +146,14 @@
       const notif = document.getElementById("notifikasi");
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // 1 : menghentikan form mengirim dan memuat ulang halaman, karena kita menangani sendiri.
-        form.classList.add("was-validated"); // 2 : was-validated adalah class Bootstrap yang memunculkan warna merah/hijau dan pesan invalid-feedback pada kolom yang salah. Tanpa class ini, pesan tidak tampil.
-        if (!form.checkValidity()) return; // 3 : checkValidity() menanyakan ke browser, “semua kolom sudah memenuhi required, type="email", dan minlength?” Kalau ada yang belum, hasilnya false, lalu return menghentikan fungsi dan pesan merah tetap terlihat.
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) return;
 
-        notif.className = "alert alert-info"; // 4 : menampilkan kotak notifikasi. Mengganti className otomatis menghapus d-none, jadi kotaknya muncul.
+        notif.className = "alert alert-info";
         notif.textContent = "Mode demonstrasi: data valid, tetapi pesan belum dikirim ke server.";
-        form.reset(); // 5 : mengosongkan semua kolom.
-        form.classList.remove("was-validated"); // 6 : menghapus tanda merah/hijau supaya form kembali bersih.
+        form.reset();
+        form.classList.remove("was-validated");
       });
     </script>
   </body>
