@@ -166,6 +166,7 @@ if (mapContainer && typeof L !== "undefined") {
   var initialLng = parseFloat(mapContainer.getAttribute("data-lng")) || defaultLng;
   var initialZoom = parseInt(mapContainer.getAttribute("data-zoom"), 10) || defaultZoom;
   var focusId = mapContainer.getAttribute("data-focus-id"); // id event yang ingin langsung dibuka popup-nya
+  var showDetail = mapContainer.getAttribute("data-show-detail") === "true"; // tampilkan tombol detail di popup?
 
   // 1. Membuat peta dan menentukan titik tengah & zoom
   var map = L.map("map").setView([initialLat, initialLng], initialZoom);
@@ -193,12 +194,21 @@ if (mapContainer && typeof L !== "undefined") {
         icon: defaultIcon,
       }).addTo(map);
 
-      var popup = marker.bindPopup(
+      // Isi popup
+      var isiPopup =
         "<b>" + ev.title + "</b><br>" +
         "Penyelenggara: " + ev.organizer + "<br>" +
         "Tanggal: " + (ev.date || "-") + "<br>" +
-        "Lokasi: " + (ev.location || "-")
-      );
+        "Lokasi: " + (ev.location || "-");
+
+      // Tambah tombol "Lihat Detail" jika halaman mengaktifkan data-show-detail
+      if (showDetail) {
+        isiPopup += '<br><a href="detail-event.html?event=' + ev.id + '" ' +
+          'class="btn btn-danger btn-sm mt-2" style="text-decoration:none;">' +
+          '<i class="bi bi-info-circle"></i> Lihat Detail Event</a>';
+      }
+
+      var popup = marker.bindPopup(isiPopup);
 
       // Jika halaman menentukan event tertentu untuk difokuskan, langsung buka popup-nya
       if (focusId && ev.id === focusId) {
