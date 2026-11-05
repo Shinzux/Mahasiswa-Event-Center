@@ -5,201 +5,112 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event | Event Mahasiswa Center</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
-    <!-- NAVBAR -->
-  <div id="navbar-placeholder"></div>
+
+    <!-- NAVBAR: dimuat otomatis dari template/navbar.html -->
+    <div id="navbar-placeholder"></div>
 
     <main>
-      <!-- BANNER -->
+
+      <!-- BANNER: warna & tinggi diatur di style.css bagian .banner -->
       <div class="banner" role="img" aria-label="Banner Event"></div>
 
-      <!-- KARTU JUDUL (menimpa banner) -->
+      <!-- KARTU JUDUL
+           Ubah judul  → edit <h1>
+           Ubah subjudul → edit <p> -->
       <section class="kolom-sempit" aria-labelledby="judulHalaman">
         <div class="kartu-judul">
           <h1 id="judulHalaman">Jelajahi Event Mahasiswa</h1>
           <p class="mt-4 mb-0 small">
             Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
-            mahasiswa dalam satu tempat. Ketik nama event atau pilih kategori
-            di kotak pencarian.
+            mahasiswa dalam satu tempat.
           </p>
-        </div>
-
-        <!-- BAR PENCARIAN + PILIHAN KATEGORI (ujung kanan) -->
-        <div class="bar-cari">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#800f2f" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-  <circle cx="11" cy="11" r="7"/>
-  <path d="M20 20l-3.5-3.5"/>
-</svg>
-          <input
-            type="search"
-            id="inputCari"
-            placeholder="Tentukan Event Yang Anda Cari..."
-            aria-label="Cari event"
-            autocomplete="off"
-          />
-          <select id="pilihKategori" class="form-select" aria-label="Pilih kategori">
-            <option value="">Semua kategori</option>
-          </select>
         </div>
       </section>
 
-      <!-- DAFTAR EVENT -->
+      <!-- DAFTAR EVENT
+           Kartu-kartu di bawah dibuat otomatis oleh JavaScript.
+           Untuk menambah/ubah data event → buka assets/js/script.js
+           Untuk ubah jumlah event per halaman → cari PER_HALAMAN di <script> -->
       <section class="py-5 bg-soft" aria-label="Daftar event">
         <div class="container" style="max-width: 980px">
-          <div class="toolbar-list">
-            <span class="jumlah-hasil" id="jumlahHasil" aria-live="polite"></span>
-            <select
-                id="pilihUrut"
-                class="form-select pilih-urut"
-                aria-label="Urutkan event"
-              >
-                <option value="terdekat">Tanggal terdekat</option>
-                <option value="terjauh">Tanggal terjauh</option>
-                <option value="nama">Nama A-Z</option>
-              </select>
-          </div>
 
           <div class="daftar-event" id="daftarEvent"></div>
-          <nav class="pager" id="pager" aria-label="Halaman"></nav>
 
           <p class="small teks-sekunder mt-4 mb-0 text-center">
             Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
             ditujukan ke penyelenggara masing-masing event.
           </p>
+
         </div>
       </section>
+
     </main>
 
-  <div id="footer-placeholder"></div>
+    <!-- FOOTER: dimuat otomatis dari template/footer.html -->
+    <div id="footer-placeholder"></div>
 
-    <!-- Bootstrap JS -->
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Data event (DATA_EVENT dan logoEvent). Harus dimuat SEBELUM script di bawah -->
+    <!-- Muat data event SEBELUM script di bawah -->
     <script src="assets/js/script.js"></script>
 
     <script>
-      (function () {
-        // Data diambil dari assets/js/script.js. Ubah data di sana saja.
-        var events = DATA_EVENT;
-        var PER_HALAMAN = 5;
-        var halaman = 1;
+      var hariIni = new Date().setHours(0, 0, 0, 0);
 
-        var $ = function (id) { return document.getElementById(id); };
-        var inputCari = $("inputCari"), pilihKategori = $("pilihKategori"), pilihUrut = $("pilihUrut");
+      // Buat tampilan satu kartu event.
+      // Ubah bagian HTML di sini jika ingin ganti tampilan kartu.
+      function buatKartu(e) {
 
-        // Status dihitung dari tanggal: sebelum hari ini = Selesai
-        var hariIni = new Date().setHours(0, 0, 0, 0);
-        // Tanggal "YYYY-MM" (belum pasti harinya) dianggap berakhir di akhir bulan
-        function tanggalAkhir(e) {
-          var iso = e.dateEnd || e.date;
-          if (iso.length === 7) {
-            var p = iso.split("-");
-            return new Date(+p[0], +p[1], 0);
-          }
-          return new Date(iso + "T00:00:00");
-        }
-        events.forEach(function (e) {
-          e.status = tanggalAkhir(e) < hariIni ? "Selesai" : "Akan Datang";
-        });
+        // Tentukan apakah event sudah Selesai atau Akan Datang
+        var tglAkhir = e.dateEnd || e.date;
+        var tglObj   = tglAkhir.length === 7
+          ? new Date(+tglAkhir.slice(0, 4), +tglAkhir.slice(5), 0)
+          : new Date(tglAkhir + "T00:00:00");
+        var status = tglObj < hariIni ? "Selesai" : "Akan Datang";
+        var badge  = status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
 
-        function aman(teks) {
-          var el = document.createElement("div");
-          el.textContent = teks;
-          return el.innerHTML;
+        // Ubah "2026-11-12" → "12 November 2026"
+        function fmt(tgl) {
+          var opts = tgl.length === 7
+            ? { month: "long", year: "numeric" }
+            : { day: "numeric", month: "long", year: "numeric" };
+          return new Date((tgl.length === 7 ? tgl + "-01" : tgl) + "T00:00:00")
+            .toLocaleDateString("id-ID", opts);
         }
-        function tanggal(iso) {
-          if (iso.length === 7) {
-            return new Date(iso + "-01T00:00:00").toLocaleDateString("id-ID", { month: "long", year: "numeric" });
-          }
-          return new Date(iso + "T00:00:00").toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
-        }
-        // Event beberapa hari tampil sebagai rentang, misalnya "27 November 2026 - 29 November 2026"
-        function teksTanggal(e) {
-          return e.dateEnd ? tanggal(e.date) + " - " + tanggal(e.dateEnd) : tanggal(e.date);
-        }
+        var tanggal = e.dateEnd ? fmt(e.date) + " – " + fmt(e.dateEnd) : fmt(e.date);
 
-        function kartu(e) {
-          var badge = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
-          return `
-            <article class="kartu-event">
-              <div class="thumb-event">${logoEvent(e)}</div>
-              <div class="isi-event">
-                <span class="badge ${badge}">${e.status}</span>
-                <h3 class="judul-event">${aman(e.title)}</h3>
-                <div class="meta-event">
-                  <span><i class="bi bi-tag" aria-hidden="true"></i>${aman(e.category)}</span>
-                  <span><i class="bi bi-geo-alt" aria-hidden="true"></i>${aman(e.location)}</span>
-                  <span><i class="bi bi-calendar-event" aria-hidden="true"></i><strong>${teksTanggal(e)}</strong></span>
-                </div>
+        return `
+          <article class="kartu-event">
+            <div class="thumb-event">${logoEvent(e)}</div>
+            <div class="isi-event">
+              <span class="badge ${badge}">${status}</span>
+              <h3 class="judul-event">${e.title}</h3>
+              <div class="meta-event">
+                <span><i class="bi bi-tag"           aria-hidden="true"></i>${e.category}</span>
+                <span><i class="bi bi-geo-alt"        aria-hidden="true"></i>${e.location}</span>
+                <span><i class="bi bi-calendar-event" aria-hidden="true"></i><strong>${tanggal}</strong></span>
               </div>
-              <div class="aksi-event">
-                <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${encodeURIComponent(e.id)}" aria-label="Lihat detail ${aman(e.title)}">Lihat Detail</a>
-              </div>
-            </article>`;
-        }
+            </div>
+            <div class="aksi-event">
+              <a class="btn btn-maroon rounded-pill px-4"
+                 href="detail-event.html?event=${encodeURIComponent(e.id)}"
+                 aria-label="Lihat detail ${e.title}">Lihat Detail</a>
+            </div>
+          </article>`;
+      }
 
-        function tombol(hal, isi, label, mati) {
-          return `<button type="button" data-hal="${hal}" aria-label="${label}"${mati ? " disabled" : ""}>${isi}</button>`;
-        }
-
-        // Filter, urutkan, potong per halaman, lalu tampilkan
-        function tampilkan() {
-          var kata = inputCari.value.trim().toLowerCase();
-          var hasil = events
-            .filter(function (e) {
-              var teks = (e.title + " " + e.category + " " + e.location).toLowerCase();
-              return teks.includes(kata) && (!pilihKategori.value || e.category === pilihKategori.value);
-            })
-            .sort(function (a, b) {
-              if (pilihUrut.value === "nama") return a.title.localeCompare(b.title, "id");
-              return (a.date < b.date ? -1 : 1) * (pilihUrut.value === "terjauh" ? -1 : 1);
-            });
-
-          var total = Math.max(1, Math.ceil(hasil.length / PER_HALAMAN));
-          halaman = Math.min(halaman, total);
-          var mulai = (halaman - 1) * PER_HALAMAN;
-
-          $("jumlahHasil").textContent = hasil.length + " event ditemukan";
-          $("daftarEvent").innerHTML = hasil.length
-            ? hasil.slice(mulai, mulai + PER_HALAMAN).map(kartu).join("")
-            : '<div class="kosong">Tidak ada event yang cocok dengan pencarian kamu.</div>';
-
-          var h = tombol(halaman - 1, '<i class="bi bi-chevron-left"></i>', "Halaman sebelumnya", halaman === 1);
-          for (var i = 1; i <= total; i++) {
-            h += `<button type="button" data-hal="${i}"${i === halaman ? ' class="aktif" aria-current="page"' : ""}>${i}</button>`;
-          }
-          h += tombol(halaman + 1, '<i class="bi bi-chevron-right"></i>', "Halaman berikutnya", halaman === total);
-          $("pager").innerHTML = total > 1 ? h : "";
-        }
-
-        // Pilihan kategori diisi otomatis dari data
-        events
-          .map(function (e) { return e.category; })
-          .filter(function (k, i, arr) { return arr.indexOf(k) === i; })
-          .forEach(function (k) { pilihKategori.add(new Option(k, k)); });
-
-        [inputCari, pilihKategori, pilihUrut].forEach(function (el) {
-          el.addEventListener("input", function () { halaman = 1; tampilkan(); });
-        });
-        $("pager").addEventListener("click", function (ev) {
-          var t = ev.target.closest("button[data-hal]");
-          if (t && !t.disabled) { halaman = +t.dataset.hal; tampilkan(); }
-        });
-
-        tampilkan();
-      })();
+      // Tampilkan semua event, diurutkan dari tanggal terdekat
+      var daftar = DATA_EVENT.slice().sort(function (a, b) {
+        return a.date < b.date ? -1 : 1;
+      });
+      document.getElementById("daftarEvent").innerHTML = daftar.map(buatKartu).join("");
     </script>
+
   </body>
 </html>

@@ -161,13 +161,17 @@ footer a {
   color: #687189;
 }
 
-/* Banner. Foto opsional di assets/img/banner-event.jpg, kalau belum ada tampil maroon. */
+/* Banner di bagian atas halaman event
+   · Ubah tinggi banner  → height
+   · Ubah warna banner   → background-color */
 .banner {
   height: 300px;
   background-color: #800f2f;
 }
 
-/* Kartu judul (menimpa banner) */
+/* Kartu judul putih yang menimpa banner
+   · Ubah lebar maksimal → max-width di .kolom-sempit
+   · Ubah ukuran font    → font-size di .kartu-judul h1 */
 .kolom-sempit {
   max-width: 760px;
   margin: 0 auto;
@@ -193,59 +197,7 @@ footer a {
   margin-inline: auto;
 }
 
-/* Bar pencarian + kategori di ujung kanan */
-.bar-cari {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: min(560px, 100%);
-  margin: 1.75rem auto 2.5rem;
-  padding: 0.35rem 0.5rem 0.35rem 1.1rem;
-  background: #fff;
-  border: 1px solid #e3cfd5;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(128, 15, 47, 0.08);
-}
-.bar-cari:focus-within {
-  border-color: #800f2f;
-}
-.bar-cari input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.5rem 0;
-  border: 0;
-  background: transparent;
-}
-.bar-cari :focus-visible {
-  outline: none;
-}
-.bar-cari select {
-  flex: none;
-  max-width: 150px;
-  padding: 0.45rem 2rem 0.45rem 1rem;
-  font-weight: 600;
-  color: #800f2f;
-  background-color: #f9e4ea;
-  border: 0;
-  border-radius: 999px;
-}
-
-/* Toolbar, kartu event, pagination */
-.toolbar-list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-.pilih-urut {
-  width: auto;
-  padding: 0.45rem 2.2rem 0.45rem 1rem;
-  font-size: 0.9rem;
-  border-color: #e3cfd5;
-  border-radius: 999px;
-}
+/* Kartu-kartu daftar event & tombol paginasi */
 .daftar-event {
   display: grid;
   gap: 1rem;
@@ -325,34 +277,6 @@ footer a {
   background: #f1f1f3;
   color: #687189;
   font-weight: 600;
-}
-
-.pager {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1.5rem;
-}
-.pager button {
-  min-width: 38px;
-  height: 38px;
-  padding: 0 0.75rem;
-  color: #800f2f;
-  background: #fff;
-  border: 1px solid #e3cfd5;
-  border-radius: 999px;
-}
-.pager button:hover:not(:disabled) {
-  border-color: #800f2f;
-}
-.pager button.aktif {
-  background: #800f2f;
-  border-color: #800f2f;
-  color: #fff;
-}
-.pager button:disabled {
-  opacity: 0.4;
 }
 
 @media (max-width: 575.98px) {
