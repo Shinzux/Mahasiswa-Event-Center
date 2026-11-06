@@ -156,16 +156,17 @@ footer a {
   border: 1px solid #ead5dc;
 }
 
-/* ---------- HALAMAN EVENT ---------- */
-/* Banner di bagian atas halaman event */
+/* ==========================================================
+   HALAMAN EVENT (event.html)
+   ========================================================== */
+
+/* 1. Banner Atas (warna maroon khas website) */
 .banner {
   height: 300px;
   background-color: #800f2f;
 }
 
-/* Kartu judul putih yang menimpa banner
-   · Ubah lebar maksimal → max-width di .kolom-sempit
-   · Ubah ukuran font    → font-size di .kartu-judul h1 */
+/* 2. Kartu Judul (kotak putih yang menimpa banner) */
 .kolom-sempit {
   max-width: 760px;
   margin: 0 auto;
@@ -173,7 +174,7 @@ footer a {
 }
 .kartu-judul {
   position: relative;
-  margin-top: -190px;
+  margin-top: -190px; /* Nilai negatif agar kartu naik menimpa banner */
   padding: 2.5rem 2rem 2rem;
   text-align: center;
   background: #fff;
@@ -191,11 +192,13 @@ footer a {
   margin-inline: auto;
 }
 
-/* Kartu-kartu daftar event */
+/* 3. Daftar Kartu Event (wadah grid) */
 .daftar-event {
   display: grid;
-  gap: 1rem;
+  gap: 1rem; /* Jarak antar kartu event */
 }
+
+/* 4. Kartu Event Satuan (Flexbox: Thumbnail - Isi - Tombol) */
 .kartu-event {
   display: flex;
   align-items: center;
@@ -204,14 +207,14 @@ footer a {
   background: #fff;
   border: 1px solid #eadde1;
   border-radius: 18px;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .kartu-event:hover {
   border-color: #800f2f;
   box-shadow: 0 6px 18px rgba(128, 15, 47, 0.1);
 }
+
+/* Kotak Thumbnail / Logo Event */
 .thumb-event {
   flex: 0 0 150px;
   height: 110px;
@@ -220,15 +223,16 @@ footer a {
   font-size: 2.4rem;
   background: linear-gradient(135deg, #fbe9ee, #f4cfd9);
   border-radius: 14px;
-  overflow: hidden; /* baru: memotong gambar yang melebihi kotak */
+  overflow: hidden;
 }
 .thumb-event img {
-  /* baru: memaksa gambar mengikuti ukuran kotak */
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
+/* Isi Informasi Event (Judul, Badge, Metadata) */
 .isi-event {
   flex: 1;
   min-width: 0;
@@ -254,6 +258,7 @@ footer a {
   color: #800f2f;
 }
 
+/* 5. Badge Status Event */
 .badge-akan-datang {
   background: #e8f5ec;
   color: #1e7a3c;
@@ -265,6 +270,7 @@ footer a {
   font-weight: 600;
 }
 
+/* 6. Tampilan Responsif Layar HP (Mobile < 576px) */
 @media (max-width: 575.98px) {
   .banner {
     height: 220px;
@@ -277,7 +283,7 @@ footer a {
     font-size: 1.7rem;
   }
   .kartu-event {
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Susun ke bawah pada layar kecil */
   }
   .thumb-event {
     flex-basis: 84px;
@@ -289,8 +295,7 @@ footer a {
   }
   .aksi-event,
   .aksi-event .btn {
-    flex-basis: 100%;
-    width: 100%;
+    width: 100%; /* Tombol memenuhi lebar layar di HP */
   }
 }
 

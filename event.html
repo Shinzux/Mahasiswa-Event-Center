@@ -1,46 +1,53 @@
 <!doctype html>
-<!-- Halaman Event | PIC: Bintang P. S. -->
+<!-- ============================================================
+     Halaman Event | Mahasiswa Event Center
+     PIC: Bintang P. S.
+     ============================================================ -->
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event | Event Mahasiswa Center</title>
+
+    <!-- Bootstrap 5 CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <!-- File CSS Utama -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
 
-    <!-- NAVBAR: dimuat otomatis dari template/navbar.html -->
+    <!-- 1. NAVBAR (dimuat otomatis dari template/navbar.html lewat script.js) -->
     <div id="navbar-placeholder"></div>
 
     <main>
 
-      <!-- BANNER: warna & tinggi diatur di style.css bagian .banner -->
+      <!-- 2. BANNER ATAS (warna maroon & tinggi diatur di style.css bagian .banner) -->
       <div class="banner" role="img" aria-label="Banner Event"></div>
 
-      <!-- KARTU JUDUL
-           Ubah judul  → edit <h1>
-           Ubah subjudul → edit <p> -->
+      <!-- 3. KARTU JUDUL (kotak putih yang menimpa banner) -->
       <section class="kolom-sempit" aria-labelledby="judulHalaman">
         <div class="kartu-judul">
           <h1 id="judulHalaman">Jelajahi Event Mahasiswa</h1>
-          <p class="mt-4 mb-0 small">
+          <p class="mt-4 mb-0 small text-secondary">
             Temukan seminar, workshop, kompetisi, dan kegiatan organisasi
             mahasiswa dalam satu tempat.
           </p>
         </div>
       </section>
 
-      <!-- DAFTAR EVENT
-           Kartu-kartu di bawah dibuat otomatis oleh JavaScript.
+      <!-- 4. DAFTAR KARTU EVENT
+           Seluruh kartu dibuat otomatis oleh JavaScript dari DATA_EVENT.
            Untuk menambah/mengubah data event atau statusnya → buka assets/js/script.js -->
       <section class="py-5 bg-soft" aria-label="Daftar event">
         <div class="container" style="max-width: 980px">
 
+          <!-- Wadah tempat kartu-kartu event dimasukkan oleh JavaScript -->
           <div class="daftar-event" id="daftarEvent"></div>
 
+          <!-- Keterangan catatan kaki kecil -->
           <p class="small text-secondary mt-4 mb-0 text-center">
             Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
             ditujukan ke penyelenggara masing-masing event.
@@ -51,42 +58,64 @@
 
     </main>
 
-    <!-- FOOTER: dimuat otomatis dari template/footer.html -->
+    <!-- 5. FOOTER (dimuat otomatis dari template/footer.html lewat script.js) -->
     <div id="footer-placeholder"></div>
 
+    <!-- Bootstrap JS Bundle -->
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Muat data event & helper SEBELUM script di bawah -->
+    <!-- Data Event & Fungsi Pembantu (DATA_EVENT, logoEvent, formatTanggal) -->
     <script src="assets/js/script.js"></script>
 
+    <!-- ============================================================
+         JAVASCRIPT HALAMAN EVENT
+         Alur Kerja:
+         1. Fungsi `buatKartu(event)` menerima 1 data objek event dari DATA_EVENT.
+         2. Fungsi tersebut merangkai dan mengembalikan kode HTML kartu.
+         3. Array `DATA_EVENT` di-loop dengan `.map(buatKartu)` lalu dimasukkan
+            ke elemen `#daftarEvent` lewat innerHTML.
+         ============================================================ -->
     <script>
-      // Buat tampilan satu kartu event
-      function buatKartu(e) {
-        var badge = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
-        var tanggal = e.dateEnd
-          ? formatTanggal(e.date) + " – " + formatTanggal(e.dateEnd)
-          : formatTanggal(e.date);
+      // Fungsi membuat template HTML untuk satu kartu event
+      function buatKartu(event) {
+        // 1. Tentukan warna badge (hijau = "Akan Datang", abu-abu = "Selesai")
+        var kelasBadge = event.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
 
+        // 2. Format tanggal: jika ada tanggal akhir (dateEnd), tampilkan sebagai rentang
+        var teksTanggal = "";
+        if (event.dateEnd) {
+          teksTanggal = formatTanggal(event.date) + " – " + formatTanggal(event.dateEnd);
+        } else {
+          teksTanggal = formatTanggal(event.date);
+        }
+
+        // 3. Kembalikan susunan HTML kartu event
+        // 💡 TIPS UTS: Jika dosen meminta menambah info baru (misal Penyelenggara),
+        // tambahkan baris ini di dalam <div class="meta-event">:
+        // <span><i class="bi bi-person"></i>${event.organizer}</span>
         return `
           <article class="kartu-event">
-            <div class="thumb-event">${logoEvent(e)}</div>
+            <div class="thumb-event">${logoEvent(event)}</div>
             <div class="isi-event">
-              <span class="badge ${badge}">${e.status}</span>
-              <h3 class="judul-event">${e.title}</h3>
+              <span class="badge ${kelasBadge}">${event.status}</span>
+              <h3 class="judul-event">${event.title}</h3>
               <div class="meta-event">
-                <span><i class="bi bi-tag"></i>${e.category}</span>
-                <span><i class="bi bi-geo-alt"></i>${e.location}</span>
-                <span><i class="bi bi-calendar-event"></i><strong>${tanggal}</strong></span>
+                <span><i class="bi bi-tag"></i>${event.category}</span>
+                <span><i class="bi bi-geo-alt"></i>${event.location}</span>
+                <span><i class="bi bi-calendar-event"></i><strong>${teksTanggal}</strong></span>
               </div>
             </div>
             <div class="aksi-event">
-              <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${e.id}">Lihat Detail</a>
+              <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${event.id}">Lihat Detail</a>
             </div>
           </article>`;
       }
 
-      // Tampilkan semua event langsung dari DATA_EVENT
-      document.getElementById("daftarEvent").innerHTML = DATA_EVENT.map(buatKartu).join("");
+      // Tampilkan seluruh kartu event ke elemen #daftarEvent
+      var wadahEvent = document.getElementById("daftarEvent");
+      if (wadahEvent && typeof DATA_EVENT !== "undefined") {
+        wadahEvent.innerHTML = DATA_EVENT.map(buatKartu).join("");
+      }
     </script>
 
   </body>
