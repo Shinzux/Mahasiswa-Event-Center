@@ -123,25 +123,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/script.js"></script>
   <script>
-    function formatTanggal(mulai, selesai) {
-      if (mulai.length === 7) {
-        return new Date(mulai + "-01T00:00:00").toLocaleDateString("id-ID", { month: "long", year: "numeric" });
-      }
-      const opsi = { day: "numeric", month: "long", year: "numeric" };
-      let hasil = new Date(mulai + "T00:00:00").toLocaleDateString("id-ID", opsi);
-      if (selesai) {
-        hasil += " sampai " + new Date(selesai + "T00:00:00").toLocaleDateString("id-ID", opsi);
-      }
-      return hasil;
-    }
-
     function tampilkanDetail(e) {
       document.getElementById("detailKategori").textContent = e.category;
       document.getElementById("detailNama").textContent = e.title;
       document.getElementById("detailDeskripsi").textContent = e.description;
       document.getElementById("detailTujuan").textContent = e.purpose || "Belum diumumkan";
       document.getElementById("detailTarget").textContent = e.target;
-      document.getElementById("detailTanggal").textContent = formatTanggal(e.date, e.dateEnd);
+      document.getElementById("detailTanggal").textContent = e.date;
       document.getElementById("detailWaktu").textContent = e.time || "Belum diumumkan";
       document.getElementById("detailLokasi").textContent = e.location;
       document.getElementById("detailPenyelenggara").textContent = e.organizer;

@@ -55,9 +55,10 @@ var DATA_EVENT = [
     id: "EVT-01",
     title: "SIFEST",
     status: "Akan Datang",
+    badge: "badge-akan-datang",
     category: "Perlombaan",
     organizer: "HMSI",
-    date: "2026-11-12",
+    date: "12 November 2026",
     time: "Belum diumumkan",
     location: "Lapangan Saparua, Jl. Ambon No.11-15, Citarum, Kec. Bandung Wetan, Kota Bandung",
     latitude: -6.908390832736909, 
@@ -72,9 +73,10 @@ var DATA_EVENT = [
     id: "EVT-02",
     title: "INFORMAFEST",
     status: "Akan Datang",
+    badge: "badge-akan-datang",
     category: "Perlombaan",
     organizer: "HMIF",
-    date: "2027-07-22",
+    date: "22 Juli 2027",
     time: "Belum diumumkan",
     location: "Alun-Alun Bandung, Jl. Asia Afrika, Kb. Pisang, Kec. Regol, Kota Bandung",
     latitude: -6.921635384088088, 
@@ -89,9 +91,10 @@ var DATA_EVENT = [
     id: "EVT-03",
     title: "Seminar Nasional x Workshop",
     status: "Akan Datang",
+    badge: "badge-akan-datang",
     category: "Komunitas",
     organizer: "HMIF",
-    date: "2027-05",
+    date: "Mei 2027",
     time: "Belum diumumkan",
     location: "Aula Utama Kampus UKRI, Bandung",
     latitude: -6.926164186045057,
@@ -106,10 +109,10 @@ var DATA_EVENT = [
     id: "EVT-04",
     title: "INOVASI NEX",
     status: "Akan Datang",
+    badge: "badge-akan-datang",
     category: "Pengembangan Diri",
     organizer: "HMSI",
-    date: "2026-11-27",
-    dateEnd: "2026-11-29",
+    date: "27 – 29 November 2026",
     time: "Belum diumumkan",
     location: "Gedung KNPI, Jl. Soekarno-Hatta No.623 Km. 8, Sukapura, Kec. Kiaracondong, Kota Bandung",
     latitude: -6.943211476527305,
@@ -124,10 +127,10 @@ var DATA_EVENT = [
     id: "EVT-05",
     title: "ITLEARN",
     status: "Akan Datang",
+    badge: "badge-akan-datang",
     category: "Pengembangan Diri",
     organizer: "HMIF",
-    date: "2026-11-27",
-    dateEnd: "2026-11-29",
+    date: "27 – 29 November 2026",
     time: "Belum diumumkan",
     location: "Gedung PKK, Jl. Soekarno-Hatta No.468, Batununggal, Kec. Bandung Kidul, Kota Bandung",
     latitude: -6.949786849735976,
@@ -142,28 +145,13 @@ var DATA_EVENT = [
 
 
 /* ==========================================================
-   FUNGSI LOGO
-   Menampilkan foto logo event
+   FUNGSI LOGO EVENT
+   Mengembalikan tag <img> berisi logo event
    ========================================================== */
 
-function logoEvent(e) {
-  if (e.logo) {
-    return '<img src="' + e.logo + '" alt="Logo ' + e.title + '" loading="lazy">';
+function logoEvent(event) {
+  if (event.logo) {
+    return '<img src="' + event.logo + '" alt="Logo ' + event.title + '">';
   }
   return "";
-}
-
-
-/* ==========================================================
-   FUNGSI FORMAT TANGGAL
-   Mengubah "2026-11-12" menjadi "12 November 2026"
-   ========================================================== */
-
-function formatTanggal(tgl) {
-  if (!tgl) return "";
-  var opsi = tgl.length === 7
-    ? { month: "long", year: "numeric" }
-    : { day: "numeric", month: "long", year: "numeric" };
-  var waktu = tgl.length === 7 ? tgl + "-01T00:00:00" : tgl + "T00:00:00";
-  return new Date(waktu).toLocaleDateString("id-ID", opsi);
 }
