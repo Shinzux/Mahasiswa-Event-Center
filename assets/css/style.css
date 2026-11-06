@@ -37,6 +37,9 @@ body {
   background-color: #650b25;
   color: white;
 }
+.text-maroon {
+  color: #800f2f !important;
+}
 
 .hero {
   background-color: #fff1f4;
