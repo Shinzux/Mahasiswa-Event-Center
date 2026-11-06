@@ -35,8 +35,7 @@
 
       <!-- DAFTAR EVENT
            Kartu-kartu di bawah dibuat otomatis oleh JavaScript.
-           Untuk menambah/ubah data event → buka assets/js/script.js
-           Untuk ubah jumlah event per halaman → cari PER_HALAMAN di <script> -->
+           Untuk menambah/mengubah data event atau statusnya → buka assets/js/script.js -->
       <section class="py-5 bg-soft" aria-label="Daftar event">
         <div class="container" style="max-width: 980px">
 
@@ -61,35 +60,28 @@
     <script src="assets/js/script.js"></script>
 
     <script>
-      var hariIni = new Date().setHours(0, 0, 0, 0);
+      // Ubah "2026-11-12" jadi format bacaan "12 November 2026"
+      function formatTanggal(tgl) {
+        if (!tgl) return "";
+        var opsi = tgl.length === 7
+          ? { month: "long", year: "numeric" }
+          : { day: "numeric", month: "long", year: "numeric" };
+        var waktu = tgl.length === 7 ? tgl + "-01T00:00:00" : tgl + "T00:00:00";
+        return new Date(waktu).toLocaleDateString("id-ID", opsi);
+      }
 
-      // Buat tampilan satu kartu event.
-      // Ubah bagian HTML di sini jika ingin ganti tampilan kartu.
+      // Buat tampilan satu kartu event
       function buatKartu(e) {
-
-        // Tentukan apakah event sudah Selesai atau Akan Datang
-        var tglAkhir = e.dateEnd || e.date;
-        var tglObj   = tglAkhir.length === 7
-          ? new Date(+tglAkhir.slice(0, 4), +tglAkhir.slice(5), 0)
-          : new Date(tglAkhir + "T00:00:00");
-        var status = tglObj < hariIni ? "Selesai" : "Akan Datang";
-        var badge  = status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
-
-        // Ubah "2026-11-12" → "12 November 2026"
-        function fmt(tgl) {
-          var opts = tgl.length === 7
-            ? { month: "long", year: "numeric" }
-            : { day: "numeric", month: "long", year: "numeric" };
-          return new Date((tgl.length === 7 ? tgl + "-01" : tgl) + "T00:00:00")
-            .toLocaleDateString("id-ID", opts);
-        }
-        var tanggal = e.dateEnd ? fmt(e.date) + " – " + fmt(e.dateEnd) : fmt(e.date);
+        var badge = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
+        var tanggal = e.dateEnd
+          ? formatTanggal(e.date) + " – " + formatTanggal(e.dateEnd)
+          : formatTanggal(e.date);
 
         return `
           <article class="kartu-event">
             <div class="thumb-event">${logoEvent(e)}</div>
             <div class="isi-event">
-              <span class="badge ${badge}">${status}</span>
+              <span class="badge ${badge}">${e.status}</span>
               <h3 class="judul-event">${e.title}</h3>
               <div class="meta-event">
                 <span><i class="bi bi-tag"           aria-hidden="true"></i>${e.category}</span>
@@ -105,11 +97,8 @@
           </article>`;
       }
 
-      // Tampilkan semua event, diurutkan dari tanggal terdekat
-      var daftar = DATA_EVENT.slice().sort(function (a, b) {
-        return a.date < b.date ? -1 : 1;
-      });
-      document.getElementById("daftarEvent").innerHTML = daftar.map(buatKartu).join("");
+      // Tampilkan semua event langsung dari DATA_EVENT
+      document.getElementById("daftarEvent").innerHTML = DATA_EVENT.map(buatKartu).join("");
     </script>
 
   </body>

@@ -33,6 +33,7 @@ loadTemplate("footer-placeholder", "template/footer.html");
    Field:
    - id          : kode unik event
    - title       : nama event
+   - status      : status event ("Akan Datang" atau "Selesai")
    - category    : Perlombaan | Komunitas | Pengembangan Diri
    - organizer   : penyelenggara (HMSI / HMIF)
    - date        : tanggal mulai (format YYYY-MM-DD, atau YYYY-MM jika belum pasti)
@@ -52,6 +53,7 @@ var DATA_EVENT = [
   {
     id: "EVT-01",
     title: "SIFEST",
+    status: "Akan Datang",
     category: "Perlombaan",
     organizer: "HMSI",
     date: "2026-11-12",
@@ -68,6 +70,7 @@ var DATA_EVENT = [
   {
     id: "EVT-02",
     title: "INFORMAFEST",
+    status: "Akan Datang",
     category: "Perlombaan",
     organizer: "HMIF",
     date: "2027-07-22",
@@ -84,6 +87,7 @@ var DATA_EVENT = [
   {
     id: "EVT-03",
     title: "Seminar Nasional x Workshop",
+    status: "Akan Datang",
     category: "Komunitas",
     organizer: "HMIF",
     date: "2027-05",
@@ -100,6 +104,7 @@ var DATA_EVENT = [
   {
     id: "EVT-04",
     title: "INOVASI NEX",
+    status: "Akan Datang",
     category: "Pengembangan Diri",
     organizer: "HMSI",
     date: "2026-11-27",
@@ -117,6 +122,7 @@ var DATA_EVENT = [
   {
     id: "EVT-05",
     title: "ITLEARN",
+    status: "Akan Datang",
     category: "Pengembangan Diri",
     organizer: "HMIF",
     date: "2026-11-27",
