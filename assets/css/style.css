@@ -156,17 +156,27 @@ footer a {
   border: 1px solid #ead5dc;
 }
 
-/* ==========================================================
+/* ==========================================================================
    HALAMAN EVENT (event.html)
-   ========================================================== */
+   ========================================================================== */
 
-/* 1. Banner Atas (warna maroon khas website) */
+/* --------------------------------------------------------------------------
+   1. BANNER ATAS
+   - Memberikan blok warna merah maroon (#800f2f) di bagian paling atas halaman.
+   -------------------------------------------------------------------------- */
 .banner {
   height: 300px;
   background-color: #800f2f;
 }
 
-/* 2. Kartu Judul (kotak putih yang menimpa banner) */
+/* --------------------------------------------------------------------------
+   2. KARTU JUDUL
+   - .kolom-sempit: Membatasi lebar kotak agar berada di tengah (maksimal 760px).
+   - .kartu-judul  : Kotak putih melayang.
+     * margin-top: -190px (nilai minus digunakan agar kotak NAIK menimpa banner).
+     * border-radius: 24px (membuat sudut kotak melengkung halus).
+     * box-shadow: memberi efek bayangan lembut agar kartu terlihat melayang.
+   -------------------------------------------------------------------------- */
 .kolom-sempit {
   max-width: 760px;
   margin: 0 auto;
@@ -174,7 +184,7 @@ footer a {
 }
 .kartu-judul {
   position: relative;
-  margin-top: -190px; /* Nilai minus agar kotak naik ke atas menimpa banner */
+  margin-top: -190px;
   padding: 2.5rem 2rem 2rem;
   text-align: center;
   background: #ffffff;
@@ -192,13 +202,23 @@ footer a {
   margin: 0 auto;
 }
 
-/* 3. Daftar Kartu Event (wadah grid) */
+/* --------------------------------------------------------------------------
+   3. WADAH DAFTAR EVENT (GRID)
+   - .daftar-event: Mengatur susunan daftar kartu event ke bawah secara teratur.
+   - gap: 1rem (memberikan jarak renggang 16px antar-kartu).
+   -------------------------------------------------------------------------- */
 .daftar-event {
   display: grid;
-  gap: 1rem; /* Jarak antar-kartu event */
+  gap: 1rem;
 }
 
-/* 4. Kartu Event Satuan (Flexbox baris: Foto - Teks - Tombol) */
+/* --------------------------------------------------------------------------
+   4. KARTU EVENT SATUAN (FLEXBOX)
+   - .kartu-event: Menggunakan display: flex agar isinya berjejer mendatar:
+     [FOTO THUMBNAIL]  |  [TEKS INFORMASI EVENT]  |  [TOMBOL LIHAT DETAIL]
+   - align-items: center (membuat semua elemen sejajar vertikal di tengah).
+   - transition: membuat efek hover terasa halus saat kursor menyentuh kartu.
+   -------------------------------------------------------------------------- */
 .kartu-event {
   display: flex;
   align-items: center;
@@ -209,16 +229,20 @@ footer a {
   border-radius: 18px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+/* Efek saat kartu diarahkan kursor (hover) */
 .kartu-event:hover {
   border-color: #800f2f;
   box-shadow: 0 6px 18px rgba(128, 15, 47, 0.1);
 }
 
-/* Kotak Foto / Logo Event */
+/* KOTAK FOTO THUMBNAIL LOGO
+   - width: 150px & height: 110px: Ukuran tetap kotak foto di komputer/laptop.
+   - flex-shrink: 0 (MENCEGAH foto menciut/gepeng saat teks judul panjang).
+   - object-fit: cover (foto otomatis terpotong rapi memenuhi kotak tanpa terdistorsi). */
 .thumb-event {
   width: 150px;
   height: 110px;
-  flex-shrink: 0; /* Ukuran foto tetap 150px dan tidak mengecil */
+  flex-shrink: 0;
   border-radius: 14px;
   overflow: hidden;
   background-color: #fbe9ee;
@@ -226,13 +250,14 @@ footer a {
 .thumb-event img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Foto menyesuaikan ukuran kotak secara proporsional */
+  object-fit: cover;
   display: block;
 }
 
-/* Bagian Teks Informasi Event */
+/* BAGIAN TEKS INFORMASI (JUDUL & METADATA)
+   - flex: 1 (Otomatis memanjang mengisi seluruh ruang kosong di tengah kartu). */
 .isi-event {
-  flex: 1; /* Mengisi seluruh sisa ruang yang ada di kartu */
+  flex: 1;
 }
 .judul-event {
   margin: 0.4rem 0 0.55rem;
@@ -240,6 +265,7 @@ footer a {
   font-weight: 700;
   color: #1a1a1a;
 }
+/* Baris ikon kategori, lokasi, dan tanggal */
 .meta-event {
   display: flex;
   flex-wrap: wrap;
@@ -255,7 +281,11 @@ footer a {
   color: #800f2f;
 }
 
-/* 5. Badge Status Event */
+/* --------------------------------------------------------------------------
+   5. LABEL BADGE STATUS (AKAN DATANG / SELESAI)
+     * .badge-akan-datang: background warna hijau muda (#e8f5ec), teks hijau tua.
+     * .badge-selesai: background warna abu-abu (#f1f1f3), teks abu-abu gelap.
+   -------------------------------------------------------------------------- */
 .badge-akan-datang {
   background-color: #e8f5ec;
   color: #1e7a3c;
@@ -267,7 +297,12 @@ footer a {
   font-weight: 600;
 }
 
-/* 6. Tampilan Responsif Layar HP (Mobile < 576px) */
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE DESIGN (Tampilan Khusus Layar HP / Mobile < 576px)
+   - Pada layar HP yang sempit, kartu disusun menurun (wrap):
+     Foto dan teks tetap berdampingan, tetapi tombol "Lihat Detail"
+     otomatis pindah ke bawah selebar layar (width: 100%).
+   -------------------------------------------------------------------------- */
 @media (max-width: 575.98px) {
   .banner {
     height: 220px;
@@ -280,7 +315,7 @@ footer a {
     font-size: 1.7rem;
   }
   .kartu-event {
-    flex-wrap: wrap; /* Susun ke bawah jika layar sempit */
+    flex-wrap: wrap;
   }
   .thumb-event {
     width: 84px;
@@ -291,7 +326,7 @@ footer a {
   }
   .aksi-event,
   .aksi-event .btn {
-    width: 100%; /* Tombol memenuhi lebar layar HP */
+    width: 100%;
   }
 }
 
