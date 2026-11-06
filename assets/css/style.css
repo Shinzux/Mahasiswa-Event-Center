@@ -157,16 +157,7 @@ footer a {
 }
 
 /* ---------- HALAMAN EVENT ---------- */
-.bg-soft {
-  background-color: #fff5f6;
-}
-.teks-sekunder {
-  color: #687189;
-}
-
-/* Banner di bagian atas halaman event
-   · Ubah tinggi banner  → height
-   · Ubah warna banner   → background-color */
+/* Banner di bagian atas halaman event */
 .banner {
   height: 300px;
   background-color: #800f2f;
@@ -200,7 +191,7 @@ footer a {
   margin-inline: auto;
 }
 
-/* Kartu-kartu daftar event & tombol paginasi */
+/* Kartu-kartu daftar event */
 .daftar-event {
   display: grid;
   gap: 1rem;
@@ -261,14 +252,6 @@ footer a {
 }
 .meta-event strong {
   color: #800f2f;
-}
-.kosong {
-  padding: 2.5rem 1rem;
-  text-align: center;
-  color: #687189;
-  background: #fff;
-  border: 1px dashed #e3cfd5;
-  border-radius: 18px;
 }
 
 .badge-akan-datang {

@@ -154,6 +154,21 @@ function logoEvent(e) {
 
 
 /* ==========================================================
+   FUNGSI FORMAT TANGGAL
+   Mengubah "2026-11-12" menjadi "12 November 2026"
+   ========================================================== */
+
+function formatTanggal(tgl) {
+  if (!tgl) return "";
+  var opsi = tgl.length === 7
+    ? { month: "long", year: "numeric" }
+    : { day: "numeric", month: "long", year: "numeric" };
+  var waktu = tgl.length === 7 ? tgl + "-01T00:00:00" : tgl + "T00:00:00";
+  return new Date(waktu).toLocaleDateString("id-ID", opsi);
+}
+
+
+/* ==========================================================
    JAVASCRIPT PETA
    Hanya jalan di halaman yang punya elemen #map DAN library
    Leaflet sudah dimuat (gis.html). Halaman lain melewatinya.

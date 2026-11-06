@@ -41,7 +41,7 @@
 
           <div class="daftar-event" id="daftarEvent"></div>
 
-          <p class="small teks-sekunder mt-4 mb-0 text-center">
+          <p class="small text-secondary mt-4 mb-0 text-center">
             Pertanyaan tentang syarat, biaya, atau pendaftaran sebaiknya
             ditujukan ke penyelenggara masing-masing event.
           </p>
@@ -56,20 +56,10 @@
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Muat data event SEBELUM script di bawah -->
+    <!-- Muat data event & helper SEBELUM script di bawah -->
     <script src="assets/js/script.js"></script>
 
     <script>
-      // Ubah "2026-11-12" jadi format bacaan "12 November 2026"
-      function formatTanggal(tgl) {
-        if (!tgl) return "";
-        var opsi = tgl.length === 7
-          ? { month: "long", year: "numeric" }
-          : { day: "numeric", month: "long", year: "numeric" };
-        var waktu = tgl.length === 7 ? tgl + "-01T00:00:00" : tgl + "T00:00:00";
-        return new Date(waktu).toLocaleDateString("id-ID", opsi);
-      }
-
       // Buat tampilan satu kartu event
       function buatKartu(e) {
         var badge = e.status === "Selesai" ? "badge-selesai" : "badge-akan-datang";
@@ -84,15 +74,13 @@
               <span class="badge ${badge}">${e.status}</span>
               <h3 class="judul-event">${e.title}</h3>
               <div class="meta-event">
-                <span><i class="bi bi-tag"           aria-hidden="true"></i>${e.category}</span>
-                <span><i class="bi bi-geo-alt"        aria-hidden="true"></i>${e.location}</span>
-                <span><i class="bi bi-calendar-event" aria-hidden="true"></i><strong>${tanggal}</strong></span>
+                <span><i class="bi bi-tag"></i>${e.category}</span>
+                <span><i class="bi bi-geo-alt"></i>${e.location}</span>
+                <span><i class="bi bi-calendar-event"></i><strong>${tanggal}</strong></span>
               </div>
             </div>
             <div class="aksi-event">
-              <a class="btn btn-maroon rounded-pill px-4"
-                 href="detail-event.html?event=${encodeURIComponent(e.id)}"
-                 aria-label="Lihat detail ${e.title}">Lihat Detail</a>
+              <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${e.id}">Lihat Detail</a>
             </div>
           </article>`;
       }
