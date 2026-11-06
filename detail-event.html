@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -83,7 +83,7 @@
                 <i class="bi bi-check-circle"></i> Daftar Event Sekarang
               </button>
 
-              <a href="gis.html" id="tombolLokasi" class="btn btn-outline-danger w-100 mb-2">
+              <a href="gis-event.html" id="tombolLokasi" class="btn btn-outline-danger w-100 mb-2">
                 <i class="bi bi-geo-alt"></i> Lihat Lokasi Event
               </a>
               <button type="button" class="btn btn-secondary w-100" onclick="kembaliKeDaftar()">
@@ -150,7 +150,7 @@
       document.getElementById("detailAgenda").innerHTML = agenda
         .map((item) => `<li class="list-group-item">${item}</li>`)
         .join("");
-      document.getElementById("tombolLokasi").href = "gis.html?event=" + e.id;
+      document.getElementById("tombolLokasi").href = "gis-event.html?event=" + e.id;
       document.documentTitle = e.title + " | Event Mahasiswa Center";
     }
 

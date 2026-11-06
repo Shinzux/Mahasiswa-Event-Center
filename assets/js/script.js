@@ -16,7 +16,8 @@ function loadTemplate(id, file) {
       var currentFile = window.location.pathname.split("/").pop() || "index.html";
       var navLinks = container.querySelectorAll(".nav-link");
       navLinks.forEach(function (link) {
-        if (link.getAttribute("href") === currentFile) {
+        var href = link.getAttribute("href");
+        if (href === currentFile || (currentFile === "gis-event.html" && href === "gis.html")) {
           link.classList.add("active");
         }
       });
@@ -171,7 +172,7 @@ function formatTanggal(tgl) {
 /* ==========================================================
    JAVASCRIPT PETA
    Hanya jalan di halaman yang punya elemen #map DAN library
-   Leaflet sudah dimuat (gis.html). Halaman lain melewatinya.
+   Leaflet sudah dimuat (gis.html & gis-event.html). Halaman lain melewatinya.
    Menggunakan data tunggal langsung dari DATA_EVENT.
    ========================================================== */
 
@@ -182,11 +183,55 @@ if (mapContainer && typeof L !== "undefined") {
   var defaultLng = 107.6098;
   var defaultZoom = 13;
 
-  // Baca atribut data-lat, data-lng, data-zoom dari elemen #map jika ada
-  var initialLat = parseFloat(mapContainer.getAttribute("data-lat")) || defaultLat;
-  var initialLng = parseFloat(mapContainer.getAttribute("data-lng")) || defaultLng;
-  var initialZoom = parseInt(mapContainer.getAttribute("data-zoom"), 10) || defaultZoom;
-  var focusId = mapContainer.getAttribute("data-focus-id"); // id event yang ingin langsung dibuka popup-nya
+  // Cek apakah ada parameter URL ?event=... atau ?id=...
+  var urlParams = new URLSearchParams(window.location.search);
+  var eventParamId = urlParams.get("event") || urlParams.get("id");
+  var eventParam = eventParamId
+    ? DATA_EVENT.find(function (ev) {
+        return ev.id === eventParamId;
+      })
+    : null;
+
+  // Jika di halaman gis-event.html tapi parameter tidak ada atau tidak cocok, default ke event pertama
+  var isEventMapPage = window.location.pathname.indexOf("gis-event.html") !== -1;
+  if (isEventMapPage && !eventParam && DATA_EVENT.length > 0) {
+    eventParam = DATA_EVENT[0];
+  }
+
+  // Update informasi dinamis di halaman gis-event.html jika elemennya tersedia
+  if (eventParam) {
+    var elJudul = document.getElementById("judulEvent");
+    var elDeskripsi = document.getElementById("deskripsiEvent");
+    var elBtnKembali = document.getElementById("btnKembaliDetail");
+
+    if (elJudul) {
+      elJudul.textContent = "Peta Lokasi - " + eventParam.title;
+    }
+    if (elDeskripsi) {
+      elDeskripsi.textContent =
+        "Lokasi kegiatan " + eventParam.title + " (" + eventParam.organizer + ").";
+    }
+    if (elBtnKembali) {
+      elBtnKembali.href = "detail-event.html?event=" + eventParam.id;
+    }
+    document.title = "Peta Event - " + eventParam.title + " | Event Mahasiswa Center";
+  }
+
+  // Baca atribut data-lat, data-lng, data-zoom dari elemen #map atau dari event terpilih
+  var initialLat =
+    eventParam && eventParam.latitude
+      ? eventParam.latitude
+      : parseFloat(mapContainer.getAttribute("data-lat")) || defaultLat;
+  var initialLng =
+    eventParam && eventParam.longitude
+      ? eventParam.longitude
+      : parseFloat(mapContainer.getAttribute("data-lng")) || defaultLng;
+  var initialZoom = eventParam
+    ? 16
+    : parseInt(mapContainer.getAttribute("data-zoom"), 10) || defaultZoom;
+  var focusId = eventParam
+    ? eventParam.id
+    : mapContainer.getAttribute("data-focus-id"); // id event yang ingin langsung dibuka popup-nya
   var showDetail = mapContainer.getAttribute("data-show-detail") === "true"; // tampilkan tombol detail di popup?
 
   // 1. Membuat peta dan menentukan titik tengah & zoom
