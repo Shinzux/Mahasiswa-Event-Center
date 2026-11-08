@@ -160,13 +160,47 @@ var DATA_EVENT = [
 
 
 /* ==========================================================
-   FUNGSI LOGO EVENT
-   Mengembalikan tag <img> berisi logo event
+   FUNGSI TAMPILKAN DAFTAR EVENT (Khusus Halaman event.html)
+   ----------------------------------------------------------
+   Fungsinya: Membaca array DATA_EVENT di atas, lalu membuatkan
+   kartu HTML untuk setiap event dan menampilkannya di layar.
+
+   Langkah-langkah yang dilakukan:
+   1. Cari wadah HTML ber-ID "daftarEvent".
+   2. Siapkan penampung teks kosong (hasilHTML = "").
+   3. Ulangi data dari event pertama sampai terakhir (looping).
+   4. Susun kartu HTML dengan data: foto, status, judul, tanggal, dll.
+   5. Masukkan seluruh kartu ke dalam wadah HTML lewat innerHTML.
    ========================================================== */
 
-function logoEvent(event) {
-  if (event.logo) {
-    return '<img src="' + event.logo + '" alt="Logo ' + event.title + '">';
+function tampilkanEvent() {
+  var wadah = document.getElementById("daftarEvent");
+  if (!wadah) return; // Jika elemen tidak ada (bukan halaman event.html), hentikan fungsi
+
+  var hasilHTML = "";
+
+  for (var i = 0; i < DATA_EVENT.length; i++) {
+    var event = DATA_EVENT[i];
+
+    // Susun template HTML kartu event
+    hasilHTML += `
+      <article class="kartu-event">
+        <div class="thumb-event"><img src="${event.logo}"></div>
+        <div class="isi-event">
+          <span class="badge ${event.badge}">${event.status}</span>
+          <h3 class="judul-event">${event.title}</h3>
+          <div class="meta-event">
+            <span><i class="bi bi-tag"></i>${event.category}</span>
+            <span><i class="bi bi-geo-alt"></i>${event.location}</span>
+            <span><i class="bi bi-calendar-event"></i><strong>${event.date}</strong></span>
+          </div>
+        </div>
+        <div class="aksi-event">
+          <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${event.id}">Lihat Detail</a>
+        </div>
+      </article>`;
   }
-  return "";
+
+  // Tampilkan seluruh kartu ke halaman
+  wadah.innerHTML = hasilHTML;
 }

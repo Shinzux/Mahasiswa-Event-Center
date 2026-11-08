@@ -24,11 +24,11 @@
 
     <main>
 
-      <!-- 2. BANNER ATAS (warna maroon & tinggi diatur di style.css bagian .banner) -->
-      <div class="banner" role="img" aria-label="Banner Event"></div>
+      <!-- 2. BANNER ATAS (warna maroon khas website) -->
+      <div class="banner"></div>
 
       <!-- 3. KARTU JUDUL (kotak putih yang menimpa banner) -->
-      <section class="kolom-sempit" aria-labelledby="judulHalaman">
+      <section class="kolom-sempit">
         <div class="kartu-judul">
           <h1>Jelajahi Event Mahasiswa</h1>
           <p class="mt-4 mb-0 small text-secondary">
@@ -41,7 +41,7 @@
       <!-- 4. DAFTAR KARTU EVENT
            Seluruh kartu dibuat otomatis oleh JavaScript dari DATA_EVENT.
            Untuk menambah/mengubah data event atau statusnya → buka assets/js/script.js -->
-      <section class="py-5 bg-soft" aria-label="Daftar event">
+      <section class="py-5 bg-soft">
         <div class="container" style="max-width: 980px">
 
           <!-- Wadah tempat kartu-kartu event dimasukkan oleh JavaScript -->
@@ -64,44 +64,12 @@
     <!-- Bootstrap JS Bundle -->
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Data Event (DATA_EVENT) -->
+    <!-- Data Event & Fungsi Website -->
     <script src="assets/js/script.js"></script>
 
-    <!-- ============================================================
-         JAVASCRIPT HALAMAN EVENT (Sangat Sederhana)
-         Semua data (judul, tanggal, status, badge, foto) 
-         langsung diambil dari DATA_EVENT
-         ============================================================ -->
+    <!-- Panggil fungsi untuk menampilkan daftar kartu event -->
     <script>
-      var wadah = document.getElementById("daftarEvent");
-      var hasilHTML = "";
-
-      // Ulangi untuk setiap data event di DATA_EVENT
-      for (var i = 0; i < DATA_EVENT.length; i++) {
-        var event = DATA_EVENT[i];
-
-        // cukup tambahkan baris berikut di dalam <div class="meta-event">:
-        // <span><i class="bi bi-people"></i>${event.organizer}</span>
-        hasilHTML += `
-          <article class="kartu-event">
-            <div class="thumb-event"><img src="${event.logo}" alt="Logo ${event.title}"></div>
-            <div class="isi-event">
-              <span class="badge ${event.badge}">${event.status}</span>
-              <h3 class="judul-event">${event.title}</h3>
-              <div class="meta-event">
-                <span><i class="bi bi-tag"></i>${event.category}</span>
-                <span><i class="bi bi-geo-alt"></i>${event.location}</span>
-                <span><i class="bi bi-calendar-event"></i><strong>${event.date}</strong></span>
-              </div>
-            </div>
-            <div class="aksi-event">
-              <a class="btn btn-maroon rounded-pill px-4" href="detail-event.html?event=${event.id}">Lihat Detail</a>
-            </div>
-          </article>`;
-      }
-
-      // Masukkan seluruh hasil gabungan kartu ke halaman web
-      wadah.innerHTML = hasilHTML;
+      tampilkanEvent();
     </script>
 
   </body>
