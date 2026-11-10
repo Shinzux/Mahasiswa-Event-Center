@@ -1,48 +1,8 @@
 /* ==========================================================================
-   FUNGSI LOAD TEMPLATE (Modular Navbar & Footer)
-   --------------------------------------------------------------------------
-   MANFAAT & KEGUNAAN:
-   1. Mencegah duplikasi kode: Navbar dan Footer cukup dibuat satu kali di folder
-      `template/` (navbar.html & footer.html).
-   2. Mempermudah pemeliharaan: Jika ada menu yang ingin ditambah/diubah, cukup
-      edit file template tersebut dan semua halaman otomatis ikut berubah.
-   3. Menandai menu aktif: Secara otomatis menambahkan class "active" pada link
-      navbar sesuai halaman yang sedang dibuka pengguna.
-
-   CARA KERJA:
-   - `fetch(file)`       : Mengambil isi file HTML template.
-   - `container.innerHTML`: Memasukkan isi template ke dalam wadah (placeholder).
-   - `navLinks.forEach`  : Memeriksa URL halaman saat ini dan menandai link aktif.
+   CATATAN:
+   Navbar dan Footer sekarang dipasang langsung di setiap file HTML agar dapat
+   berjalan langsung di browser / Notepad++ tanpa terkendala CORS (file://).
    ========================================================================== */
-
-function loadTemplate(id, file) {
-  fetch(file)
-    .then(function (response) {
-      if (!response.ok) throw new Error("Gagal memuat " + file);
-      return response.text();
-    })
-    .then(function (html) {
-      var container = document.getElementById(id);
-      container.innerHTML = html;
-
-      // Menandai menu aktif di navbar secara otomatis sesuai nama file yang dibuka
-      var currentFile = window.location.pathname.split("/").pop() || "index.html";
-      var navLinks = container.querySelectorAll(".nav-link");
-      navLinks.forEach(function (link) {
-        var href = link.getAttribute("href");
-        if (href === currentFile || (currentFile === "gis-event.html" && href === "gis.html")) {
-          link.classList.add("active");
-        }
-      });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
-
-// Panggil fungsi di atas untuk mengisi wadah navbar dan footer di setiap halaman:
-loadTemplate("navbar-placeholder", "template/navbar.html");
-loadTemplate("footer-placeholder", "template/footer.html");
 
 /* ==========================================================
    DATA EVENT (satu-satunya sumber data untuk semua halaman)
